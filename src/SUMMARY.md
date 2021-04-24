@@ -14,3 +14,8 @@
   - [How To Get YouTube Playlist Contents from the YouTube Data API](./javascript/how-to-play-youtube-from-api.md)
 - [Android]()
   - [Add more languages to your android phone (4.3)](./android/add-more-languages.md)
+  - [Android boot process: bootloader/fastboot mode/recovery mode](./android/boot-process.md)
+  - [android pm命令](./android/pm.md)
+  - [APK Downloader for Google Chrome](./android/apk-downloader.md)
+  - [Edit the Settings database](./android/settings-database.md)
+  - [How to Install ClockworkMod Recovery on Samsung Galaxy S2 / i9100](./android/recovery-i9100.md)
