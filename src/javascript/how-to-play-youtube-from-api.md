@@ -2,7 +2,7 @@
 date: None
 author(s): None
 
-# [How To Get YouTube Playlist Contents from the YouTube Data API - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/javascript/how-to-get-youtube-playlist-contents-from-the-youtube-data-api)
+# [How To Get YouTube Playlist Contents from the YouTube Data API](https://www.programmableweb.com/news/how-to-get-youtube-playlist-contents-youtube-data-api/how-to/2018/01/19)
 
 _This is the first part of our series on[How to Develop With the YouTube Data API](https://www.programmableweb.com/api-university/how-to-develop-youtube-data-api). In this part we provide an overview of the API and the developer portal, and show you how to build an app that returns the contents of a publicly viewable YouTube playlist._
 
