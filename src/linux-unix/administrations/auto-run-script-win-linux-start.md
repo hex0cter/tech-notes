@@ -1,10 +1,7 @@
+# auto-run script when linux start
 
-date: None  
-author(s): None  
+Simply call the appropriate command at the following script:
 
-# [auto-run script when linux start - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/administrations/auto-run-script-win-linux-start)
-
-Simply call the appropriate command at the following script:/etc/init.d/rc  
-  
----
-
+```
+/etc/init.d/rc
+```

@@ -1,8 +1,18 @@
+# [Change time zone on Ubuntu](http://webonrails.com/2009/07/15/change-timezone-of-ubuntu-machine-from-command-line/)
+If you guys want to change timezone of your ubuntu machine then you can do it by issuing:
 
-date: None  
-author(s): None  
+```
+dpkg-reconfigure tzdata
+```
+This may be helpful if you deal with servers.
 
-# [Change time zone on Ubuntu - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/administrations/change-time-zone)
+Non-interactively:
 
+```
+# echo "Europe/Dublin" > /etc/timezone
+# dpkg-reconfigure -f noninteractive tzdata
+```
 
+<http://webonrails.com/2009/07/15/change-timezone-of-ubuntu-machine-from-command-line/>
 
+<http://stackoverflow.com/questions/8671308/non-interactive-method-for-dpkg-reconfigure-tzdata>
