@@ -1,6 +1,6 @@
 # Technical notes
 
-This site was converted from [https://sites.google.com/site/xiangyangsite](https://sites.google.com/site/xiangyangsite) before Google forced me to migrate to their new site templates (which don't many features the old one did, such as subpage listing, page attachment, etc.)
+This site was converted from [https://sites.google.com/site/xiangyangsite](https://sites.google.com/site/xiangyangsite) before Google forced it to be migrated to their new site template (which doesn't have many features the old one had, such as subpage listing, page attachment, etc.)
 
 ## How to generate the mark down files:
 
