@@ -18,7 +18,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
         run: |
-          aws s3 cp book s3://tech-notes.danielhan.dev/ --recursive
+          aws s3 cp book s3://carnet.danielhan.dev/ --recursive
 name: Publisher
 on:
   push:
