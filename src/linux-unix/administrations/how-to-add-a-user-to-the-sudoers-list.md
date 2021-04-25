@@ -1,8 +1,4 @@
-
-date: None  
-author(s): None  
-
-# [How to add a user to the sudoers list - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/administrations/how-to-add-a-user-to-the-sudoers-list)
+# [How to add a user to the sudoers list](http://www.pendrivelinux.com/how-to-add-a-user-to-the-sudoers-list/)
 
 **How to add a user to the sudoers list:**
 
@@ -18,11 +14,4 @@ author(s): None
 
   5. Now press **Ctrl+X** and press **Y** when promted to save
 
-
-
 That's it, your new user now has root privileges!
-
-<http://www.pendrivelinux.com/how-to-add-a-user-to-the-sudoers-list/>  
-  
----
-

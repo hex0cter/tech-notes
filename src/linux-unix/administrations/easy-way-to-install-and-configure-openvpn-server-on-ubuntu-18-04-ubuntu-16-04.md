@@ -1,8 +1,4 @@
-
-date: None  
-author(s): None  
-
-# [Easy Way to Install and Configure OpenVPN Server on Ubuntu 18.04 / Ubuntu 16.04 - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/administrations/easy-way-to-install-and-configure-openvpn-server-on-ubuntu-18-04-ubuntu-16-04)
+# [Easy Way to Install and Configure OpenVPN Server on Ubuntu 18.04 / Ubuntu 16.04](https://computingforgeeks.com/easy-way-to-install-and-configure-openvpn-server-on-ubuntu-18-04-ubuntu-16-04/)
 
 Do you want to access the internet securely and safely while leveraging open and untrusted networks like Wi-Fi access points?. [OpenVPN](https://openvpn.net/) is a full-featured, open-source Secure Socket Layer (SSL) VPN solution that supports a wide range of configurations. By making use of [Virtual Private Network](https://en.wikipedia.org/wiki/Virtual_private_network) (VPN), you can securely traverse untrusted networks securely as if you were within the LAN.
 
@@ -15,8 +11,8 @@ This method will work well with both Debian family distributions as well as Red 
 Setup Prerequisites
 
 Before you start installing any package on your Ubuntu server, we always recommend making sure that all system packages are updated:
-    
-    
+
+
     $ sudo apt-get update
     $ sudo apt-get upgrade
 
@@ -29,15 +25,15 @@ Follow below steps to have OpenVPN server installed and running:
 #### Step 1: Install git
 
 Install git by running the command:
-    
-    
+
+
     sudo apt-get install git
 
 #### Step 2: Clone openvpn-install repository
 
 Now clone the `openvpn-install` repository using git tool installed in Step one:
-    
-    
+
+
     $ **cd ~**
     $ **git clone**[ **https://github.com/Nyr/openvpn-install.git**](https://github.com/Nyr/openvpn-install.git)
     Cloning into 'openvpn-install'...
@@ -49,8 +45,8 @@ Now clone the `openvpn-install` repository using git tool installed in Step one:
 #### Step 3: Change to `openvpn-install` and run OpenVPN installer
 
 cd to the directory`openvpn-install` created by clone and run the installer script.
-    
-    
+
+
     $ **cd openvpn-install/**
     $ **ls -1**
     LICENSE.txt
@@ -60,8 +56,8 @@ cd to the directory`openvpn-install` created by clone and run the installer scri
     $ **sudo ./openvpn-install.sh**
 
 You will get a couple of prompts to change or confirm default settings for the installation
-    
-    
+
+
     Welcome to this OpenVPN "road warrior" installer! I need to ask you a few questions before starting the setup.
     You can leave the default options and just press enter if you are ok with them. First, provide the IPv4 address of the network interface you want OpenVPN
     listening to.
@@ -81,33 +77,33 @@ You will get a couple of prompts to change or confirm default settings for the i
     Press any key to continue... **<Enter>**
 
 Press `<Enter>` after answering all the questions to start the installation process: If the installation was successful, you should get a success message at the end:
-    
-    
+
+
     sing configuration from ./openssl-easyrsa.cnf
     Check that the request matches the signature
     Signature ok
     The Subject's Distinguished Name is as follows
     commonName            :ASN.1 12:'client'
     Certificate is to be certified until Jul  4 07:53:27 2028 GMT (3650 days)
-    
+
     Write out database with 1 new entries
     Data Base Updated
     Using configuration from ./openssl-easyrsa.cnf
-    
+
     An updated CRL has been created.
     CRL file: /etc/openvpn/easy-rsa/pki/crl.pem
-    
+
     394
-    
+
     Finished!
-    
+
     Your client configuration is available at: /root/client.ovpn
     If you want to add more clients, you simply need to run this script again!
 
 Main OpenVPN server configuration file is,`/etc/openvpn/server.conf` you are free to tune and tweak it to your liking.
-    
-    
-    $ cat  /etc/openvpn/server.conf 
+
+
+    $ cat  /etc/openvpn/server.conf
     port 1194
     proto udp
     dev tun
@@ -137,26 +133,26 @@ Main OpenVPN server configuration file is,`/etc/openvpn/server.conf` you are fre
     crl-verify crl.pem
 
 A `tun0` virtual interface will be created during the setup process. This is used by OpenVPN clients subnet. Confirm its presence using:
-    
-    
+
+
     $ ip ad | grep tun0
     4: tun0: <POINTOPOINT,MULTICAST,NOARP,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UNKNOWN group default qlen 100
         inet 10.8.0.1/24 brd 10.8.0.255 scope global tun0
 
 The default subnet for this interface is.`10.8.0.0/24.`OpenVPN server will be assigned `10.8.0.1` IP address:
-    
-    
+
+
     $ ip route | grep tun0
     10.8.0.0/24 dev tun0 proto kernel scope link src 10.8.0.1
 
 To test this, use:
-    
-    
+
+
     $ sudo apt-get install traceroute
 
 Then:
-    
-    
+
+
     $ traceroute 10.8.0.1
     traceroute to 10.8.0.1 (10.8.0.1), 30 hops max, 60 byte packets
      1  node-01.computingforgeeks.com (10.8.0.1)  0.050 ms  0.018 ms  0.019 ms
@@ -164,19 +160,19 @@ Then:
 #### Step 4: Generate OpenVPN user profile (.ovpn file)
 
 After completing step 1 through 3, your VPN Server is ready for use. We need to generate VPN Profiles to be used by the users. The same script we used for the installation will be used for this. It manages the creation and revocation of user profiles.
-    
-    
-    # ./openvpn-install.sh 
-    
+
+
+    # ./openvpn-install.sh
+
     Looks like OpenVPN is already installed.
-    
+
     What do you want to do?
        1) Add a new user
        2) Revoke an existing user
        3) Remove OpenVPN
        4) Exit
     Select an option [1-4]: 1
-    
+
     Tell me a name for the client certificate.
     Please, use one word only, no special characters.
     Client name: josphat.mutai
@@ -191,10 +187,10 @@ After completing step 1 through 3, your VPN Server is ready for use. We need to 
     The Subject's Distinguished Name is as follows
     commonName            :ASN.1 12:'josphat.mutai'
     Certificate is to be certified until Jul  4 08:10:32 2028 GMT (3650 days)
-    
+
     Write out database with 1 new entries
     Data Base Updated
-    
+
     Client josphat.mutai added, configuration is available at: /root/josphat.mutai.ovpn
 
 From the output you can confirm the location of my profile,`/root/josphat.mutai.ovpn` you need to copy this profile to the user. The location of the associated private key is also provided `/etc/openvpn/easy-rsa/pki/private/josphat.mutai.key.8dsSsOTWPe`
@@ -208,4 +204,3 @@ You can use the VPN client of your choice to configure OpenVPN client on your op
 Once Installed, on Windows, navigate to the directory with the `ovpn` profile, right click on the file name and select “ **Start OpenVPN on this config file** “
 
 For Linux users, you can use NetworkManager and openvpn plugin to connect to OpenVPN server. Check my previous guide for how to: [How to use nmcli to connect to OpenVPN Server on Linux](https://computingforgeeks.com/how-to-use-nmcli-to-connect-to-openvpn-server-on-linux/)
-

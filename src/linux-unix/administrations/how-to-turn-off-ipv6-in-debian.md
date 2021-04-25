@@ -1,10 +1,4 @@
-
-date: None  
-author(s): None  
-
-# [How to turn off IPv6 in Debian - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/administrations/how-to-turn-off-ipv6-in-debian)
-
-<http://wiki.debian.org/DebianIPv6#How_to_turn_off_IPv6>
+# [How to turn off IPv6 in Debian](http://wiki.debian.org/DebianIPv6#How_to_turn_off_IPv6)
 
 ### In squeeze
 
@@ -25,9 +19,3 @@ author(s): None
 
     * restart sshd: /etc/init.d/ssh restart
   * Change /etc/avahi/avahi-daemon.conf to say _use-ipv6=no_
-
-
-  
-  
----
-

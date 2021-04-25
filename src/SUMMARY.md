@@ -81,7 +81,6 @@
     - [Linux Users](./linux-unix/administrations/linux-users.md)
     - [MBR tips](./linux-unix/administrations/mbr-tips.md)
     - [Mount fat32 with read-write permission from command line](./linux-unix/administrations/mount-fat32-with-read-write-permission-from-command-line.md)
-    - [Mount fat32 with read-write permission from command line](./linux-unix/administrations/mount-fat32-with-read-write-permission-from-command-line-1.md)
     - [Mount windows shared folder on Linux as normal user](./linux-unix/administrations/mount-windows-shared-folder-on-linux-as-normal-user.md)
     - [Package management]()
       - [Package Management on Linux](./linux-unix/administrations/package-management-on-linux.md)

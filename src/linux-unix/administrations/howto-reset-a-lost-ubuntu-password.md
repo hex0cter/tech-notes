@@ -1,16 +1,8 @@
 
-date: None  
-author(s): None  
+date: 2008/09/03 @ 10:37 pm
+author(s): [jstriegel](http://makezine.com/author/jstriegel/)
 
-# [HOWTO – reset a lost Ubuntu password - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/administrations/howto-reset-a-lost-ubuntu-password)
-
-<http://makezine.com/2008/09/03/howto-reset-a-lost-ubuntu-pass/>
-
-  * By [jstriegel](http://makezine.com/author/jstriegel/)
-  * Posted 2008/09/03 @ 10:37 pm
-  * Category [Electronics](http://makezine.com/category/electronics/)
-  * Comments [17](http://makezine.com/2008/09/03/howto-reset-a-lost-ubuntu-pass/#comments)
-
+# [HOWTO – reset a lost Ubuntu password](http://makezine.com/2008/09/03/howto-reset-a-lost-ubuntu-pass/)
 
 
 I loaded one of my test Ubuntu virtual machines today (one that I hadn’t used for a month) and, surprise, I had forgotten the password. This sort of thing happens from time to time, and if you’re new to Linux, it can be a little disconcerting.
@@ -28,13 +20,12 @@ Losing your root password isn’t the end of the world, though. You’ll just ne
 
 
 
- **Change the admin password**  
+ **Change the admin password**
 The system should load into single user mode and you’ll be left at the command line automatically logged in as root. Type ‘passwd’ to change the root password or ‘passwd someuser’ to change the password for your “someuser” admin account.
 
- **Reboot**  
+ **Reboot**
 Once your done, give the three finger salute, or enter ‘reboot’ to restart into your machine’s normal configuration.
 
-That’s all there is to it. Now just make sure to write your password down on a post-it and shove it somewhere safe like under your keyboard. ![:\)](http://s0.wp.com/wp-includes/images/smilies/icon_smile.gif?m=1129645325g)  
-  
----
+That’s all there is to it. Now just make sure to write your password down on a post-it and shove it somewhere safe like under your keyboard. ![:\)](http://s0.wp.com/wp-includes/images/smilies/icon_smile.gif?m=1129645325g)
 
+---

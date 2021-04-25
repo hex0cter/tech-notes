@@ -1,8 +1,4 @@
-
-date: None  
-author(s): None  
-
-# [Linux Users - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/administrations/linux-users)
+# [Linux Users](http://www.ahinc.com/linux101/users.htm)
 
 Every user who has access to a Linux system needs a login and a password. Each user must belong to a primary group and for security or access purposes can belong to several secondary groups.
 
@@ -79,16 +75,16 @@ Options:
 
  _Example: To change the password for the account you are currently logged in as..._
 
->  **passwd**  
->  Enter **existing password**  
->  Enter **new password**  
+>  **passwd**
+>  Enter **existing password**
+>  Enter **new password**
 >  Enter **new password again** (to validate)
 
  _Example: To change the password for the user 'roger' (only you are logged in as root)..._
 
-> passwd roger  
-> Enter existing password (can be either roger's password or root's password)  
-> Enter new password  
+> passwd roger
+> Enter existing password (can be either roger's password or root's password)
+> Enter new password
 > Enter new password again (to validate)
 
 [top of page](http://www.ahinc.com/linux101/users.htm#top)
@@ -134,13 +130,12 @@ su - Switch User
 
 To switch to another user, use the **su** command. This is most commonly used to switch to the root account.
 
->  _Example: To switch to root account..._  
->  su  
+>  _Example: To switch to root account..._
+>  su
 > Enter **root's passwd**
-> 
->  _Example: To switch to the user 'roger'..._  
->  su roger  
+>
+>  _Example: To switch to the user 'roger'..._
+>  su roger
 > Enter roger's or root's passwd
-> 
+>
 > To return to original user, enter exit
-

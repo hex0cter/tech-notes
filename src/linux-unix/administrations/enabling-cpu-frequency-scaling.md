@@ -1,8 +1,4 @@
-
-date: None  
-author(s): None  
-
-# [Enabling CPU Frequency Scaling - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/administrations/enabling-cpu-frequency-scaling)
+# [Enabling CPU Frequency Scaling](http://embraceubuntu.com/2005/11/04/enabling-cpu-frequency-scaling/)
 
 <http://embraceubuntu.com/2005/11/04/enabling-cpu-frequency-scaling/>
 
@@ -14,7 +10,7 @@ In order to be able to change the operating frequency, your processor should sup
 
 For example, on my system:
 
-`$cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies`  
+`$cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies`
 gives:
 
 > 1300000 1200000 1000000 800000 600000
@@ -23,7 +19,7 @@ Which means that the above frequencies (in Hz) are supported by my CPU.and…
 
 `$cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_governors`
 
-  
+
 gives:
 
 > userspace powersave ondemand conservative performance
@@ -36,7 +32,7 @@ which will set the frequency to 1.3 GHz.
 
 Now, I was interested in being able to change the power mode (between the different values listed in the “governors” above, manually by using the Cpu Frequency Panel Monitor.
 
-I found out from the Forums, again, that changing the permissions of the cpufreq-selector binary by doing a:  
+I found out from the Forums, again, that changing the permissions of the cpufreq-selector binary by doing a:
 $sudo chmod +s /usr/bin/cpufreq-selector
 
 will allow me to acheive this. _However_ , I was curious as to why Ubuntu does not, by default, allow me to choose the frequency using the CPU Frequency Panel Monitor, and what the “right” or “correct” way of enabling this is.
@@ -45,7 +41,7 @@ With a little bit of detective work, I found the reason why things are the way t
 
 > Oh, please, not another setuid root application if we can avoid it. Which file does cpufreq-selector need access to to change the CPU speed? And why should a normal user be able to change the CPU speed in the first place? The automatic CPU speed works well enough for the majority of users, and control freaks can always use sudo to manually set the speed, or deliberately shoot themselves in the foot by making the binary suid root (as explained in README.Debian).
 
-Anyways, since I really want to “shoot my self in the foot” using my CPU ![;\)](http://s1.wp.com/wp-includes/images/smilies/icon_wink.gif?m=1293711309g) , so I read the readme:  
+Anyways, since I really want to “shoot my self in the foot” using my CPU ![;\)](http://s1.wp.com/wp-includes/images/smilies/icon_wink.gif?m=1293711309g) , so I read the readme:
 $cat /usr/share/doc/gnome-applets-data/README.Debian
 
 and as suggested in it, I did a$ sudo dpkg-reconfigure gnome-applets
@@ -53,4 +49,3 @@ and as suggested in it, I did a$ sudo dpkg-reconfigure gnome-applets
 and answered “Yes” to the question regarding setting the suid of the cpufreq-selector executable. Now, by left-clicking on the CPU Frequency Monitor Applet, I can choose the frequency for my processor, and things couldn’t be better!!
 
 P.S.: A lot of my detective work could have been avoided had I read the README in the first place. Stupid me.
-

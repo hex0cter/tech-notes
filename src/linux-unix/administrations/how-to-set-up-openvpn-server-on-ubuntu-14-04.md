@@ -1,23 +1,24 @@
+# [How to set up openvpn server on Ubuntu 14.04 ](https://www.digitalocean.com/community/tutorials/how-to-set-up-an-openvpn-server-on-ubuntu-14-04)
 
-date: None  
-author(s): None  
+Here is the original URL of this tutorial. Really good one, and worked for me.
 
-# [How to set up openvpn server on Ubuntu 14.04 - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/administrations/how-to-set-up-openvpn-server-on-ubuntu-14-04)
-
-https://www.digitalocean.com/community/tutorials/how-to-set-up-an-openvpn-server-on-ubuntu-14-04
+<https://www.digitalocean.com/community/tutorials/how-to-set-up-an-openvpn-server-on-ubuntu-14-04>
 
 The only change I had to do is to change the network interface name from eth0 to wlan0 in the ufw settings as I am using a WIFI connection at the moment.
 
-Want to access the Internet safely and securely from your smartphone or laptop when connected to an untrusted network such as the WiFi of a hotel or coffee shop? A [Virtual Private Network](https://en.wikipedia.org/wiki/Virtual_private_network) (VPN) allows you to traverse untrusted networks privately and securely to your DigitalOcean Droplet as if you were on a secure and private network. The traffic emerges from the Droplet and continues its journey to the destination. 
+## Introduction
+Want to access the Internet safely and securely from your smartphone or laptop when connected to an untrusted network such as the WiFi of a hotel or coffee shop? A [Virtual Private Network](https://en.wikipedia.org/wiki/Virtual_private_network) (VPN) allows you to traverse untrusted networks privately and securely to your DigitalOcean Droplet as if you were on a secure and private network. The traffic emerges from the Droplet and continues its journey to the destination.
 
 When combined with [HTTPS connections](https://en.wikipedia.org/wiki/HTTP_Secure), this setup allows you to secure your wireless logins and transactions. You can circumvent geographical restrictions and censorship, and shield your location and unencrypted HTTP traffic from the untrusted network.
 
 [OpenVPN](https://openvpn.net/) is a full-featured open source Secure Socket Layer (SSL) VPN solution that accommodates a wide range of configurations. In this tutorial, we'll set up an OpenVPN server on a Droplet and then configure access to it from Windows, OS X, iOS and Android. This tutorial will keep the installation and configuration steps as simple as possible for these setups.
 
+## Prerequisites
 The only prerequisite is having a Ubuntu 14.04 Droplet established and running. You will need root access to complete this guide.
 
   * Optional: After completion of this tutorial, It would be a good idea to create a standard user account with [sudo](https://www.digitalocean.com/community/tutorials/how-to-add-and-delete-users-on-an-ubuntu-14-04-vps) privileges for performing general maintenance on your server.
 
+## Step 1 — Install and Configure OpenVPN's Server Environment
 
 
 Complete these steps for your server-side setup.
@@ -25,51 +26,51 @@ Complete these steps for your server-side setup.
 ### OpenVPN Configuration
 
 Before we install any packages, first we'll update Ubuntu's repository lists.
-    
-    
+
+
     apt-get update
-    
+
 
 Then we can install OpenVPN and Easy-RSA.
-    
-    
+
+
     apt-get install openvpn easy-rsa
-    
+
 
 The example VPN server configuration file needs to be extracted to `/etc/openvpn` so we can incorporate it into our setup. This can be done with one command:
-    
-    
+
+
     gunzip -c /usr/share/doc/openvpn/examples/sample-config-files/server.conf.gz > /etc/openvpn/server.conf
-    
+
 
 Once extracted, open `server.conf` in a text editor. This tutorial will use Vim but you can use whichever editor you prefer.
-    
-    
+
+
     vim /etc/openvpn/server.conf
-    
+
 
 There are several changes to make in this file. You will see a section looking like this:
-    
-    
+
+
     # Diffie hellman parameters.
     # Generate your own with:
     #   openssl dhparam -out dh1024.pem 1024
     # Substitute 2048 for 1024 if you are using
     # 2048 bit keys.
     dh dh1024.pem
-    
+
 
 Edit `dh1024.pem` to say:
-    
-    
+
+
     dh2048.pem
-    
+
 
 This will double the RSA key length used when generating server and client keys.
 
 Still in `server.conf`, now look for this section:
-    
-    
+
+
     # If enabled, this directive will configure
     # all clients to redirect their default
     # network gateway through the VPN, causing
@@ -79,17 +80,17 @@ Still in `server.conf`, now look for this section:
     # or bridge the TUN/TAP interface to the internet
     # in order for this to work properly).
     ;push "redirect-gateway def1 bypass-dhcp"
-    
+
 
 Uncomment `push "redirect-gateway def1 bypass-dhcp"` so the VPN server passes on clients' web traffic to its destination. It should look like this when done:
-    
-    
+
+
     push "redirect-gateway def1 bypass-dhcp"
-    
+
 
 The next edit to make is in this area:
-    
-    
+
+
     # Certain Windows-specific network settings
     # can be pushed to clients, such as DNS
     # or WINS server addresses.  CAVEAT:
@@ -98,32 +99,32 @@ The next edit to make is in this area:
     # DNS servers provided by opendns.com.
     ;push "dhcp-option DNS 208.67.222.222"
     ;push "dhcp-option DNS 208.67.220.220"
-    
+
 
 Uncomment `push "dhcp-option DNS 208.67.222.222"` and `push "dhcp-option DNS 208.67.220.220"`. It should look like this when done:
-    
-    
+
+
     push "dhcp-option DNS 208.67.222.222"
     push "dhcp-option DNS 208.67.220.220"
-    
+
 
 This tells the server to push [OpenDNS](https://opendns.com/) to connected clients for DNS resolution where possible. This can help prevent DNS requests from leaking outside the VPN connection. However, it's important to specify desired DNS resolvers in client devices as well. Though OpenDNS is the default used by OpenVPN, you can use whichever DNS services you prefer.
 
 The last area to change in `server.conf` is here:
-    
-    
+
+
     # You can uncomment this out on
     # non-Windows systems.
     ;user nobody
     ;group nogroup
-    
+
 
 Uncomment both `user nobody` and `group nogroup`. It should look like this when done:
-    
-    
+
+
     user nobody
     group nogroup
-    
+
 
 By default, OpenVPN runs as the root user and thus has full root access to the system. We'll instead confine OpenVPN to the user nobody and group nogroup. This is an unprivileged user with no default login capabilities, often reserved for running untrusted applications like web-facing servers.
 
@@ -132,30 +133,30 @@ Now save your changes and exit Vim.
 ### Packet Forwarding
 
 This is a _sysctl_ setting which tells the server's kernel to forward traffic from client devices out to the Internet. Otherwise, the traffic will stop at the server. Enable packet forwarding during runtime by entering this command:
-    
-    
+
+
     echo 1 > /proc/sys/net/ipv4/ip_forward
-    
+
 
 We need to make this permanent so the server still forwards traffic after rebooting.
-    
-    
+
+
     vim /etc/sysctl.conf
-    
+
 
 Near the top of the sysctl file, you will see:
-    
-    
+
+
     # Uncomment the next line to enable packet forwarding for IPv4
     #net.ipv4.ip_forward=1
-    
+
 
 Uncomment `net.ipv4.ip_forward`. It should look like this when done:
-    
-    
+
+
     # Uncomment the next line to enable packet forwarding for IPv4
     net.ipv4.ip_forward=1
-    
+
 
 Save your changes and exit.
 
@@ -164,38 +165,38 @@ Save your changes and exit.
 ufw is a front-end for iptables and setting up ufw is not hard. It's included by default in Ubuntu 14.04, so we only need to make a few rules and configuration edits, then switch the firewall on. As a reference for more uses for ufw, see [How To Setup a Firewall with UFW on an Ubuntu and Debian Cloud Server](https://www.digitalocean.com/community/articles/how-to-setup-a-firewall-with-ufw-on-an-ubuntu-and-debian-cloud-server).
 
 First set ufw to allow SSH. In the command prompt, `ENTER`:
-    
-    
+
+
     ufw allow ssh
-    
+
 
 This tutorial will use OpenVPN over UDP, so ufw must also allow UDP traffic over port `1194`.
-    
-    
+
+
     ufw allow 1194/udp
-    
+
 
 The ufw forwarding policy needs to be set as well. We'll do this in ufw's primary configuration file.
-    
-    
+
+
     vim /etc/default/ufw
-    
+
 
 Look for `DEFAULT_FORWARD_POLICY="DROP"`. This must be changed from DROP to ACCEPT. It should look like this when done:
-    
-    
+
+
     DEFAULT_FORWARD_POLICY="ACCEPT"
-    
+
 
 Next we will add additional ufw rules for network address translation and IP masquerading of connected clients.
-    
-    
+
+
     vim /etc/ufw/before.rules
-    
+
 
 Make the top of your `before.rules` file look like below. The area in red for OPENVPN RULES must be added:
-    
-    
+
+
     #
     # rules.before
     #
@@ -211,48 +212,48 @@ Make the top of your `before.rules` file look like below. The area in red for OP
     -A POSTROUTING -s 10.8.0.0/8 -o eth0 -j MASQUERADE
     COMMIT
     # END OPENVPN RULES
-    
+
     # Don't delete these required lines, otherwise there will be errors
     *filter
-    
+
 
 With the changes made to ufw, we can now enable it. Enter into the command prompt:
-    
-    
+
+
     ufw enable
-    
+
 
 Enabling ufw will return the following prompt:
-    
-    
+
+
     Command may disrupt existing ssh connections. Proceed with operation (y|n)?
-    
+
 
 Answer `y`. The result will be this output:
-    
-    
+
+
     Firewall is active and enabled on system startup
-    
+
 
 To check ufw's primary firewall rules:
-    
-    
+
+
     ufw status
-    
+
 
 The status command should return these entries:
-    
-    
+
+
     Status: active
-    
+
     To                         Action      From
     --                         ------      ----
     22                         ALLOW       Anywhere
     1194/udp                   ALLOW       Anywhere
     22 (v6)                    ALLOW       Anywhere (v6)
     1194/udp (v6)              ALLOW       Anywhere (v6)
-    
 
+## Step 2 — Creating a Certificate Authority and Server-Side Certificate & Key
 OpenVPN uses certificates to encrypt traffic.
 
 ### Configure and Build the Certificate Authority
@@ -260,147 +261,149 @@ OpenVPN uses certificates to encrypt traffic.
 It is now time to set up our own Certificate Authority (CA) and generate a certificate and key for the OpenVPN server. OpenVPN supports bidirectional authentication based on certificates, meaning that the client must authenticate the server certificate and the server must authenticate the client certificate before mutual trust is established. We will use Easy RSA's scripts we copied earlier to do this.
 
 First copy over the Easy-RSA generation scripts.
-    
-    
+
+
     cp -r /usr/share/easy-rsa/ /etc/openvpn
-    
+
 
 Then make the key storage directory.
-    
-    
+
+
     mkdir /etc/openvpn/easy-rsa/keys
-    
+
 
 Easy-RSA has a variables file we can edit to create certificates exclusive to our person, business, or whatever entity we choose. This information is copied to the certificates and keys, and will help identify the keys later.
-    
-    
+
+
     vim /etc/openvpn/easy-rsa/vars
-    
+
 
 The variables below marked in red should be changed according to your preference.
-    
-    
+
+
     export KEY_COUNTRY="US"
     export KEY_PROVINCE="TX"
     export KEY_CITY="Dallas"
     export KEY_ORG="My Company Name"
     export KEY_EMAIL="sammy@example.com"
     export KEY_OU="MYOrganizationalUnit"
-    
+
 
 In the same `vars` file, also edit this one line shown below. For simplicity, we will use `server` as the key name. If you want to use a different name, you would also need to update the OpenVPN configuration files that reference `server.key` and `server.crt`.
-    
-    
+
+
     export KEY_NAME="server"
-    
+
 
 We need to generate the Diffie-Hellman parameters; this can take several minutes.
-    
-    
+
+
     openssl dhparam -out /etc/openvpn/dh2048.pem 2048
-    
+
 
 Now let's change directories so that we're working directly out of where we moved Easy-RSA's scripts to earlier in Step 2.
-    
-    
+
+
     cd /etc/openvpn/easy-rsa
-    
+
 
 Initialize the PKI (Public Key Infrastructure). Pay attention to the dot (.) and space in front of `./vars`command. That signifies the current working directory (source).
-    
-    
+
+
     . ./vars
-    
+
 
 The output from the above command is shown below. Since we haven't generated anything in the `keys`directory yet, the warning is nothing to be concerned about.
-    
-    
+
+
     NOTE: If you run ./clean-all, I will be doing a rm -rf on /etc/openvpn/easy-rsa/keys
-    
+
 
 Now we'll clear the working directory of any possible old or example keys to make way for our new ones.
-    
-    
+
+
     ./clean-all
-    
+
 
 This final command builds the certificate authority (CA) by invoking an interactive OpenSSL command. The output will prompt you to confirm the Distinguished Name variables that were entered earlier into the Easy-RSA's variable file (country name, organization, etc.).
-    
-    
+
+
     ./build-ca
-    
+
 
 Simply press `ENTER` to pass through each prompt. If something must be changed, you can do that from within the prompt.
 
 ### Generate a Certificate and Key for the Server
 
 Still working from `/etc/openvpn/easy-rsa`, now enter the command to build the server's key. Where you see `server` marked in red is the `export KEY_NAME` variable we set in Easy-RSA's `vars` file earlier in Step 2.
-    
-    
+
+
     ./build-key-server server
-    
+
 
 Similar output is generated as when we ran `./build-ca`, and you can again press `ENTER` to confirm each line of the Distinguished Name. However, this time there are two additional prompts:
-    
-    
+
+
     Please enter the following 'extra' attributes
     to be sent with your certificate request
     A challenge password []:
     An optional company name []:
-    
+
 
 Both should be left blank, so just press `ENTER` to pass through each one.
 
 Two additional queries at the end require a positive (`y`) response:
-    
-    
+
+
     Sign the certificate? [y/n]
     1 out of 1 certificate requests certified, commit? [y/n]
-    
+
 
 The last prompt above should complete with:
-    
-    
+
+
     Write out database with 1 new entries
     Data Base Updated
-    
+
 
 ### Move the Server Certificates and Keys
 
 OpenVPN expects to see the server's CA, certificate and key in `/etc/openvpn`. Let's copy them into the proper location.
-    
-    
+
+
     cp /etc/openvpn/easy-rsa/keys/{server.crt,server.key,ca.crt} /etc/openvpn
-    
+
 
 You can verify the copy was successful with:
-    
-    
+
+
     ls /etc/openvpn
-    
+
 
 You should see the certificate and key files for the server.
 
 At this point, the OpenVPN server is ready to go. Start it and check the status.
-    
-    
+
+
     service openvpn start
     service openvpn status
-    
+
 
 The status command should return:
-    
-    
+
+
     VPN 'server' is running
-    
+
 
 Congratulations! Your OpenVPN server is operational. If the status message says the VPN is not running, then take a look at the `/var/log/syslog` file for errors such as:
-    
-    
+
+
     Options error: --key fails with 'server.key': No such file or directory
-    
+
 
 That error indicates `server.key` was not copied to `/etc/openvpn` correctly. Re-copy the file and try again.
+
+## Step 3 — Generate Certificates and Keys for Clients
 
 So far we've installed and configured the OpenVPN server, created a Certificate Authority, and created the server's own certificate and key. In this step, we use the server's CA to generate certificates and keys for each client device which will be connecting to the VPN. These files will later be installed onto the client devices such as a laptop or smartphone.
 
@@ -413,10 +416,10 @@ It's ideal for each client connecting to the VPN to have its own unique certific
 To create separate authentication credentials for each device you intend to connect to the VPN, you should complete this step for each device, but change the name client1 below to something different such as client2 or iphone2. With separate credentials per device, they can later be deactivated at the server individually, if need be. The remaining examples in this tutorial will use client1 as our example client device's name.
 
 As we did with the server's key, now we build one for our client1 example. You should still be working out of `/etc/openvpn/easy-rsa`.
-    
-    
+
+
     ./build-key client1
-    
+
 
 If you run into this problem:
 
@@ -430,40 +433,40 @@ If you run into this problem:
 
 ` Finally, you can run this tool (pkitool) to build certificates/keys.`
 
-Run 
+Run
 
 `/etc/openvpn/easy-rsa# . ./vars `
 
 and try again.
 
 Once again, you'll be asked to change or confirm the Distinguished Name variables and these two prompts which should be left blank. Press `ENTER` to accept the defaults.
-    
-    
+
+
     Please enter the following 'extra' attributes
     to be sent with your certificate request
     A challenge password []:
     An optional company name []:
-    
+
 
 As before, these two confirmations at the end of the build process require a (`y`) response:
-    
-    
+
+
     Sign the certificate? [y/n]
     1 out of 1 certificate requests certified, commit? [y/n]
-    
+
 
 If the key build was successful, the output will again be:
-    
-    
+
+
     Write out database with 1 new entries
     Data Base Updated
-    
+
 
 The example client configuration file should be copied to the Easy-RSA key directory too. We'll use it as a template which will be downloaded to client devices for editing. In the copy process, we are changing the name of the example file from `client.conf` to `client.ovpn` because the `.ovpn` file extension is what the clients will expect to use.
-    
-    
+
+
     cp /usr/share/doc/openvpn/examples/sample-config-files/client.conf /etc/openvpn/easy-rsa/keys/client.ovpn
-    
+
 
 You can repeat this section again for each client, replacing client1 with the appropriate client name throughout.
 
@@ -490,10 +493,10 @@ The `ca.crt` and `client.ovpn` files are the same for all clients. Download thes
 While the exact applications used to accomplish this transfer will depend on your choice and device's operating system, you want the application to use SFTP (SSH file transfer protocol) or SCP (Secure Copy) on the backend. This will transport your client's VPN authentication files over an encrypted connection.
 
 Here is an example SCP command using our client1 example. It places the file `client1.key` into the Downloads directory on the local computer.
-    
-    
+
+
     scp root@your-server-ip:/etc/openvpn/easy-rsa/keys/client1.key Downloads/
-    
+
 
 Here are several tools and tutorials for securely transfering files from the server to a local computer:
 
@@ -504,7 +507,7 @@ At the end of this section, make sure you have these four files on your client d
   * `client.ovpn`
   * `ca.crt`
 
-
+## Step 4 - Creating a Unified OpenVPN Profile for Client Devices
 
 There are several methods for managing the client files but the easiest uses a _unified_ profile. This is created by modifying the `client.ovpn` template file to include the server's Certificate Authority, and the client's certificate and its key. Once merged, only the single `client.ovpn` profile needs to be imported into the client's OpenVPN application.
 
@@ -515,35 +518,35 @@ Note: The name of your duplicated `client.ovpn` doesn't need to be related to th
 In this tutorial, we'll name the VPN connection DigitalOcean so `DigitalOcean.ovpn` will be the file name referenced from this point on. Once named, we then must open `DigitalOcean.ovpn` in a text editor; you can use whichever editor you prefer.
 
 The first area of attention will be for the IP address of your Droplet. Near the top of the file, change my-server-1 to reflect your VPN's IP.
-    
-    
+
+
     # The hostname/IP and port of the server.
     # You can have multiple remote entries
     # to load balance between the servers.
     remote my-server-1 1194
-    
+
 
 Next, find the area shown below and uncomment `user nobody` and `group nogroup`, just like we did in `server.conf` in Step 1. Note: This doesn't apply to Windows so you can skip it. It should look like this when done:
-    
-    
+
+
     # Downgrade privileges after initialization (non-Windows only)
     user nobody
     group nogroup
-    
+
 
 The area given below needs the three lines shown to be commented out so we can instead include the certificate and key directly in the `DigitalOcean.ovpn` file. It should look like this when done:
-    
-    
+
+
     # SSL/TLS parms.
     # . . .
     #ca ca.crt
     #cert client.crt
     #key client.key
-    
+
 
 To merge the individual files into the one unified profile, the contents of the ca.crt, client1.crt, and client1.key files are pasted directly into the `.ovpn` profile using a basic XML-like syntax. The XML at the end of the file should take this form:
-    
-    
+
+
     <ca>
     (insert ca.crt here)
     </ca>
@@ -553,11 +556,11 @@ To merge the individual files into the one unified profile, the contents of the 
     <key>
     (insert client1.key here)
     </key>
-    
+
 
 When finished, the end of the file should be similar to this abbreviated example:
-    
-    
+
+
     <ca>
     -----BEGIN CERTIFICATE-----
     . . .
@@ -573,11 +576,13 @@ When finished, the end of the file should be similar to this abbreviated example
     . . .
     -----END PRIVATE KEY-----
     </key>
-    
+
 
 The `client1.crt` file has some extra information in it; it's fine to just include the whole file.
 
 Save the changes and exit. We now have a unified OpenVPN client profile to configure our client1.
+
+## Step 5 - Installing the Client Profile
 
 Now we'll discuss installing a client VPN profile on Windows, OS X, iOS, and Android. None of these client instructions are dependent on each other so you can skip to whichever is applicable to you.
 
@@ -592,10 +597,10 @@ The OpenVPN client application for Windows can be found on [OpenVPN's Downloads 
 > Note: OpenVPN needs administrative privileges to install.
 
 After installing OpenVPN, copy the unified `DigitalOcean.ovpn` profile to:
-    
-    
+
+
     C:\Program Files\OpenVPN\config
-    
+
 
 When you launch OpenVPN, it will automatically see the profile and makes it available.
 
@@ -629,7 +634,7 @@ Launch Tunnelblick by double-clicking Tunnelblick in the Applications folder. On
 
 Installing
 
-From the iTunes App Store, search for and install [OpenVPN Connect](https://itunes.apple.com/us/app/id590379981), the official iOS OpenVPN client application. To transfer your iOS client profile onto the device, connect it directly to a computer. 
+From the iTunes App Store, search for and install [OpenVPN Connect](https://itunes.apple.com/us/app/id590379981), the official iOS OpenVPN client application. To transfer your iOS client profile onto the device, connect it directly to a computer.
 
 Completing the transfer with iTunes will be outlined here. Open iTunes on the computer and click on iPhone > apps. Scroll down to the bottom to the File Sharing section and click the OpenVPN app. The blank window to the right, OpenVPN Documents, is for sharing files. Drag the `.ovpn` file to the OpenVPN Documents window.
 
@@ -653,7 +658,7 @@ Installing
 
 Open the Google Play Store. Search for and install [Android OpenVPN Connect](https://play.google.com/store/apps/details?id=net.openvpn.openvpn), the official Android OpenVPN client application.
 
-The `.ovpn` profile can be transferred by connecting the Android device to your computer by USB and copying the file over. Alternatively, if you have an SD card reader, you can remove the device's SD card, copy the profile onto it and then insert the card back into the Android device. 
+The `.ovpn` profile can be transferred by connecting the Android device to your computer by USB and copying the file over. Alternatively, if you have an SD card reader, you can remove the device's SD card, copy the profile onto it and then insert the card back into the Android device.
 
 Start the OpenVPN app and tap the menu to import the profile.
 
@@ -669,6 +674,8 @@ To connect, simply tap the Connect button. You'll be asked if you trust the Open
 
 ![The OpenVPN Android app ready to connect to the VPN](https://assets.digitalocean.com/articles/openvpn_ubunutu/6.png)
 
+## Step 6 - Testing Your VPN Connection
+
 Once everything is installed, a simple check confirms everything is working properly. Without having a VPN connection enabled, open a browser and go to [DNSLeakTest](https://www.dnsleaktest.com/).
 
 The site will return the IP address assigned by your internet service provider and as you appear to the rest of the world. To check your DNS settings through the same website, click on Extended Test and it will tell you which DNS servers you are using.
@@ -676,4 +683,3 @@ The site will return the IP address assigned by your internet service provider a
 Now connect the OpenVPN client to your Droplet's VPN and refresh the browser. The completely different IP address of your VPN server should now appear. That is now how you appear to the world. Again, [DNSLeakTest's](https://www.dnsleaktest.com/) Extended Test will check your DNS settings and confirm you are now using the DNS resolvers pushed by your VPN.
 
 Congratulations! You are now securely traversing the internet protecting your identity, location, and traffic from snoopers and censors.
-
