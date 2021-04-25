@@ -13,5 +13,5 @@ Download a mark down converter called [reader](https://github.com/zyocum/reader)
 
 Assume in the `reader` repository, run
 ```
-mercury-parser https://sites.google.com/site/xiangyangsite/home/life/retreive-your-wifi-password-on-symbian | ./reader.py  -f md - > /Volumes/case-sensitive/git/tech-notes/src/life/reveal-wifi-password-on-symbian.md
+mercury-parser https://example.com/path | ./reader.py  -f md - > path.md
 ```
