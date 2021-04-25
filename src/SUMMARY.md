@@ -1,5 +1,6 @@
 # Summary
 
+- [About](./README.md)
 - [Cloud Computing]()
   - [Amazon Web Service]()
     - [How to launch a EC2 instance on AWS](./cloud/aws/how-to-launch-a-mac-instance.md)
@@ -25,3 +26,7 @@
   - [Things You Can Do with ADB](./android/things-you-can-do-with-adb.md)
   - [Android alarm sound](./android/system-alarm-sound-custom.md)
   - [USB debugging on Android 4.3](./android/usb-debug-4.3.md)
+- [Life]()
+  - [A cheat sheet for Wikipedia](./life/wikipedia-cheat-sheet.md)
+  - [Exchange for gmail on iPhone](./life/exchange-gmail-on-iphone.md)
+  - [Gmail for Nokia E72](./life/gmail-for-nokia-e72.md)
