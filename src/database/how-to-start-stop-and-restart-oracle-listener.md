@@ -1,10 +1,6 @@
+# [How To Start, Stop and Restart Oracle Listener](http://www.thegeekstuff.com/2009/05/oracle-lsnrctl-listener-shutdown-and-startup-procedures/)
 
-date: None  
-author(s): None  
-
-# [How To Start, Stop and Restart Oracle Listener - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/database/how-to-start-stop-and-restart-oracle-listener)
-
-Starting up and shutting down the oracle listener is a routine task for a database administrator. However a Linux system administrator or programmer may end-up doing some basic DBA operations on development database. It is critical for non-DBAs to understand the basic database admin activities. 
+Starting up and shutting down the oracle listener is a routine task for a database administrator. However a Linux system administrator or programmer may end-up doing some basic DBA operations on development database. It is critical for non-DBAs to understand the basic database admin activities.
 
 In this article, let us review how to start, stop, check status of an oracle listener using **Oracle listener control utility LSNRCTL**.
 
@@ -23,15 +19,15 @@ Before starting, stopping or restarting make sure to execute lsnrctl status comm
 
 
 
-  
+
 If the Oracle listener is not running, you’ll get the following message.
-    
-    
+
+
     $ **lsnrctl status**
     LSNRCTL for Linux: Version 11.1.0.6.0 - Production on 04-APR-2009 16:27:39
-    
+
     Copyright (c) 1991, 2007, Oracle.  All rights reserved.
-    
+
     Connecting to (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=192.168.1.2)(PORT=1521)))
     TNS-12541: TNS:no listener
      TNS-12560: TNS:protocol adapter error
@@ -43,15 +39,15 @@ If the Oracle listener is not running, you’ll get the following message.
       TNS-00511: No listener
        Linux Error: 2: No such file or directory
 
-  
+
 If the Oracle listener is running, you’ll get the following message.
-    
-    
+
+
     $ **lsnrctl status**
     LSNRCTL for Linux: Version 11.1.0.6.0 - Production on 04-APR-2009 16:27:02
-    
+
     Copyright (c) 1991, 2007, Oracle.  All rights reserved.
-    
+
     Connecting to (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=192.168.1.2)(PORT=1521)))
     STATUS of the LISTENER
     ------------------------
@@ -81,21 +77,21 @@ If the Oracle listener is running, you’ll get the following message.
 ### 2\. Start Oracle Listener
 
 If the Oracle listener is not running, start the listener as shown below. This will start all the listeners. If you want to start a specific listener, specify the listener name next to start. i.e lsnrctl start [listener-name]
-    
-    
+
+
     $ **lsnrctl start**
     LSNRCTL for Linux: Version 11.1.0.6.0 - Production on 04-APR-2009 16:27:42
-    
+
     Copyright (c) 1991, 2007, Oracle.  All rights reserved.
-    
+
     Starting /u01/app/oracle/product/11.1.0/bin/tnslsnr: please wait...
-    
+
     TNSLSNR for Linux: Version 11.1.0.6.0 - Production
     System parameter file is /u01/app/oracle/product/11.1.0/network/admin/listener.ora
     Log messages written to /u01/app/oracle/diag/tnslsnr/devdb/listener/alert/log.xml
     Listening on: (DESCRIPTION=(ADDRESS=(PROTOCOL=tcp)(HOST=192.168.1.2)(PORT=1521)))
     Listening on: (DESCRIPTION=(ADDRESS=(PROTOCOL=ipc)(KEY=EXTPROC)))
-    
+
     Connecting to (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=192.168.1.2)(PORT=1521)))
     STATUS of the LISTENER
     ------------------------
@@ -119,27 +115,27 @@ If the Oracle listener is not running, start the listener as shown below. This w
 ### 3\. Stop Oracle Listener
 
 If the Oracle listener is running, stop the listener as shown below. This will stop all the listeners. If you want to stop a specific listener, specify the listener name next to stop. i.e lsnrctl stop [listener-name]
-    
-    
+
+
     $ **lsnrctl stop**
     LSNRCTL for Linux: Version 11.1.0.6.0 - Production on 04-APR-2009 16:27:37
-    
+
     Copyright (c) 1991, 2007, Oracle.  All rights reserved.
-    
+
     Connecting to (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=192.168.1.2)(PORT=1521)))
     The command completed successfully
 
 ### 4\. Restart Oracle Listener
 
-To restart the listener use lsnrctl reload as shown below instead of lsnrctl stop and lsnrctl start. realod will read the listener.ora file for new setting without stop and start of the Oracle listener.  
+To restart the listener use lsnrctl reload as shown below instead of lsnrctl stop and lsnrctl start. realod will read the listener.ora file for new setting without stop and start of the Oracle listener.
 
-    
-    
+
+
     $ **lsnrctl reload**
     LSNRCTL for Linux: Version 11.1.0.6.0 - Production on 04-APR-2009 17:03:31
-    
+
     Copyright (c) 1991, 2007, Oracle.  All rights reserved.
-    
+
     Connecting to (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=192.168.1.2)(PORT=1521)))
     The command completed successfully
 
@@ -162,35 +158,35 @@ lsnrctl help command will display all available listener commands. In Oracle 11g
   * **show** \- Display log files and other relevant listener information.
 
 
-    
-    
+
+    ```
     $ **lsnrctl help**
     LSNRCTL for Linux: Version 11.1.0.6.0 - Production on 04-APR-2009 16:12:09
-    
+
     Copyright (c) 1991, 2007, Oracle.  All rights reserved.
-    
+
     The following operations are available
     An asterisk (*) denotes a modifier or extended command:
-    
+
     start               stop                status
     services            version             reload
     save_config         trace               spawn
     change_password     quit                exit
     set*                show*
-
+    ```
 ### 2\. Get More help on Specific Listener Command
 
 You can get detailed help on a specific oracle listener command as shown below. In the following example, it gives all the available arguments/parameters that can be passed to the lsnrctl show command.
-    
-    
+
+
     $ **lsnrctl help show**
     LSNRCTL for Linux: Version 11.1.0.6.0 - Production on 04-APR-2009 16:22:28
-    
+
     Copyright (c) 1991, 2007, Oracle.  All rights reserved.
-    
+
     The following operations are available after show
     An asterisk (*) denotes a modifier or extended command:
-    
+
     rawmode                     displaymode
     rules                       trc_file
     trc_directory               trc_level
@@ -199,7 +195,3 @@ You can get detailed help on a specific oracle listener command as shown below. 
     inbound_connect_timeout     startup_waittime
     snmp_visible                save_config_on_stop
     dynamic_registration
-
-  
-
-

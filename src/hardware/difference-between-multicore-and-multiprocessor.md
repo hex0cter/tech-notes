@@ -1,8 +1,4 @@
-
-date: None  
-author(s): None  
-
-# [Difference between MultiCore and MultiProcessor - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/hardware/difference-between-multicore-and-multiprocessor)
+# [Difference between MultiCore and MultiProcessor](http://superuser.com/questions/214331/what-is-the-difference-between-multicore-and-multiprocessor)
 
 A [CPU](http://en.wikipedia.org/wiki/Cpu), or Central Processing Unit, is what is typically referred to as a processor. A processor contains many discrete parts within it, such as one or more memory caches for instructions and data, instruction decoders, and various types of execution units for performing arithmetic or logical operations.
 
@@ -17,4 +13,3 @@ There is an even further division, called [SMT](http://en.wikipedia.org/wiki/Sim
 Thus, you could have a multiprocessor, multicore, multithreaded system. Something like two quad-core, hyperthreaded processors would give you 2x4x2 = 16 logical processors from the point of view of the operating system.
 
 Different workloads benefit from different setups. A single threaded workload being done on a mostly single-purpose machine benefits from a very fast, single-core/cpu system. Workloads that benefit from highly-parallelized systems such as SMP/CMP/SMT setups include those that have lots of small parts that can be worked on simultaneously, or systems that are used for lots of things at once, such as a desktop being used to surf the web, play a Flash game, and watch a video all at once. In general, hardware these days is trending more and more toward highly parallel architectures, as most single CPU/core raw speeds are "fast enough" for common workloads across most models.
-
