@@ -61,7 +61,7 @@
     - [Cron]()
       - [cron manual](./linux-unix/administrations/cron/cron-manual.md)
       - [Schedule Tasks on Linux Using Crontab](./linux-unix/administrations/cron/schedule-tasks-on-linux-using-crontab.md)
-      - [Turn of crontab log on debian/ubuntu](./linux-unix/administrations/cron/turn-of-crontab-log-on-debian-ubuntu.md)
+      - [Turn on crontab log on debian/ubuntu](./linux-unix/administrations/cron/turn-of-crontab-log-on-debian-ubuntu.md)
       - [Using cron basics](./linux-unix/administrations/cron/using-cron-basics.md)
     - [Easy Way to Install and Configure OpenVPN Server on Ubuntu 18.04 / Ubuntu 16.04](./linux-unix/administrations/easy-way-to-install-and-configure-openvpn-server-on-ubuntu-18-04-ubuntu-16-04.md)
     - [Enabling CPU Frequency Scaling](./linux-unix/administrations/enabling-cpu-frequency-scaling.md)

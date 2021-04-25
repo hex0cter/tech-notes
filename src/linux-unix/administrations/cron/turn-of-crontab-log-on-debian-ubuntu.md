@@ -1,8 +1,9 @@
+# [Turn on crontab log on debian/ubuntu](http://www.linuxquestions.org/questions/programming-9/crontab-log-does-not-exist-552809/)
 
-date: None  
-author(s): None  
-
-# [Turn of crontab log on debian/ubuntu - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/administrations/cron/turn-of-crontab-log-on-debian-ubuntu)
-
-
-
+```
+# nano /etc/rsyslog.conf
+add the line below:
+cron.* -/var/log/cron
+and then
+# /etc/init.d/rsyslog restart
+```
