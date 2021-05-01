@@ -1,8 +1,8 @@
+# [Permission denied when accessing VirtualBox shared folder when member of the vboxsf group](
+http://superuser.com/questions/307853/permission-denied-when-accessing-virtualbox-shared-folder-when-member-of-the-vbo)
 
-date: None  
-author(s): None  
+Add the user to the vboxsf group, log out and in again.
 
-# [Permission denied when accessing VirtualBox shared folder when member of the vboxsf group - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/common-tips/permission-denied-when-accessing-virtualbox-shared-folder-when-member-of-the-vboxsf-group)
-
-
-
+```
+sudo usermod -a -G vboxsf <username>
+```

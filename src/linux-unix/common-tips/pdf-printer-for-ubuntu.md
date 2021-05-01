@@ -1,8 +1,5 @@
+# [PDF printer for Ubuntu](http://embraceubuntu.com/2006/03/23/print-to-pdf-using-cups-pdf/)
 
-date: None  
-author(s): None  
-
-# [PDF printer for Ubuntu - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/common-tips/pdf-printer-for-ubuntu)
-
-
-
+```
+sudo apt-get install cups-pdf
+```

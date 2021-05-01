@@ -1,8 +1,3 @@
+# [How to remove universal access from notification area](http://ubuntuforums.org/showthread.php?p=6383300
 
-date: None  
-author(s): None  
-
-# [How to remove universal access from notification area . - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/common-tips/how-to-remove-universal-access-from-notification-area)
-
-
-
+With alt-f2 gnome-keyboard-properties. under accessibility uncheck the box that says accessibility features can be toggled with keyboard.

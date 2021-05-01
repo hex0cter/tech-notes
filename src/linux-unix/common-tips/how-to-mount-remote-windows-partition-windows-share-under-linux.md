@@ -1,8 +1,9 @@
+# How to mount remote windows partition (windows share) under Linux
 
-date: None  
-author(s): None  
+<http://www.howtogeek.com/wiki/Mount_a_Windows_Shared_Folder_on_Linux_with_Samba>
 
-# [How to mount remote windows partition (windows share) under Linux - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/common-tips/how-to-mount-remote-windows-partition-windows-share-under-linux)
+<http://www.cyberciti.biz/tips/how-to-mount-remote-windows-partition-windows-share-under-linux.html>
 
-
-
+```
+sudo mount -t cifs //VALINE/Projects -o domain=mydomain,username=myusername,password=mypasswd /mnt/ntserver
+```

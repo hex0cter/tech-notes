@@ -1,8 +1,14 @@
+# [How to Mount ISO/MDF Images in Linux](http://lindesk.com/2007/05/how-to-mount-isomdf-images-in-linux/)
 
-date: None  
-author(s): None  
+```
+mount -t iso9660 -o loop <Image_File> <Mount_Point>
+```
 
-# [How to Mount ISO/MDF Images in Linux - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/common-tips/how-to-mount-iso-mdf-images-in-linux)
+Mounting Example:
+```
+mount -t iso9660 -o loop /home/binnyva/Films/300.iso /mnt/Image
+```
 
+The ‘-t’ option specifies the filetype – this is optional.
 
-
+This command works with both ISO and MDF images.

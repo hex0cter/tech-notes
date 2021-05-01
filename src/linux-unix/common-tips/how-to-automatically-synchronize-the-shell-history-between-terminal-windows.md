@@ -1,8 +1,23 @@
+# [How to automatically synchronize the shell history between terminal windows](http://stackoverflow.com/questions/103944/real-time-history-export-amongst-bash-terminal-windows)
 
-date: None  
-author(s): None  
+Here is the solution (add it into $HOME/.bashrc):
 
-# [How to automatically synchronize the shell history between terminal windows - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/common-tips/how-to-automatically-synchronize-the-shell-history-between-terminal-windows)
+```
+HISTSIZE=9000
+HISTFILESIZE=$HISTSIZE
+HISTCONTROL=ignorespace:ignoredups
 
+history() {
+  _bash_history_sync
+  builtin history "$@"
+}
 
+_bash_history_sync() {
+  builtin history -a         #1
+  HISTFILESIZE=$HISTFILESIZE #2
+  builtin history -c         #3
+  builtin history -r         #4
+}
 
+PROMPT_COMMAND=_bash_history_sync
+```

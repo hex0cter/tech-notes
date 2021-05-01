@@ -1,8 +1,8 @@
+# [How to remove the passphrase for the SSH key without having to create a new key?](http://stackoverflow.com/questions/112396/how-do-i-remove-the-passphrase-for-the-ssh-key-without-having-to-create-a-new-ke)
 
-date: None  
-author(s): None  
+**Backup your old .ssh/id_rsa before you do this!**
 
-# [How do I remove the passphrase for the SSH key without having to create a new key? - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/common-tips/how-do-i-remove-the-passphrase-for-the-ssh-key-without-having-to-create-a-new-key)
-
-
-
+```
+# Syntax: ssh-keygen -p [-P old_passphrase] [-N new_passphrase] [-f keyfile]
+ssh-keygen -p -P old_passphrase
+```

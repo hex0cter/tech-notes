@@ -1,8 +1,8 @@
+# [How to Convince apt-get *not* to use IPv6 method]http://unix.stackexchange.com/questions/9940/convince-apt-get-not-to-use-ipv6-method)
 
-date: None  
-author(s): None  
+Append the following to /etc/gai.conf
 
-# [How to Convince apt-get *not* to use IPv6 method - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/common-tips/how-to-convince-apt-get-not-to-use-ipv6-method)
-
-
-
+```
+precedence ::ffff:0:0/96  100
+precedence 2001:470::/32 100
+```

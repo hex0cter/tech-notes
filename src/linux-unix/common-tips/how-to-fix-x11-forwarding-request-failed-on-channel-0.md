@@ -1,8 +1,7 @@
+# [How to fix “X11 forwarding request failed on channel 0″](https://joshua.hoblitt.com/rtfm/2013/04/how_to_fix_x11_forwarding_request_failed_on_channel_0/)
 
-date: None  
-author(s): None  
+The fix is to add this line to your `/etc/ssh/sshd_config`:
 
-# [How to fix “X11 forwarding request failed on channel 0″ - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/common-tips/how-to-fix-x11-forwarding-request-failed-on-channel-0)
-
-
-
+```
+X11UseLocalhost no
+```
