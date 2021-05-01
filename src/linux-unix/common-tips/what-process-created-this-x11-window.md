@@ -1,8 +1,6 @@
+# [What process created this X11 window?](http://unix.stackexchange.com/questions/5478/what-process-created-this-x11-window)
 
-date: None  
-author(s): None  
-
-# [What process created this X11 window? - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/common-tips/what-process-created-this-x11-window)
-
-
-
+```
+xdotool selectwindow getwindowpid
+ps -ef | grep <pid>
+```

@@ -1,8 +1,9 @@
+# Wake Your Linux Up From Sleep for a Cron Job
 
-date: None  
-author(s): None  
+<http://www.osnews.com/story/24111/Wake_Your_Linux_Up_From_Sleep_for_a_Cron_Job>
 
-# [Wake Your Linux Up From Sleep for a Cron Job - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/common-tips/wake-your-linux-up-from-sleep-for-a-cron-job)
+```
+rtcwake -m mem -s 180
+```
 
-
-
+<http://manpages.ubuntu.com/manpages/hardy/man8/rtcwake.8.html>

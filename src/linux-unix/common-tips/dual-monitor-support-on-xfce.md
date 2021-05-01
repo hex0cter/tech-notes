@@ -1,8 +1,8 @@
-
-date: None  
-author(s): None  
-
-# [Dual monitor support on XFCE - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/common-tips/dual-monitor-support-on-xfce)
+# [Dual monitor support on XFCE ](http://askubuntu.com/questions/62681/how-do-i-setup-dual-monitors-in-xfce)
 
 
+Run xrandr from CLI or arandr to start the GUI configuration tool (later preferred)
 
+<http://askubuntu.com/questions/62681/how-do-i-setup-dual-monitors-in-xfce>
+
+<http://christian.amsuess.com/tools/arandr/>
