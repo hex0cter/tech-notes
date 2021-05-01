@@ -1,10 +1,5 @@
+# [e-Mail notification applet for Ubuntu](http://www.omgubuntu.co.uk/2010/09/email-notification-in-ubuntu-popper/)
 
-date: None  
-author(s): None  
-
-# [e-Mail notification applet for Ubuntu - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/common-tips/-e-mail-notification-applet-for-ubuntu)
-
-<http://www.omgubuntu.co.uk/2010/09/email-notification-in-ubuntu-popper/>
 
 **E-mail notification on the desktop has come a long way from the quaint era of ‘keeping an ear out for some faint sound effect’ to herald the arrival of new mail.**
 
@@ -34,7 +29,9 @@ Popper is currently on version 0.20 and according to its developer Ralf Hersel i
 
 Easy to install .deb packages can be found over on the Popper launchpad page at the link below:
 
-sudo add-apt-repository ppa:ralf.hersel/rhersel-ppa  
-  
----
+[launchpad.net/popper](https://launchpad.net/popper)
 
+```
+sudo add-apt-repository ppa:ralf.hersel/rhersel-ppa
+sudo apt-get update
+```

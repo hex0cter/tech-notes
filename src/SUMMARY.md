@@ -111,7 +111,7 @@
     - [Apache2: How To Redirect Users To Mobile Or Normal Web Site Based On Device Using mod_rewrite](./linux-unix/apache-web-server/apache2-how-to-redirect-users-to-mobile-or-normal-web-site-based-on-device-using-mod_rewrite.md)
     - [Hosting multiple websites with Apache2](./linux-unix/apache-web-server/hosting-multiple-websites-with-apache2.md)
     - [URL redirect/rewrite using the .htaccess file](./linux-unix/apache-web-server/url-redirect-rewrite-using-the-htaccess-file.md)
-    - [Apache-web-server](./linux-unix/apache-web-server/virtualhost-80----mixing-ports-and-non--ports-with-a-namevirtualhost-address-is-not-supported-proceeding-with-undefined-results.md)
+    - [Common Apache Misconfigurations](./linux-unix/apache-web-server/common-apache-misconfigurations.md)
   - [Auto-update tmux status bar with active pane pwd](./linux-unix/auto-update-tmux-status-bar-with-active-pane-pwd.md)
   - [CentOS]()
     - [CentOS: how to change keyboard layout from CLI](./linux-unix/centos/centos-how-to-change-keyboard-layout-from-cli.md)

@@ -1,8 +1,7 @@
-
-date: None  
-author(s): None  
-
-# [Concatenate pdf pages together on Linux - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/common-tips/concatenate-pdf-pages-together-on-linux)
+# [Concatenate pdf pages together on Linux](http://stackoverflow.com/questions/2507766/merge-convert-multiple-pdf-files-into-one-pdf)
 
 
-
+```
+sudo apt-get install pdftk
+pdftk a.pdf c.pdf d.pdf e.pdf g.pdf j.pdf m.pdf cat output - > out.pdf
+```

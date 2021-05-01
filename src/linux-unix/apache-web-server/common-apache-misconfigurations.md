@@ -1,16 +1,30 @@
+# [Common Apache Misconfigurations](http://wiki.apache.org/httpd/CommonMisconfigurations)
 
-date: None  
-author(s): None  
-
-# [Common Apache Misconfigurations](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/apache-web-server/virtualhost-80----mixing-ports-and-non--ports-with-a-namevirtualhost-address-is-not-supported-proceeding-with-undefined-results)
-
-Restarting web server: apache2[Sat Nov 24 11:38:45 2012] [error] VirtualHost *:80 -- mixing * ports and non-* ports with a NameVirtualHost address is not supported, proceeding with undefined results
+## Problem
+```
+Restarting web server:
+apache2[Sat Nov 24 11:38:45 2012] [error] VirtualHost *:80 -- mixing * ports and non-* ports with a NameVirtualHost address is not supported, proceeding with undefined results
 
 [Sat Nov 24 11:38:45 2012] [warn] NameVirtualHost *:80 has no VirtualHosts
 
-... waiting [Sat Nov 24 11:38:46 2012] [error] VirtualHost *:80 -- mixing * ports and non-* ports with a NameVirtualHost address is not supported, proceeding with undefined results
+waiting [Sat Nov 24 11:38:46 2012] [error] VirtualHost *:80 -- mixing * ports and non-* ports with a NameVirtualHost address is not supported, proceeding with undefined results
 
 [Sat Nov 24 11:38:46 2012] [warn] NameVirtualHost *:80 has no VirtualHosts
+```
+
+## Answer:
+
+This is due to the conflict of NameVirtualHost directive in /etc/apache2conf.d/virtual.conf and /etc/apache2/ports.conf. After commenting out:
+```
+NameVirtualHost *
+```
+in  /etc/apache2conf.d/virtual.conf the problem will be fixed:
+
+More information can be found:
+
+<http://wiki.apache.org/httpd/CommonMisconfigurations>
+
+## Common Apache Misconfigurations
 
 This page will describe common misconfigurations as seen in #apache as well as describe why these are wrong.
 
@@ -19,15 +33,15 @@ This page will describe common misconfigurations as seen in #apache as well as d
 #### Not matching the value of NameVirtualHost with a corresponding <VirtualHost> block.
 
 Example:
-    
-    
+
+
     NameVirtualHost *:80
-    
+
     # This is wrong. No matching NameVirtualHost some.domain.com line.
     <VirtualHost some.domain.com>
       # Options and stuff defined here.
     </VirtualHost>
-    
+
     # This would be correct.
     <VirtualHost *:80>
       ServerName some.domain.com
@@ -36,21 +50,21 @@ Example:
 
 Why is the first virtual host wrong? It's wrong on a couple levels. The most obvious is that some.domain.com, used in the first <VirtualHost> block, doesn't match *:80 used in NameVirtualHost. The other is that NameVirtualHost refers to an interface, not a domain. For instance, using *:80 means all interfaces on port 80. NameVirtualHost 1.1.1.1:80 means address 1.1.1.1 on port 80. While you can use a "NameVirtualHost some.domain.com/<VirtualHost some.domain.com>" combination, it doesn't make much sense and is not generally used... at least not used by anyone experienced with Apache administration.
 
-Reports in #httpd suggest that Webmin 1.510 (at least) may cause this issue. 
+Reports in #httpd suggest that Webmin 1.510 (at least) may cause this issue.
 
 #### Not setting a ServerName in a virtual host.
 
 Example:
-    
-    
+
+
     NameVirtualHost *:80
-    
+
     # This would be correct.
     <VirtualHost *:80>
       ServerName some.domain.com
       # Options and stuff defined here.
     </VirtualHost>
-    
+
     # This is wrong.
     <VirtualHost *:80>
       # Options and stuff defined here, but no ServerName
@@ -61,16 +75,16 @@ The second virtual host is wrong because when using name based virtual hosts, th
 #### Mixing non-port and port name based virtual hosts.
 
 Example:
-    
-    
+
+
     NameVirtualHost *
     NameVirtualHost *:80
-    
+
     <VirtualHost *>
       ServerName some.domain.com
       # Options and stuff defined here.
     </VirtualHost>
-    
+
     <VirtualHost *:80>
       ServerName some.domain2.com
       # Options and stuff defined here.
@@ -81,14 +95,14 @@ Because NameVirtualHost * means catch all interfaces on all ports, the *:80 virt
 #### Using the same Listen and/or NameVirtualHost multiple times.
 
 Example:
-    
-    
+
+
     # Can happen when using multiple config files.
     # In one config file:
     Listen 80
     # In another config file:
     Listen 80
-    
+
     # Like above, can happen when using multiple config files.
     # In one config file:
     NameVirtualHost *:80
@@ -102,15 +116,15 @@ Multiple NameVirtualHost lines will yield a "NameVirtualHost *:80 has no Virtual
 #### Multiple SSL name based virtual hosts on the same interface.
 
 Example:
-    
-    
+
+
     NameVirtualHost *:443
-    
+
     <VirtualHost *:443>
       ServerName some.domain.com
       # SSL options, other options, and stuff defined here.
     </VirtualHost>
-    
+
     <VirtualHost *:443>
       ServerName some.domain2.com
       # SSL options, other options, and stuff defined here.
@@ -123,8 +137,8 @@ Because of the nature of SSL, host information isn't used when _establishing_ an
 #### Adding/Restricting access and options in <Directory />
 
 Example:
-    
-    
+
+
     <Directory />
       # This was changed from the default of AllowOverride None.
       AllowOverride FileInfo Indexes
@@ -136,8 +150,8 @@ Example:
 #### Changing the DocumentRoot value without updating the old DocumentRoot's <Directory> block
 
 Example:
-    
-    
+
+
     # Your old DocumentRoot value was /usr/local/apache2/htdocs
     DocumentRoot /var/www/html
     #
@@ -152,8 +166,8 @@ Access and options in Apache must be expressly given. Since there is no <Directo
 #### Trying to set directory and index options in a script aliased directory.
 
 Example:
-    
-    
+
+
     ScriptAlias /cgi-bin/ /var/www/cgi-bin/
     <Directory /var/www/cgi-bin>
       AllowOverride None
@@ -165,8 +179,8 @@ Example:
 Script aliased directories do not allow directory listings specified with Options Indexes -- this is a security feature. Also, script aliased directories automatically try to execute everything in them, so Options ExecCGI is unnecessary. The [DirectoryIndex](http://wiki.apache.org/httpd/DirectoryIndex) directive also does not work in a script aliased directory. The workaround, if you really need directory listings or other directory indexing options, is to use Alias instead of [ScriptAlias](http://wiki.apache.org/httpd/ScriptAlias).
 
 Example:
-    
-    
+
+
     Alias /cgi-bin/ /var/www/cgi-bin/
     <Directory /var/www/cgi-bin>
       AllowOverride None
@@ -177,4 +191,3 @@ Example:
     </Directory>
 
 The options above will now work.
-

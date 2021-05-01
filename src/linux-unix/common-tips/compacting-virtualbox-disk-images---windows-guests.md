@@ -1,8 +1,5 @@
-
-date: None  
-author(s): None  
-
-# [Compacting VirtualBox Disk Images - Windows Guests - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/common-tips/compacting-virtualbox-disk-images---windows-guests)
+# [Compacting VirtualBox Disk Images - Windows Guests](http://www.netreliant.com/news/9/17/Compacting-VirtualBox-Disk-Images-Windows-Guests.html#.VZfGhBOqqkp
+)
 
 VirtualBox is a Net Reliant favorite when it comes to virtualization. It is a professional, enterprise grade solution that runs on Windows, Linux, Macintosh, and Solaris hosts.
 
@@ -18,7 +15,7 @@ To help reduce excess disk usage, VirtualBox provides a mechanism for compacting
 
 
 
- **Step 1: Start the Windows Virtual Machine and Delete Unnecessary Files  
+ **Step 1: Start the Windows Virtual Machine and Delete Unnecessary Files
 **
 
 Start the Windows Virtual Machine and delete any files that you don't need. Places to start are:
@@ -49,23 +46,23 @@ The most effective way to clean free disk space on a Windows drive is to overwri
 Windows does not come with a native utility to zero-fill unused space but you can find the excellent SDelete tool at Microsoft's TechNet: <http://technet.microsoft.com/en-us/sysinternals/bb897443.aspx>
 
 SDelete (or Secure Delete) is a command line utility. So to zero-fill the virtual Windows disk, type the following at the DOS prompt:
-    
-    
+
+
     C:\> sdelete.exe -z
 
 where -z is the SDelete parameter to zero any free space.
 
 You can also use:
-    
-    
+
+
     C:\> sdelete.exe -c
 
 where -c is the SDelete parameter to clean any free space.
 
 Once SDelete is running you will see a message similar to the following:
-    
-    
-    SDelete is set for one pass.  
+
+
+    SDelete is set for one pass.
     Cleaning free space on c:: 12%
 
  **Step 4: Shutdown the Windows Virtual Machine**
@@ -75,17 +72,16 @@ When SDelete has finished running and the free space cleaned or zeroed is 100%, 
  **Step 5: Compact the Windows guest image**
 
 To compact the Windows guest image, use the VirtualBox VBoxManage utility. Assuming a Windows host, use the following command at the DOS prompt:
-    
-    
+
+
     VBoxManage modifyhd --compact "[drive]:\[path_to_image_file]\[name_of_image_file].vdi"
 
 Ensure that you replace the items in square brackets with your parameters.
 
 If your Windows host complains that VBoxManage cannot be found or is an invalid command, you may need to explicitly specify the path to the VirtualBox executables. So a complete example for compacting a Windows guest image at the DOS prompt is as follows:
-    
-    
-    C:\> path C:\Program Files\Oracle\VirtualBox  
+
+
+    C:\> path C:\Program Files\Oracle\VirtualBox
     C:\> VBoxManage modifyhd --compact "C:\netreliant_VMs\windowsXP_001.vdi"
 
 Once the VirtualBox VBoxManage utility is running you will see progress indicators in 10% increments starting from 0% to 100%. And once the process is complete, you should have a smaller disk image file.
-

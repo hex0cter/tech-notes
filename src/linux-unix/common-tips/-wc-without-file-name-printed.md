@@ -1,8 +1,5 @@
+# ["wc" without file name printed](http://www.linuxforums.org/forum/programming-scripting/128548-wc-command.html)
 
-date: None  
-author(s): None  
-
-# ["wc" without file name printed - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/common-tips/-wc-without-file-name-printed)
-
-
-
+```
+    # wc < file
+```

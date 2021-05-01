@@ -1,8 +1,7 @@
+# [Automatically choose “Try Ubuntu without Installing” after booting from USB Startup Disk](http://www.linuxliveusb.com/en/home)
 
-date: None  
-author(s): None  
+<http://askubuntu.com/questions/15470/automatically-choose-try-ubuntu-without-installing-after-booting-from-usb-start>
 
-# [Automatically choose “Try Ubuntu without Installing” after booting from USB Startup Disk - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/common-tips/automatically-choose-try-ubuntu-without-installing-after-booting-from-usb-startup-disk)
+Solution is Lili:
 
-
-
+<http://www.linuxliveusb.com/en/home>
