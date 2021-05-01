@@ -1,11 +1,8 @@
-
-date: None  
-author(s): None  
-
-# [Disabling Ubuntu Files & Folders Search - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/common-tips/disabling-ubuntu-files-folders-search)
+# Disabling Ubuntu Files & Folders Search
 
 /usr/share/unity/places/files.place
 
+```
 [Entry:Files]
 
 DBusObjectPath=/com/canonical/unity/filesplace/files
@@ -26,7 +23,5 @@ SearchHint=Search Files & Folders
 
 +ShowEntry=false
 
-Shortcut=f  
-  
----
-
+Shortcut=f
+```

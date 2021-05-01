@@ -1,13 +1,4 @@
-
-date: None  
-author(s): None  
-
-# [How do I setup dual monitors in XFCE/Xubuntu? - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/common-tips/how-do-i-setup-dual-monitors-in-xfce-xubuntu)
-
-<http://askubuntu.com/questions/62681/how-do-i-setup-dual-monitors-in-xfce>
-
-  
-
+# [How do I setup dual monitors in XFCE/Xubuntu?](http://askubuntu.com/questions/62681/how-do-i-setup-dual-monitors-in-xfce)
 
 First, open up monitor config - it's in `Start > Settings > Settings Manger`, then open the `Display`item.
 
@@ -36,8 +27,3 @@ Now, it should work, but you've still got one problem.
 It will disappear after you logout. So, you need to add it to your login items.
 
 Head over to `Start > Settings > Settings Manger`, then open "Session and Startup", add the above command to your login items, and you're good to go!
-
-![enter image description here](http://i.stack.imgur.com/UudgY.png)  
-  
----
-

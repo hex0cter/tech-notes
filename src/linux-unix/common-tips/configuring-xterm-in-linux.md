@@ -1,8 +1,4 @@
-
-date: None  
-author(s): None  
-
-# [Configuring Xterm In Linux - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/common-tips/configuring-xterm-in-linux)
+# [Configuring Xterm In Linux](http://how-to.wikia.com/wiki/How_to_configure_xterm)
 
   * User config files
     * ~/.Xdefaults
@@ -42,7 +38,7 @@ author(s): None
 
 
 
-  
+
 XTerm*internalBorder: INTEGER XTerm*loginShell: BOOLEAN XTerm*scrollBar: BOOLEAN XTerm*scrollKey: BOOLEAN
 
 ## [[edit](http://how-to.wikia.com/index.php?title=How_to_configure_xterm&action=edit§ion=3)]Other
@@ -113,7 +109,6 @@ XTerm*internalBorder: INTEGER XTerm*loginShell: BOOLEAN XTerm*scrollBar: BOOLEAN
 
 <http://how-to.wikia.com/wiki/How_to_configure_xterm>
 
-<http://linuxhelp.blogspot.com/2005/10/configuring-xterm-in-linux.html>  
-  
----
+<http://linuxhelp.blogspot.com/2005/10/configuring-xterm-in-linux.html>
 
+---

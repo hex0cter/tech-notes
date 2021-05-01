@@ -1,27 +1,20 @@
-
-date: None  
-author(s): None  
-
-# [Full Guide on How to Install Stock Firmware on Huawei Maimang 4 RIO-AL00 - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/common-tips/full-guide-on-how-to-install-stock-firmware-on-huawei-maimang-4-rio-al00)
-
-  
-
+# Full Guide on How to Install Stock Firmware on Huawei Maimang 4 RIO-AL00
 
 <http://huawei-update.com/firmware/15626/huawei-maimang-4/rio-al00>
 
 <http://huawei-update.com/firmware/15615/huawei-maimang-4/rio-al00>
 
-Pre-Requisite :  
+Pre-Requisite :
 
 * This Guide is only for Huawei users.
 * You need MicroSD Card or internal memory space to try any [Huawei Stock ROM](http://huawei-update.com/device-list/)
 * A Micro SD card of 8GB or more should be available. It is recommended that The Micro SD card is made by ADATA, Silicon Power, Hp, Sandisk, Kingstone, or Kingmax.
 * Make sure you have enough battery to run the upgrade process. It is recommended that the power of the battery is more than 40%.
-  
-  
+
+
 
 * Upgrade operations may erase all your user data. So if there is some important information, you should backup them before the upgrade.
-* Before flashing, you should unzip the SDupdate_Package.tar.gzfile, and get out UPDATE.APP to do upgrade operation on your SD Card. To unzip, we may sometime share two zip file, Update.zip package always comes with the main update.app which is a complete OS. Where has data file comes with data files from Huawei? Check the below file list.  
+* Before flashing, you should unzip the SDupdate_Package.tar.gzfile, and get out UPDATE.APP to do upgrade operation on your SD Card. To unzip, we may sometime share two zip file, Update.zip package always comes with the main update.app which is a complete OS. Where has data file comes with data files from Huawei? Check the below file list.
 
 
   * First of all, Download the Update Package
@@ -54,7 +47,6 @@ Please be informed that Huawei-Update.com only share the official firmware WITHO
   * Huawei firmware downloader tool
   * Huawei Huawei Maimang 4 Sp Flash tool file
 
-
-
 ##  **Download Huawei Maimang 4 Stock Firmware**
 
+<https://huaweiflash.com/how-to-flash-huawei-maimang-4-stock-firmware-all-firmwares/>

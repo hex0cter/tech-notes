@@ -1,8 +1,4 @@
-
-date: None  
-author(s): None  
-
-# [Gstreamer manual - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/common-tips/gstreamer-manual)
+# [Gstreamer manual](http://www.360doc.com/content/11/0526/17/474846_119581954.shtml)
 
 gstreamer很牛逼，让多媒体应用程序的开发变的更加简单，但是，也正是由于gstreamer对很多细节的隐藏，使得我们很容易把多媒体编程想得过于简单。
 
@@ -141,4 +137,3 @@ XvPutImage函数)，而XvPutImage则可能支持yuv格式的数据，这个显�
 关键技术点：V4L2，YUV，RGB，X11，XVideo
 
 <http://www.360doc.com/content/11/0526/17/474846_119581954.shtml>
-

@@ -1,8 +1,4 @@
-
-date: None
-author(s): None
-
-# [dirty log for redmine installation - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/common-tips/dirty-log-for-redmine-installation)
+# dirty log for redmine installation
 
 ```
 daniel@danielhan-IdeaPad-U150:~$ sudo apt-get install ruby

@@ -1,8 +1,4 @@
-
-date: None  
-author(s): None  
-
-# [cygwin X serverLinux (for windows) - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/common-tips/cygwin-x-serverlinux-for-windows)
+# [cygwin X serverLinux (for windows)](http://easwy.com/blog/archives/linux-remote-desktop-via-cygwin-x-server/)
 
 在windows上访问linux有多种方法：
 
@@ -53,13 +49,13 @@ Cygwin项目的目的是在windows主机上提供一个类UNIX的环境，网络
 ![](http://easwy.com/blog/uploads/2009/02/cygwinx_1-300x225.jpg)
 
 现在，我们要允许远程的X client对X server进行访问，因此，在终端中输入下面的命令，
-    
-    
-    xhost + 192.168.190.15 
+
+
+    xhost + 192.168.190.15
 
 接下来，我们要到X client所在的计算机上进行配置，使用telnet或ssh登录Linux主机(192.168.190.15)，然后运行下面的命令，
-    
-    
+
+
     export DISPLAY=192.168.190.91:0.0
     xterm &
     gvim &
@@ -79,38 +75,38 @@ Cygwin项目的目的是在windows主机上提供一个类UNIX的环境，网络
 在此我以KDE桌面为例。要把KDE桌面环境显示到windows上的X server中，需要更改一下X server的启动批处理。
 
 首先备份一下c:\cygwin\usr\X11R6\bin\startxwin.bat，然后使用文本编辑器打开此文件，找到下面这行：
-    
-    
-    %RUN% XWin -multiwindow -clipboard -silent-dup-error 
+
+
+    %RUN% XWin -multiwindow -clipboard -silent-dup-error
 
 去掉” _-multiwindow_ “参数：
-    
-    
-    %RUN% XWin -clipboard -silent-dup-error 
+
+
+    %RUN% XWin -clipboard -silent-dup-error
 
 我们通常不需要启动一个xterm窗口，因此找到下面这行：
-    
-    
-    %RUN% xterm -e /usr/bin/bash –l 
+
+
+    %RUN% xterm -e /usr/bin/bash –l
 
 把它注释掉：
-    
-    
-    REM %RUN% xterm -e /usr/bin/bash –l 
+
+
+    REM %RUN% xterm -e /usr/bin/bash –l
 
 好了，批处理文件改完了。
 
 回想一下上面的操作，在启动了X server后，我们执行了 **xhost** 命令来设置允许哪些计算机连接到X server，现在我们可以在配置文件中设置它。打开一个cygwin窗口，输入下面的命令：
-    
-    
-    echo "192.168.190.15" >> /etc/X0.hosts 
+
+
+    echo "192.168.190.15" >> /etc/X0.hosts
 
 上面的命令会在/etc/X0.hosts文件中加入你想允许的X client，你可以在此文件中加入你的X客户端。因为我们使用的DISPLAY是0，所以在文件/etc/X0.hosts中增加；如果使用DISPLAY 1，则需要修改文件/etc/X1.hosts文件。现在启动X server后，192.168.190.15就被自动允许接入了。
 
 现在我们再次双击startxwin.bat批处理，执行后就会出现一个丑陋的空白窗口，这就是所谓的根窗口。之所以是空白的，是因为现在还没有运行任何窗口管理器。别急，我们使用telnet或ssh远程登录Linux主机，执行命令：
-    
-    
-    startkde & 
+
+
+    startkde &
 
 哈哈~~~本文开头所展示的KDE窗口出来了！！！现在你在KDE中运行任何程序，它们都运行在Linux主机上，却把结果显示在Windows主机上。
 
@@ -123,22 +119,22 @@ Cygwin项目的目的是在windows主机上提供一个类UNIX的环境，网络
 Expect为用户提供一种机制，使用户能够自动执行一些交互式的任务。例如，通常我们在使用telnet的时候，都需要手动输入用户名、密码才能登录。而使用Expect，我们就可以实现全自动的telnet交互，不需用户干预。Expect由Don Libes开发，基于TCL内核，它的主页在<http://expect.nist.gov/>。
 
 广告时间结束，我们继续。我使用expect编写了如下的TCL/EXPECT脚本，它可以使用ssh自动登录到指定Linux主机，然后启动我们需要的程序。程序如下：
-    
-    
+
+
     #! /bin/expect -f
-    
+
     # Change these variable to yours
     set user {easwy}
     set host {192.168.190.15}
     set xserver {192.168.190.91}
     set password {123456}
     set program {startkde}
-    
+
     set timeout 5
     set done 0
-    
+
     spawn ssh "$user@$host"
-    
+
     while {!$done} {
         expect {
             "*(yes/no)?*" {
@@ -164,24 +160,24 @@ Expect为用户提供一种机制，使用户能够自动执行一些交互式�
             }
         }
     }
-    
+
     # Set DISPLAY environment variable
     exp_send "export DISPLAY=$xserver:0\n"
-    
+
     # Start your program
     exp_send "nohup $program &\n"
     expect -regexp {\[[0-9]*\] [0-9]*}
     exp_send "\n"
-    
-    # Finished 
+
+    # Finished
 
 把上面的内容保存为一个文件，例如，保存为cygwin的~/login.exp。 **注意：** 把脚本起始处的5个变量替换成你自己的，只需要替换大括号中间的内容。使用telnet的朋友请自行修改此脚本。
 
 下面我们再改一下c:\cygwin\usr\X11R6\bin\startxwin.bat文件，在此文件的最后增加：
-    
-    
+
+
     REM Start your X client program
-    %CYGWIN_ROOT%\bin\run -p /bin expect -f ~/login.exp 
+    %CYGWIN_ROOT%\bin\run -p /bin expect -f ~/login.exp
 
 我们使用expect来执行刚才保存的~/login.exp。
 
@@ -202,4 +198,3 @@ Expect为用户提供一种机制，使用户能够自动执行一些交互式�
 有兴趣可以试一下。
 
 需要说明的是，XWinLogon中包含了部分cygwin的软件包，如果你安装了cygwin，则不能安装此软件(我没有试过，在作者主页这样说明)。
-

@@ -1,10 +1,9 @@
 
-date: None  
-author(s): None  
+date: Apr 01, 2000
+author(s): [Dan Puckett](http://www.linuxjournal.com/user/800675)
 
-# [Customizing Vim - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/common-tips/customizing-vim)
+# Customizing Vim
 
-Apr 01, 2000 By [Dan Puckett](http://www.linuxjournal.com/user/800675)
 
 Some great customizations to Vim's default behavior—make Vim work for you.
 
@@ -23,46 +22,46 @@ This behavior is nice: it allows system administrators to replace /bin/vi with a
 Luckily, it's easy to convince Vim that we know we're actually in Vim and not in vi. Vim customizations are stored in a file called .vimrc in your home directory. If Vim sees that you have a .vimrc file—even if that file is empty—Vim will turn off vi-compatibility mode, which will configure Vim as Vim, rather than vi.
 
 If you don't have a .vimrc file, but you do have an .exrc file that you have used to customize your vi sessions in the past, execute the command
-    
-    
+
+
     mv ~/.exrc ~/.vimrc
-    
+
 
 to rename your .exrc file to .vimrc.
 
 If you have neither a .exrc file nor a .vimrc file, execute the command
-    
-    
+
+
     touch ~/.vimrc
-    
+
 
 to create an empty .vimrc file.
 
 You're now ready to begin configuring Vim in earnest. You can add commands to your .vimrc file in the same way you would add them to your .exrc file. That is, if you tried Vim's incremental searching feature (which I'll describe shortly) by pressing the **ESC** key and entering the command
-    
-    
+
+
     :set incsearch
-    
+
 
 and decided you wanted to make incremental searching the default behavior for future Vim sessions, you could do it by putting the line
-    
-    
+
+
     set incsearch
-    
+
 
 into your .vimrc file on a line by itself. Note the lack of a leading colon.
 
 Finding it Fast: incsearch
 
 Suppose you have the following text file to edit:
-    
-    
+
+
     In Xanadu did Kubla Khan
     A stately pleasure-dome decree:
     Where Alph, the sacred river, ran
     Through caverns measureless to man
     Down to a sunless sea.
-    
+
 
 Your cursor is on the **I** in the first line. You need to get to the first occurrence of the word “measureless”. How do you do it?
 
@@ -71,10 +70,10 @@ One way is to press **/** to put Vim into search mode, type in “measureless”
 I could increase my chances of typing the search pattern correctly by searching for a substring of “measureless”. For example, if I search for “measu”, I have fewer characters to type, which means fewer ways I can mistype my search pattern. However, that means I have to guess how many characters will specify a unique substring of the word I want to find. If I don't type in enough for my search pattern, I'll end up in the wrong location. For example, if _search_ for “me”, I'll end up in “pleasure-dome” on line two rather than where I want to be, which is on line four. I'd then have to search again by pressing **n**.
 
 Vim's incremental search feature can help with both of these problems. To try it out, press the **ESC** key to enter command mode, then type
-    
-    
+
+
     :set incsearch
-    
+
 
 and press **ENTER**.
 
@@ -89,11 +88,11 @@ Programmers often don't capitalize code consistently. I'm no exception here. Fro
 “Let's see, was that subroutine named “CrashAndBurn”, “CRASHANDBURN”, “crashandburn” or “Crashandburn”?” If your editor is too picky about distinguishing upper-case from lower-case letters in its search patterns, you'll have a hard time matching the string. On the other hand, sometimes case is significant, and you do want to find “CrashAndBurn” and not “crashandburn”. What to do?
 
 By default, both vi and Vim won't match anywhere in the text where the capitalization isn't exactly the same as the search pattern you entered; however, we can change this default behavior. Vim has a couple of options that, when used together, can take the pain out of upper/lower-case confusion. You can try these options by pressing the **ESCAPE** key, then typing the following two commands, pressing **ENTER** after each one:
-    
-    
+
+
     :set ignorecase
     :set smartcase
-    
+
 
 The ignorecase option is supported in vi as well as in Vim. It entirely disregards upper- and lower-case distinctions in search patterns. With ignorecase set, a search for the pattern “crashandburn” will match “CrAsHaNdBuRn” and “crashANDburn” as well as “crashandburn” in the text.
 
@@ -112,10 +111,10 @@ When I'm editing a program or document, I like to have a little context around m
 In vi, I would maintain this bit of context by scrolling a few lines either above or below the line I wished to edit, then moving back to my destination and doing my editing. It wasn't great, but it was better than typing blind, which is how I felt whenever I worked on the first or last line of the screen.
 
 Luckily, Vim can maintain some context for you automatically through the use of the scrolloff option. You can try setting this option by pressing the **ESC** key and entering
-    
-    
+
+
     :set scrolloff=2
-    
+
 
 The **2** means I want at least two lines of context visible around the cursor at all times. You can set this to any number you like. Vim will scroll your file so that your cursor will never be closer to the top and bottom edge of the screen than the number of lines you specify.
 
@@ -132,22 +131,21 @@ Luckily, Vim has file name completion. File name completion lets you enter a par
 What if Vim finds more than one file or directory name that matches? You can specify what Vim does next in this case by setting the wildmode option. The default setting for wildmode is “full”. When wildmode is set like this, the first time you press **TAB** , Vim will fill in one of the files or directory names that match what you have typed so far. If you hit **TAB** again, Vim will show you another file that completes your match. As you keep pressing **TAB** , Vim will go through all the possible completions. When it runs out, the next time you press **TAB** , Vim will show you the original incomplete string you entered. Now you're back where you started. If you press **TAB** again, Vim will show you the first match again.
 
 While this is good, I prefer my file name completion to work a little differently. Here's how I like to have wildmode set:
-    
-    
+
+
     :set wildmode=longest,list
-    
+
 
 Setting wildmode this way makes Vim act as follows. When I enter part of a file name and press **TAB** , Vim completes my file name to the longest common string among the alternatives. It then waits for me to do one of the following: press **ENTER** to accept that as the file name, keep typing the file name from that place, press **ESC** to cancel the command, or press **TAB** again. The second time I press **TAB** , Vim will list all possible files that could complete my partial file or directory name.
 
 Don't like either of the file completion methods I listed above? Not to worry: wildmode has many different options. For details, enter
-    
-    
+
+
     :help wildmode
-    
+
 
 and Vim will show you every possible option.
 
 Enjoy customizing Vim. If you take one step at a time, you'll find that using Vim becomes more and more pleasant as time goes by. I think the more you make Vim work your way rather than its default way, the more you'll come to like it.
 
 [More Information](http://www.linuxjournal.com/files/linuxjournal.com/linuxjournal/articles/038/3805/3805s1.html)
-
