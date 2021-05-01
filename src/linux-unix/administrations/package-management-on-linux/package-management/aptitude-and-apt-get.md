@@ -1,37 +1,27 @@
-
-date: None  
-author(s): None  
-
-# [aptitude and apt-get - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/administrations/package-management-on-linux/package-management/aptitude-and-apt-get)
+# [aptitude and apt-get](http://forum.ubuntu.org.cn/viewtopic.php?t=253590)
 
 <http://forum.ubuntu.org.cn/viewtopic.php?t=253590>
 
 <http://www.guanwei.org/post/LINUXnotes/11/debian-aptitude-apt-get.html>
 
-apt-get的action  
+apt-get的action
 
 
-autoclean build-dep clean dselect-upgrade purge source upgradeautoremove check dist-upgrade install remove update 
+> autoclean build-dep clean dselect-upgrade purge source upgradeautoremove check dist-upgrade install remove update
 
 apt-get的option，reinstall是可以的
 
-\--assume-yes --dry-run --list-cleanup --print-uris --tar-only--auto-remove --fix-broken --no-act --purge --trivial-only--build --fix-missing --no-download --quiet --version--compile --force-yes --no-install-recommends --recon --yes--config-file --help --no-remove --reinstall --default-release --ignore-hold --no-upgrade --show-upgraded --diff-only --ignore-missing --only-source --simulate 
-
-\--download-only --just-print --option --target-release 
+> --assume-yes --dry-run --list-cleanup --print-uris --tar-only--auto-remove --fix-broken --no-act --purge --trivial-only--build --fix-missing --no-download --quiet --version--compile --force-yes --no-install-recommends --recon --yes--config-file --help --no-remove --reinstall --default-release --ignore-hold --no-upgrade --show-upgraded --diff-only --ignore-missing --only-source --simulate
+  --download-only --just-print --option --target-release
 
 aptitude的action
 
-autoclean dist-upgrade full-upgrade markauto safe-upgrade unmarkauto why-not build-dep download hold purge search update changelog forbid-version install reinstall show upgrade 
-
-clean forget-new keep-all remove unhold why
+> autoclean dist-upgrade full-upgrade markauto safe-upgrade unmarkauto why-not build-dep download hold purge search update changelog forbid-version install reinstall show upgrade clean forget-new keep-all remove unhold why
 
 aptitude的option
 
-\--assume-yes --prompt --show-versions --verbose --without-suggests--display-format --purge-unused --simulate --version --with-recommends--download-only --schedule-only --sort --width --with-suggests
-
-\--help --show-deps --target-release --without-recommends 
-
-  
+> --assume-yes --prompt --show-versions --verbose --without-suggests--display-format --purge-unused --simulate --version --with-recommends--download-only --schedule-only --sort --width --with-suggests
+  --help --show-deps --target-release --without-recommends
 
 
 起初GNU/Linux系统中只有.tar.gz。用户 必须自己编译他们想使用的每一个程序。在Debian出现之後，人们认为有必要在系统 中添加一种机 制用来管理 安装在计算机上的软件包。人们将这套系统称为dpkg。至此着名的‘package’首次在GNU/Linux上出现。不久之後红帽子也开始着 手建立自己的包管理系统 ‘rpm’。
@@ -113,4 +103,3 @@ aptitude 与 apt-get 一样，是 Debian 及其衍生系统中功能极其强大
 aptitude autoclean 仅删除过期的包文件
 
 当然，你也可以在文本界面模式中使用 aptitude。
-

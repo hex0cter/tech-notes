@@ -1,12 +1,8 @@
+# [set the date/time on Linux](http://www.go2linux.org/how-to-set-the-date-and-time-in-linux)
 
-date: None  
-author(s): None  
+You can set the date by issuing (as root):
 
-# [set the date/time on Linux - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/administrations/set-the-date-time-on-linux)
-
-<http://www.go2linux.org/how-to-set-the-date-and-time-in-linux>
-
-You can set the date by issuing (as root): **Usage:**
+**Usage:**
 
 date nnddhhmm[[cc]yy][.ss]
 
@@ -19,8 +15,3 @@ where
   * cc = The first to digits of the year
   * yy = The last two digits of the year
   * .ss = The seconds
-
-  
-  
----
-

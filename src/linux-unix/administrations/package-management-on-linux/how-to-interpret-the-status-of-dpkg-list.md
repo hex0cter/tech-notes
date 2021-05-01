@@ -1,10 +1,4 @@
-
-date: None  
-author(s): None  
-
-# [How to interpret the status of dpkg (–list)? - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/administrations/package-management-on-linux/how-to-interpret-the-status-of-dpkg-list)
-
-<http://linuxprograms.wordpress.com/2010/05/11/status-dpkg-list/>
+# [How to interpret the status of dpkg (–list)?](http://linuxprograms.wordpress.com/2010/05/11/status-dpkg-list/)
 
 **First character** : The possible value for the first character. The first character signifies the desired state, like we (or some user) is marking the package for installation
 
@@ -29,14 +23,13 @@ author(s): None
 
 
 
-Let’s move to the third character  
+Let’s move to the third character
  **Third Character** : This corresponds to the error state. The possible value include
 
   1. R: Reinst-required The package must be installed.
 
 
 
-Now you can easily interpret what [ii](http://linuxprograms.wordpress.com/ii-dpkg-list/), [pn](http://linuxprograms.wordpress.com/pn-dpkg-list/) and [rc](http://linuxprograms.wordpress.com/rc-dpkg-list/) correspond to.  
-  
----
+Now you can easily interpret what [ii](http://linuxprograms.wordpress.com/ii-dpkg-list/), [pn](http://linuxprograms.wordpress.com/pn-dpkg-list/) and [rc](http://linuxprograms.wordpress.com/rc-dpkg-list/) correspond to.
 
+---

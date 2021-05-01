@@ -1,11 +1,7 @@
+# [How to see package version without install?](http://unix.stackexchange.com/questions/39261/how-to-see-package-version-without-install)
 
-date: None  
-author(s): None  
 
-# [How to see package version without install? - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/administrations/package-management-on-linux/package-management/how-to-see-package-version-without-install)
-
-<http://unix.stackexchange.com/questions/39261/how-to-see-package-version-without-install>
-
+```
 daniel@daniel-IdeaPad ~ $ apt-cache policy eclipse
 
 eclipse:
@@ -78,7 +74,5 @@ Description-md5: d4d9de7c13498bc51b5ad0b7977aea24
 
 Bugs: https://bugs.launchpad.net/ubuntu/+filebug
 
-Origin: Ubuntu  
-  
----
-
+Origin: Ubuntu
+```

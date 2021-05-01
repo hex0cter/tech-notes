@@ -1,8 +1,6 @@
-
-date: None  
-author(s): None  
-
-# [get source of ubuntu package - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/administrations/package-management-on-linux/package-management/get-source-of-ubuntu-package)
+# [get source of ubuntu package](http://stackoverflow.com/questions/4767821/how-do-i-get-the-ubuntu-source-code)
 
 
-
+```
+apt-get source libgtk2.0-0
+```

@@ -1,8 +1,4 @@
-
-date: None  
-author(s): None  
-
-# [Understanding Linux CPU Load - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/administrations/understanding-linux-cpu-load)
+# [Understanding Linux CPU Load](http://blog.scoutapp.com/articles/2009/07/31/understanding-load-averages)
 
 You might be familiar with Linux load averages already. Load averages are the three numbers shown with the `uptime` and `top` commands - they look like this:
 
@@ -23,13 +19,6 @@ So, Bridge Operator, what numbering system are you going to use? How about:
   *  **over 1.00 means there's backup.** How much? Well, 2.00 means that there are two lanes worth of cars total -- one lane's worth on the bridge, and one lane's worth waiting. 3.00 means there are three lane's worth total -- one lane's worth on the bridge, and two lanes' worth waiting. Etc.
 
 
-
-![](http://img.skitch.com/20090728-jek9ssauydsi19nbcja26tw8ju.png) = load of 1.00
-
-![](http://img.skitch.com/20090728-c3278n4dj5t766u5mcjhwb2h57.png) = load of 0.50
-
-![](http://img.skitch.com/20090728-89jd6aydgwd9j26in49h7y1n7g.png) = load of 1.70
-
 This is basically what CPU load is. "Cars" are processes using a slice of CPU time ("crossing the bridge") or queued up to use the CPU. Unix refers to this as the _run-queue length_ : the sum of the number of processes that are currently running plus the number that are waiting (queued) to run.
 
 Like the bridge operator, you'd like your cars/processes to never be waiting. So, your CPU load should ideally stay below 1.00. Also like the bridge operator, you are still ok if you get some temporary spikes above 1.00 ... but when you're consistently above 1.00, you need to worry.
@@ -45,8 +34,6 @@ Well, not exactly. The problem with a load of 1.00 is that you have no headroom.
   * The **"Arrgh, it's 3AM WTF?"** Rule of Thumb: **5.0**. If your load average is above 5.00, you could be in serious trouble, your box is either hanging or slowing way down, and this will (inexplicably) happen in the worst possible time like in the middle of the night or when you're presenting at a conference. Don't let it get there.
 
 
-
-
 ## What about Multi-processors? My load says 3.00, but things are running fine!
 
 Got a quad-processor system? It's still healthy with a load of 3.00.
@@ -55,7 +42,6 @@ On multi-processor system, the load is relative to the number of processor cores
 
 If we go back to the bridge analogy, the "1.00" really means "one lane's worth of traffic". On a one-lane bridge, that means it's filled up. On a two-late bridge, a load of 1.00 means its at 50% capacity -- only one lane is full, so there's another whole lane that can be filled.
 
-![](http://img.skitch.com/20090728-8n99xu7xq1hkixcahtn6pgciin.pn) = load of 2.00 on two-lane road
 
 Same with CPUs: a load of 1.00 is 100% CPU utilization on single-core box. On a dual-core box, a load of 2.00 is 100% CPU utilization.
 
@@ -69,14 +55,11 @@ Which leads us to a two new Rules of Thumb:
 
   * The _"cores is cores"_ Rule of Thumb: How the cores are spread out over CPUs doesn't matter. Two quad-cores == four dual-cores == eight single-cores. It's all eight cores for these purposes.
 
-
-
-
 ## Bringing It Home
 
 Let's take a look at the load averages output from `uptime`:
 
-~ $ uptime  
+~ $ uptime
 23:05 up 14 days, 6:08, 7 users, load averages: 0.65 0.42 0.36
 
 This is on a dual-core CPU, so we've got lots of headroom. I won't even think about it until load gets and stays above 1.7 or so.
@@ -94,9 +77,3 @@ For the numbers we've talked about (1.00 = fix it now, etc), you should be looki
 ## Monitoring Linux CPU Load with Scout
 
 [Scout](http://scoutapp.com/) provides 2 ways to modify the CPU load. Our [original server load plugin](http://scoutapp.com/plugin_urls/4-server-load) and[Jesse Newland's Load-Per-Processor plugin](http://scoutapp.com/plugin_urls/151-load-per-processor) both report the CPU load and alert you when the load peaks and/or is trending in the wrong direction:
-
-![load alert](http://img.skitch.com/20090731-jjqr3tjjqths48ysweq8eyqdgu.png)
-
-##   
-
-
