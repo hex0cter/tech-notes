@@ -1,9 +1,7 @@
+# SSH key conflicts
 
-date: None  
-author(s): None  
-
-# [SSH key conflicts - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/common-tips/ssh-key-conflicts)
-
+Problem:
+```
 ssh-keygen -f "/home/dhan/.ssh/known_hosts" -R 10.177.124.105
 
 dhan@dhan-ubuntu:~$ ssh root@10.177.124.105
@@ -30,11 +28,14 @@ Add correct host key in /home/dhan/.ssh/known_hosts to get rid of this message.
 
 Offending RSA key in /home/dhan/.ssh/known_hosts:5
 
-remove with: **ssh-keygen -f "/home/dhan/.ssh/known_hosts" -R 10.177.124.105**
+remove with: ssh-keygen -f "/home/dhan/.ssh/known_hosts" -R 10.177.124.105
 
 RSA host key for 10.177.124.105 has changed and you have requested strict checking.
 
-Host key verification failed.  
-  
----
+Host key verification failed.
+```
 
+Fix:
+```
+ssh-keygen -f "/home/dhan/.ssh/known_hosts" -R 10.177.124.105
+```
