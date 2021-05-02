@@ -1,8 +1,4 @@
-
-date: None  
-author(s): None  
-
-# [Useful Linux Wireless Commands - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/common-tips/useful-linux-wireless-commands)
+# [Useful Linux Wireless Commands](http://wirelessdefence.org/Contents/LinuxWirelessCommands.htm)
 
 [Connecting to an Open or WEP enabled WLAN (DHCP)](http://wirelessdefence.org/Contents/LinuxWirelessCommands.htm#Connecting%20to%20WLAN%20\(DHCP\))
 
@@ -115,11 +111,11 @@ When the monitor mode patch is installed as per the [Wireless Build HOWTO](http:
  **iwpriv [interface] monitor [A] [B]**
 
 >  **0** = disable monitor mode
-> 
->   
->  **1** = enable monitor mode with Prism2 header   
-> 
-> 
+>
+>
+>  **1** = enable monitor mode with Prism2 header
+>
+>
 > **2** = enable monitor mode with no Prism2
 
 > Channel to monitor ( **1-14** )
@@ -152,7 +148,7 @@ Note: replace [interface] with your interface name as required (e.g. eth1, wlan0
 
 ## Madwifi-ng Commands:
 
-MADWiFi supports virtual access points (VAPS), which means you can create more than one wireless device per wireless card (the host wireless card = **wifi0** ). 
+MADWiFi supports virtual access points (VAPS), which means you can create more than one wireless device per wireless card (the host wireless card = **wifi0** ).
 
 By default, a sta mode VAP is created by, which is MadWifi talk for a 'managed mode wireless interface'.
 
@@ -172,10 +168,10 @@ Changing modes:
 
  **ifconfig athx down** (Take the VAP down)
 
- **  
+ **
 wlanconfig athx destroy** (Destroy the VAP, athx)
 
- **  
+ **
 wlanconfig athx create wlandev wifi0 wlanmode [sta|adhoc|ap|monitor]** (Create a new sta, adhoc, ap or monitor VAP)
 
 Scan for Access Points (requires both steps):
@@ -187,4 +183,3 @@ Scan for Access Points (requires both steps):
 For more detailed information, see [Madwifi Docs](http://madwifi.org/wiki/UserDocs)
 
 [Logicallysecure](http://www.logicallysecure.com/) have produced an A4 leaflet of the above commands that can be downloaded [here](http://www.logicallysecure.com/resources/downloads/Linux%20Wireless%20Commands.doc).
-

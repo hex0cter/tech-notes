@@ -1,16 +1,14 @@
+# [Install iBus for Chinese input on Ubuntu](http://pinyinjoe.com/linux/ubuntu-12-chinese-setup.htm)
 
-date: None  
-author(s): None  
-
-# [Install iBus for Chinese input on Ubuntu - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/common-tips/install-ibus-for-chinese-input-on-ubuntu)
-
-nstalling Chinese fonts and input methods in Ubuntu 12 or 13 is very similar to my instructions for recent versions, but you'll notice some differences in these screen shots.
+Installing Chinese fonts and input methods in Ubuntu 12 or 13 is very similar to my instructions for recent versions, but you'll notice some differences in these screen shots.
 
  **Note: if you cannot run the Unity interface,** use my instructions for [Ubuntu 10 Chinese setup, ](http://pinyinjoe.com/linux/ubuntu-10-chinese-setup.htm)log into the Gnome interface, and try to install proprietary drivers for your graphics card.
 
 Ubuntu should automatically present this option to you shortly after your first login, if it finds a card that can use such drivers. Then you may be able to restart and boot into Unity.
 
-![No need to install a fully localized Chinese Ubuntu desktop. Just click English](http://pinyinjoe.com/images/ubuntu/1104/Ubuntu-11-install-English-display-language.jpg) **At the installation Welcome screen** you will be asked to pick a display language, as shown on the right here. --->
+![No need to install a fully localized Chinese Ubuntu desktop. Just click English](http://pinyinjoe.com/images/ubuntu/1104/Ubuntu-11-install-English-display-language.jpg)
+
+**At the installation Welcome screen** you will be asked to pick a display language, as shown on the right here. --->
 
  _It is not necessary to use a Chinese language desktop if you don't want to,_ because Chinese input methods are available in any locale. You can select "English" or another language now, and use Chinese menus later if you wish.
 
@@ -53,4 +51,3 @@ Then logout and login again. You should see the keyboard icon now.
  **There is one more step required** to set up at least one Chinese input method:
 
 > [![Ubuntu Chinese IMEs](http://pinyinjoe.com/images/ubuntu/1010/IME-icons-7.jpg)](http://pinyinjoe.com/linux/ubuntu-10-chinese-input-pinyin-chewing.htm)
-
