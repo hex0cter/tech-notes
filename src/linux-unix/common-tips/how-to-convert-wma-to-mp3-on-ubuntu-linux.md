@@ -1,36 +1,25 @@
+# [How to convert wma to mp3 on Ubuntu Linux](http://henryhermawan.blogspot.se/2011/01/converting-wma-to-mp3.html)
 
-date: None  
-author(s): None  
+This script below will do.
 
-# [How to convert wma to mp3 on Ubuntu Linux - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/common-tips/how-to-convert-wma-to-mp3-on-ubuntu-linux)
+```bash
+#!/bin/bash
 
-<http://henryhermawan.blogspot.se/2011/01/converting-wma-to-mp3.html>
+current_directory=$( pwd )
 
-This script below will do. 
+#remove spaces
+for i in *.wma; do mv "$i" `echo $i | tr ' ' '_'`; done
 
-`#!/bin/bash`
+#Rip with Mplayer / encode with LAME
+for i in *.wma ; do mplayer -vo null -vc dummy -af resample=44100 -ao pcm:waveheader $i && lame -m s audiodump.wav -o $i; done
 
-`current_directory=$( pwd )`
+#convert file names
+for i in *.wma; do mv "$i" "`basename "$i" .wma`.mp3"; done
 
-`#remove spaces`
+#add spaces as origins (if there are spaces)
+for i in *.mp3; do mv "$i" "`echo "$i" | tr '_' ' '`"; done
 
-`for i in *.wma; do mv "$i" `echo $i | tr ' ' '_'`; done`
+rm audiodump.wav
+```
 
-`#Rip with Mplayer / encode with LAME`
-
-`for i in *.wma ; do mplayer -vo null -vc dummy -af resample=44100 -ao pcm:waveheader $i && lame -m s audiodump.wav -o $i; done`
-
-`#convert file names`
-
-`for i in *.wma; do mv "$i" "`basename "$i" .wma`.mp3"; done`
-
-`#add spaces as origins (if there are spaces)`
-
-`for i in *.mp3; do mv "$i" "`echo "$i" | tr '_' ' '`"; done`
-
-`rm audiodump.wav`
-
-You need to install mplayer and lame first.  
-  
----
-
+You need to install mplayer and lame first.

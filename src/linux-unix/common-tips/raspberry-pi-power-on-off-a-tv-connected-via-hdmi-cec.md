@@ -1,8 +1,10 @@
+# Raspberry Pi: Power On / Off A TV Connected Via HDMI-CEC
 
-date: None  
-author(s): None  
+<https://www.linuxuprising.com/2019/07/raspberry-pi-power-on-off-tv-connected.html>
 
-# [Raspberry Pi: Power On / Off A TV Connected Via HDMI-CEC - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/common-tips/raspberry-pi-power-on-off-a-tv-connected-via-hdmi-cec)
+<https://ubuntu-mate.community/t/controlling-raspberry-pi-with-tv-remote-using-hdmi-cec/4250>
+
+<https://github.com/hex0cter/youtube-explicit/blob/master/bin/cec-remote.sh>
 
 **With the help of cec-client (part of[libcec](https://github.com/Pulse-Eight/libcec)), your Raspberry Pi can control a device that supports CEC, like a TV, connected via HDMI. You could power the TV on or off, switch the active source, and more.**
 
@@ -14,29 +16,29 @@ This should work with any Raspberry Pi version or model, including the original 
 
 Most modern TVs and AV receivers should support HDMI-CEC. However, it's worth noting that you may need to enable CEC in the TV settings on some models. CEC may have a different name, depending on the device brand. For example, it's called Anynet+ for Samsung TVs, EasyLink or Fun-Link for Philips, SimpLink for LG, and so on.
 
-  
-  
-To be able to power on (and off) a TV connected via HDMI to a Raspberry Pi, the first step is to install cec-client. On Raspbian, or some other Debian or Ubuntu based Linux distribution for Raspberry Pi, **install the`cec-utils` package** (`cec-client` is part of this package):
-    
-    
-    sudo apt install cec-utils
 
-  
+
+To be able to power on (and off) a TV connected via HDMI to a Raspberry Pi, the first step is to install cec-client. On Raspbian, or some other Debian or Ubuntu based Linux distribution for Raspberry Pi, **install the`cec-utils` package** (`cec-client` is part of this package):
+
+```
+    sudo apt install cec-utils
+```
+
 On other Linux distributions you'll have to search for `cec-client` or `cec-utils` in the repositories, or build libcec [from source](https://github.com/Pulse-Eight/libcec).
 
 Now that `cec-utils` is installed, let's **scan the CEC bus for available devices:**
-    
-    
-    echo 'scan' | cec-client -s -d 1
 
-  
+```
+    echo 'scan' | cec-client -s -d 1
+```
+
 In this command `echo 'scan'` sends the scan command to cec-client, `-s` is used so cec-client executes a single command and exists, and `-d 1` sets the log level to 1 (errors only), so it's doesn't pollute your terminal with useless info.
 
 Remember the TV (or other device connected via HDMI-CEC to your Raspberry Pi) device # and address, as we'll use that later on.
 
 This is an example running this command on my Raspberry Pi that's connected to a Samsung TV via HDMI (with CEC support):
-    
-    
+
+
     $ echo 'scan' | cec-client -s -d 1
     opening a connection to the CEC adapter...
     requesting CEC bus information ...
@@ -50,7 +52,7 @@ This is an example running this command on my Raspberry Pi that's connected to a
     CEC version:   1.4
     power status:  on
     language:      eng
-    
+
     device #1: Recorder 1
     address:       1.0.0.0
     active source: no
@@ -59,63 +61,63 @@ This is an example running this command on my Raspberry Pi that's connected to a
     CEC version:   1.4
     power status:  on
     language:      eng
-    
+
     currently active source: unknown (-1)
 
-  
+
 In this example, device number `0` with the `0.0.0.0` address is my Samsung TV, and device number `1` with the `1.0.0.0` address is my Raspberry Pi device.
 
 Now that we know the device number and address, you can **use the command that follows to power on a TV connected via HDMI-CEC to the Raspberry Pi:**
-    
-    
+
+
     echo 'on <DEVICE #>' | cec-client -s -d 1
 
-  
+
 Or:
-    
-    
+
+
     echo 'on <DEVICE ADDRESS>' | cec-client -s -d 1
 
-  
+
  **Both the device number (`0` is the Samsung TV in the example above) and device address (`0.0.0.0` is the Samsung TV device address from my example) should work.**
 
 `-d 1` is to limit the log level to errors only, and you can use the command without it, but you'll see a long, probably useless log.
 
  **Example:**
-    
-    
+
+
     echo 'on 0' | cec-client -s -d 1
 
-  
+
 Or:
-    
-    
+
+
     echo 'on 0.0.0.0' | cec-client -s -d 1
 
-  
+
  **You'll also want to run the`as` command, which makes the CEC adapter the active source** (so the TV switches to the Raspberry Pi HDMI source after the TV is powered on):
-    
-    
+
+
     echo 'as' | cec-client -s -d 1
 
-  
+
  **Want to turn the TV off (enter standby)? Use:**
-    
-    
+
+
     echo 'standby <DEVICE #>' | cec-client -s -d 1
 
-  
+
 Depending on how you use this, you may also need to check the current TV status (is it on or in standby?). This can be done using:
-    
-    
+
+
     echo 'pow <DEVICE #>' | cec-client -s -d 1
 
-  
+
 To view all the commands that cec-client can send to a HDMI-CEC connected device, use `echo h | cec-client -s -d 1`:
-    
-    
+
+
     Available commands:
-    
+
     [tx] {bytes}              transfer bytes over the CEC line.
     [txn] {bytes}             transfer bytes but don't wait for transmission ACK.
     [on] {address}            power on the device with the given logical address.
@@ -154,7 +156,7 @@ To view all the commands that cec-client can send to a HDMI-CEC connected device
 
 Hello everyone.
 
-Description:  
+Description:
 I wrote a script that connects to HDMI CEC ( cec-client needed ) and listens for TV Remote key presses. Based on the keys pressed / released (or auto-released; holding down certain keys for too long makes them auto-release) different actions are executed. Some examples:
 
   * write letters and numbers using 0-9 keys (simulating 3x4 keypad phones - key "2" switches between a-b-c-2, key 9 switches between w-x-y-z-9) ( xdotool needed )
@@ -163,12 +165,12 @@ I wrote a script that connects to HDMI CEC ( cec-client needed ) and listens for
 
 
 
-If you want to use firefox instead of chromium, replace "chromium" with "firefox" in the script below.  
+If you want to use firefox instead of chromium, replace "chromium" with "firefox" in the script below.
 Alternatively, you can just install chromium:
-    
-    
+
+
     sudo apt-get install chromium-browser
-    
+
 
 See all the available keys below:
 
@@ -180,46 +182,46 @@ TVRemoteCECpng.png828×1030 101 KB
 
 These are the keys supported by my TV Remote. You can modify the script for your TV Remote, see Modification below.
 
-Installation:  
+Installation:
 First you need to install cec-client and xdotool; using terminal:
-    
-    
+
+
     sudo apt-get install cec-client xdotool
-    
+
 
 Test if you can receive TV Remote button presses with cec-client; using terminal:
-    
-    
+
+
     cec-client
-    
+
 
 You should see some diagnostic messages. Press numeric keys (as they are most likely to be supported) on your TV Remote. Watch out for new lines, especially of this form:
-    
-    
-    something something **key pressed: 8** something something
-    
 
-If you see this kind of messages, then this should work for you.  
-If not, make sure you've got CEC enabled on your TV (see this [WIKI 109](http://kodi.wiki/view/CEC#Trade_names) for more info).  
+
+    something something **key pressed: 8** something something
+
+
+If you see this kind of messages, then this should work for you.
+If not, make sure you've got CEC enabled on your TV (see this [WIKI 109](http://kodi.wiki/view/CEC#Trade_names) for more info).
 For my TV, pressing the Source button a couple of times helped (so it kind-of flips trough all the sources and circles back to the Raspberry Pi, detects CEC and connects to it).
 
-So, on to the script / installation:  
+So, on to the script / installation:
 Create the file cecremote.sh and mark it as executable; using terminal:
-    
-    
+
+
     touch cecremote.sh
     chmod +x cecremote.sh
-    
+
 
 Then open it; using terminal:
-    
-    
+
+
     nano cecremote.sh
-    
+
 
 Copy - paste this in the file:
-    
-    
+
+
     #!/bin/bash
     function keychar { parin1=$1 #first param; abc1 parin2=$2 #second param; 0=a, 1=b, 2=c, 3=1, 4=a, ... parin2=$((parin2)) #convert to numeric parin1len=${#parin1} #length of parin1 parin2pos=$((parin2 % parin1len)) #position mod char=${parin1:parin2pos:1} #char key to simulate if [ "$parin2" -gt 0 ]; then #if same key pressed multiple times, delete previous char; write a, delete a write b, delete b write c, ... xdotool key "BackSpace" fi #special cases for xdotool ( X Keysyms ) if [ "$char" = " " ]; then char="space"; fi if [ "$char" = "." ]; then char="period"; fi if [ "$char" = "-" ]; then char="minus"; fi xdotool key $char
     }
@@ -232,48 +234,48 @@ Copy - paste this in the file:
     intmousespeed=10 while read oneline
     do keyline=$(echo $oneline | grep " key ") #echo $keyline --- debugAllLines if [ -n "$keyline" ]; then datnow=$(date +%s%N) datdiff=$((($datnow - $datlastkey) / 1000000)) #bla bla key pressed: previous channel (123) strkey=$(grep -oP '(?<=sed: ).*?(?= \()' <<< "$keyline") #bla bla key pres-->sed: >>previous channel<< (<--123) strstat=$(grep -oP '(?<=key ).*?(?=:)' <<< "$keyline") #bla bla -->key >>pressed<<:<-- previous channel (123) strpressed=$(echo $strstat | grep "pressed") strreleased=$(echo $strstat | grep "released") if [ -n "$strpressed" ]; then #echo $keyline --- debug if [ "$strkey" = "$strlastkey" ] && [ "$datdiff" -lt "$intmsbetweenkeys" ]; then intkeychar=$((intkeychar + 1)) #same key pressed for a different char else intkeychar=0 #different key / too far apart fi datlastkey=$datnow strlastkey=$strkey case "$strkey" in "1") xdotool key "BackSpace" ;; "2") keychar "abc2" intkeychar ;; "3") keychar "def3" intkeychar ;; "4") keychar "ghi4" intkeychar ;; "5") keychar "jkl5" intkeychar ;; "6") keychar "mno6" intkeychar ;; "7") keychar "pqrs7" intkeychar ;; "8") keychar "tuv8" intkeychar ;; "9") keychar "wxyz9" intkeychar ;; "0") keychar " 0.-" intkeychar ;; "previous channel") xdotool key "Return" #Enter ;; "channel up") xdotool click 4 #mouse scroll up ;; "channel down") xdotool click 5 #mouse scroll down ;; "channels list") xdotool click 3 #right mouse button click" ;; "up") intpixels=$((-1 * intmousespeed)) xdotool mousemove_relative -- 0 $intpixels #move mouse up intmousespeed=$((intmousespeed + intmouseacc)) #speed up ;; "down") intpixels=$(( 1 * intmousespeed)) xdotool mousemove_relative -- 0 $intpixels #move mouse down intmousespeed=$((intmousespeed + intmouseacc)) #speed up ;; "left") intpixels=$((-1 * intmousespeed)) xdotool mousemove_relative -- $intpixels 0 #move mouse left intmousespeed=$((intmousespeed + intmouseacc)) #speed up ;; "right") intpixels=$(( 1 * intmousespeed)) xdotool mousemove_relative -- $intpixels 0 #move mouse right intmousespeed=$((intmousespeed + intmouseacc)) #speed up ;; "select") xdotool click 1 #left mouse button click ;; "return") xdotool key "Alt_L+Left" #WWW-Back ;; "exit") echo Key Pressed: EXIT ;; "F2") chromium-browser "https://www.youtube.com" & ;; "F3") chromium-browser "https://www.google.com" & ;; "F4") echo Key Pressed: YELLOW C ;; "F1") chromium-browser --incognito "https://www.google.com" & ;; "rewind") echo Key Pressed: REWIND ;; "pause") echo Key Pressed: PAUSE ;; "Fast forward") echo Key Pressed: FAST FORWARD ;; "play") echo Key Pressed: PLAY ;; "stop") ## with my remote I only got "STOP" as key released (auto-released), not as key pressed; see below echo Key Pressed: STOP ;; *) echo Unrecognized Key Pressed: $strkey ; CEC Line: $keyline ;; esac fi if [ -n "$strreleased" ]; then #echo $keyline --- debug case "$strkey" in "stop") echo Key Released: STOP ;; "up") intmousespeed=$intmousestartspeed #reset mouse speed ;; "down") intmousespeed=$intmousestartspeed #reset mouse speed ;; "left") intmousespeed=$intmousestartspeed #reset mouse speed ;; "right") intmousespeed=$intmousestartspeed #reset mouse speed ;; esac fi fi
     done
-    
 
-Finally, save it; using nano in terminal:  
+
+Finally, save it; using nano in terminal:
 press "Ctrl+X" to close the file, then "Y" to confirm saving, then "Enter" to save the file under the right file name
 
 Try executing it, using terminal:
-    
-    
+
+
     cec-client | ./cecremote.sh
-    
+
 
 At this point it should be working.Point the TV Remote at the TV, press up/down/left/right and check if the mouse pointer is moving.
 
 Press 9 44 2 8 7777 0 88 7 and it should write "whats up".
 
-The script doesn't output anything, except when it encounters a button press that it doesn't recognize, or it doesn't have a function set up for that button yet (play button being one of them).  
+The script doesn't output anything, except when it encounters a button press that it doesn't recognize, or it doesn't have a function set up for that button yet (play button being one of them).
 If you want it to output all the messages it receives, find the line and uncomment it by deleting the # : #echo $keyline --- debugAllLines
 
 So, if everything works, exit the script in terminal: Press Ctrl+C
 
-Run at startup:  
+Run at startup:
 If you want to start this script every time the Raspberry starts, create a new file called cecremotestart.sh and mark it as executable; using terminal:
-    
-    
+
+
     touch cecremotestart.sh
     chmod +x cecremotestart.sh
-    
+
 
 Then open it; using terminal:
-    
-    
+
+
     nano cecremotestart.sh
-    
+
 
 Copy - paste this in the file:
-    
-    
+
+
     #!/bin/bash
     cec-client | /home/raspberry/cecremote.sh #<-- change this according to your username / path to the script
-    
 
-Finally, save it; using nano in terminal:  
+
+Finally, save it; using nano in terminal:
 press "Ctrl+X" to close the file, then "Y" to confirm saving, then "Enter" to save the file under the right file name
 
 Then add this in the Startup Programs (Menu - System - Control Center - Startup Programs; Add; Give it a name, and enter the path (or press Browse) of the script in the filesystem).
@@ -283,23 +285,22 @@ Restart, try, report ![:slightly_smiling:](https://ubuntu-mate.community/images/
 Modification:If you want, you can edit the script to change or add the commands executed on certain button presses.
 
 You can detect the additional buttons that CEC on your TV supports. Kill the running cec-client, run the cec-client in the terminal, and watch for the output while you're pressing all the keys on your TV Remote; using terminal:
-    
-    
+
+
     killall cec-client
     cec-client
     Ctrl+C when you're ready to stop
-    
+
 
 Edit the script, then execute the modified script by manually executing cecremotestart.sh; using terminal:
-    
-    
+
+
     ./cecremotescript.sh
     Ctrl+C to stop
-    
+
 
 When you're satisfied, just restart your Raspberry PI.
 
 That's it from me - a simple and crude way to control your Raspberry PI with the TV Remote, for when you don't have the keyboard/mouse connected and VNC-ing is too much of a bother.
 
 Try it and report ![:slightly_smiling:](https://ubuntu-mate.community/images/emoji/google/slightly_smiling.png?v=9)
-
