@@ -1,8 +1,4 @@
-
-date: None  
-author(s): None  
-
-# [Shared Library Search Paths - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/common-tips/shared-library-search-paths)
+# [Shared Library Search Paths](http://www.eyrie.org/~eagle/notes/rpath.html)
 
 It's becoming more and more common these days to link everything against shared libraries, and in fact many software packages (Tcl and Cyrus SASL come to mind) basically just don't work properly static. This means that one has to more frequently deal with the issues involved in finding the appropriate libraries at runtime.
 
@@ -21,4 +17,3 @@ On Linux, you do this by adding those directories to /etc/ld.so.conf and then ru
 This doesn't always work, though. The main case where this doesn't work is when you're installing shared libraries into a shared network file system for use throughout your cluster or enterprise. Then, you probably don't want to add that network file system to the default system search path, since that search path is used for every binary on the system, including ones integral to the operation of the system. If the network file system goes down, and the default search path includes it, the system will become unusable.
 
 That leads to the next approach.
-

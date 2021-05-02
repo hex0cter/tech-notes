@@ -1,8 +1,4 @@
-
-date: None
-author(s): None
-
-# [How To Turn Your Raspberry Pi into NAS Server [Guide] - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/common-tips/how-to-turn-your-raspberry-pi-into-nas-server-guide)
+# [How To Turn Your Raspberry Pi into NAS Server [Guide]](https://www.ubuntupit.com/how-to-turn-your-raspberry-pi-into-nas-server-guide/)
 
 In this modern age of science and technology, data is like the heart and soul of a system. How many times have you bought external hard drives for extra storage till now? Plenty, I guess. But wouldn’t it be awesome to have your personal [storage in the cloud](https://www.ubuntupit.com/best-cloud-computing-companies-and-platforms/) with unlimited space just to save your information and data? It’s possible! All you need is a raspberry pi with an external or USB hard drive, and your personal NAS system will be ready in no time! With a Raspberry Pi NAS Server, you can easily store anything from movies to games in virtual storage and access it from any device and anywhere in the world. Also, a NAS server will ensure that your data is totally safe, and no one else can access them except you. So, follow this article step by step to turn your Raspberry Pi into a NAS Server.
 
@@ -153,6 +149,9 @@ You should remember to hit the save button every time you make a change in the s
 ![Openmediavault installing updates](https://www.ubuntupit.com/wp-content/uploads/2020/10/Openmediavault-installing-updates.jpg)
 
 Check all the boxes and select the “Install” button to start all the pending updates. Make sure the process doesn’t get interrupted by anything. You can close the installation pop-up once everything’s updated.
+
+## **Step 7: Connecting and Preparing Storage for NAS Server**
+
 
 In this step, you will have to connect the storage media to the Pi so that the NAS server can give you service as central file storage. To do that, make your way to the “Storage” menu followed by the “Disks” sub-menu. You should see the microSD card option in the OMV5 housing.
 

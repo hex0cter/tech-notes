@@ -1,10 +1,4 @@
-
-date: None  
-author(s): None  
-
-# [SSH/OpenSSH/PortForwarding - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/common-tips/ssh-openssh-portforwarding)
-
-Parent page: [Internet and Networking](https://help.ubuntu.com/community/InternetAndNetworking) >> [SSH](https://help.ubuntu.com/community/SSH)
+# [SSH/OpenSSH/PortForwarding
 
 ## Introduction
 
@@ -14,14 +8,11 @@ Parent page: [Internet and Networking](https://help.ubuntu.com/community/Interne
 
 SSH's port forwarding feature can smuggle various types of Internet traffic into or out of a network. This can be used to avoid network monitoring or sniffers, or bypass badly configured routers on the Internet. Note: You might also need to change the settings in other programs (like your web browser) in order to circumvent these filters.
 
-![IconsPage/IconWarning3.png](https://help.ubuntu.com/community/IconsPage?action=AttachFile&do=get&target=IconWarning3.png)
+|
 
-| 
+ **Warning** : Filtering and monitoring is usually implemented for a reason. Even if you don't agree with that reason, your IT department might not take kindly to you flouting their rules.
 
- **Warning** : Filtering and monitoring is usually implemented for a reason. Even if you don't agree with that reason, your IT department might not take kindly to you flouting their rules.  
-  
----|---  
-  
+
 There are three types of port forwarding with SSH:
 
   *  **Local port forwarding** : connections _from the SSH client_ are forwarded _via the SSH server_ , then _to a destination server_
@@ -48,23 +39,26 @@ To use port forwarding, you need to [make sure port forwarding is enabled in you
 Local port forwarding lets you connect from your _local_ computer to another server. To use local port forwarding, you need to know your destination server, and two port numbers. You should already know your destination server, and for basic uses of port forwarding, you can usually use the port numbers in Wikipedia's [list of TCP and UDP port numbers](http://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers).
 
 For example, say you wanted to connect from your laptop to [http://www.ubuntuforums.org](http://www.ubuntuforums.org/) using an SSH tunnel. You would use source port number `8080` (the alternate _http_ port), destination port ` 80` (the _http_ port), and destination server _www.ubuntuforums.org_. :
-    
-    
+
+```
      ssh -L 8080:www.ubuntuforums.org:80 <host>
+```
 
 Where `<host>` should be replaced by the name of _your laptop_. The ` -L` option specifies _local_ port forwarding. For the duration of the SSH session, pointing your browser at <http://localhost:8080/> would send you to <http://www.ubuntuforums.org/>.
 
 In the above example, we used port `8080` for the source port. Ports numbers less than `1024` or greater than `49151` are reserved for the system, and some programs will only work with specific source ports, but otherwise you can use any source port number. For example, you could do:
-    
-    
+
+```
     ssh -L 8080:www.ubuntuforums.org:80 -L 12345:ubuntu.com:80 <host>
+```
 
 This would forward two connections, one to [www.ubuntuforums.org](http://www.ubuntuforums.org/), the other to [www.ubuntu.com](http://www.ubuntu.com/). Pointing your browser at<http://localhost:8080/> would download pages from [www.ubuntuforums.org](http://www.ubuntuforums.org/), and pointing your browser to <http://localhost:12345/> would download pages from [www.ubuntu.com](http://www.ubuntu.com/).
 
 The destination server can even be the same as the SSH server. For example, you could do:
-    
-    
+
+```
     ssh -L 5900:localhost:5900 <host>
+```
 
 This would forward connections to the [shared desktop](https://help.ubuntu.com/community/VNC) on your SSH server (if one had been set up). Connecting an SSH client to _localhost_ port` 5900` would show the desktop for that computer. The word "localhost" is the computer equivalent of the word "yourself", so the SSH server on your laptop will understand what you mean, whatever the computer's actual name.
 
@@ -73,9 +67,10 @@ This would forward connections to the [shared desktop](https://help.ubuntu.com/c
 Remote port forwarding lets you connect from the _remote_ SSH server to another server. To use remote port forwarding, you need to know your destination server, and two port numbers. You should already know your destination server, and for basic uses of port forwarding, you can usually use the port numbers in Wikipedia's [list of TCP and UDP port numbers](http://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers).
 
 For example, say you wanted to let a friend access your remote desktop, using the command-line SSH client. You would use port number `5900`(the first _VNC_ port), and destination server _localhost_ :
-    
-    
+
+```
     ssh -R 5900:localhost:5900 guest@joes-pc
+```
 
 The `-R` option specifies _remote_ port forwarding. For the duration of the SSH session, Joe would be able to access your desktop by connecting a VNC client to port 5900 on his computer (if you had set up a shared desktop).
 
@@ -84,9 +79,10 @@ The `-R` option specifies _remote_ port forwarding. For the duration of the SSH 
 Dynamic port forwarding turns your SSH client into a _SOCKS proxy server_. _SOCKS_ is a little-known but widely-implemented protocol for programs to request any Internet connection through a _proxy server_. Each program that uses the proxy server needs to be configured specifically, and reconfigured when you stop using the proxy server.
 
 For example, say you wanted Firefox to connect to every web page through your SSH server. First you would use dynamic port forwarding with the default SOCKS port:
-    
-    
+
+```
     ssh -C -D 1080 laptop
+```
 
 The `-D` option specifies _dynamic_ port forwarding. ` 1080` is the standard SOCKS port. Although you can use any port number, some programs will only work if you use `1080`. `-C` enables compression, which [speeds the tunnel up](https://calomel.org/firefox_ssh_proxy.html) when proxying mainly text-based information (like web browsing), but can slow it down when proxying binary information (like downloading files).
 
@@ -122,30 +118,34 @@ SSH can also forward graphical applications over a network, although it can take
 If you are logging in from a Unix-like operating system, you can forward single applications over SSH very easily, because all Unix-like systems share a common graphics layer called X11. This even works under Mac OS X, although you will need to install and start the [X11 server](http://www.apple.com/support/downloads/x11formacosx.html) before using SSH.
 
 To forward single applications, connect to your system using the command-line, but add the **-X** option to forward X11 connections:
-    
-    
+
+```
      ssh -X laptop
+```
 
 Once the connection is made, type the name of your GUI program on the SSH command-line:
-    
-    
+
+```
     firefox &
+```
 
 Your program will start as normal, although you might find it's a little slower than it would be if it were running locally. The trailing `&` means that the program should run in "background mode", so you can start typing new commands in straight away, rather than waiting for your program to finish.
 
 If you only want to run a single command, you can log in like this:
-    
-    
+
+```
     ssh -f -T -X laptop firefox
+```
 
 That will run Firefox, then exit when it finishes. See [the SSH manual page](http://manpages.ubuntu.com/manpages/karmic/en/man1/ssh.1.html) for information about **-f** and **-T**.
 
 If you start an application and it complains that it cannot find the display, try installing the **xauth** package from the Main repository ([click here to install xauth](javascript:void\(0\);)). Xauth is installed by default with desktop installations but not server installations.
 
 If you suspect that programs are running slowly because of a lack of bandwith, you can turn SSH compression on with the **-C** option:
-    
-    
+
+```
      ssh -fTXC joe@laptop firefox
+```
 
 Using **-fTXC** here is identical to **-f -T -X -C**.
 
@@ -180,24 +180,27 @@ Connections between Internet ports can be patched together, so a connection from
 ## Troubleshooting
 
 If you get a message like this when you try to forward a port:
-    
-    
+
+```
     bind: Address already in use
     channel_setup_fwd_listener: cannot listen to port: <port number>
     Could not request local forwarding.
+```
 
 then someone is already listening on that port number. You won't be able to listen on that port until the other person has finished with it.
 
 If forwarding doesn't seem to work, even though you didn't get a warning message, then your SSH server might have disabled forwarding. To check, do the following:
-    
-    
-    grep Forwarding /etc/ssh/sshd_config
 
+```
+    grep Forwarding /etc/ssh/sshd_config
+```
 If you see something like this:
-    
-    
+
+```
     X11Forwarding no
     AllowTcpForwarding no
+```
 
 then forwarding is disabled on your server. See [the SSH configuration page](https://help.ubuntu.com/community/SSH/OpenSSH/Configuring#Forwarding) for more information.
 
+Parent page: [Internet and Networking](https://help.ubuntu.com/community/InternetAndNetworking) >> [SSH](https://help.ubuntu.com/community/SSH)

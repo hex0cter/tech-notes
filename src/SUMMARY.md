@@ -186,6 +186,7 @@
     - [How to Convince apt-get *not* to use IPv6 method](./linux-unix/common-tips/how-to-convince-apt-get-not-to-use-ipv6-method.md)
     - [How to Customize the GDM Sessions List](./linux-unix/common-tips/how-to-customize-the-gdm-sessions-list.md)
     - [How to determine USB version on Linux](./linux-unix/common-tips/how-to-determine-usb-version-on-linux.md)
+    - [How To Turn Your Raspberry Pi into NAS Server [Guide]](./linux-unix/common-tips/how-to-turn-your-raspberry-pi-into-nas-server-guide.md)
     - [How to disable lightdm?](./linux-unix/common-tips/how-to-disable-lightdm.md)
     - [How to disable SSH timeout](./linux-unix/common-tips/how-to-disable-ssh-timeout.md)
     - [How to Edit Remote Files With Sublime Text via an SSH Tunnel](./linux-unix/common-tips/how-to-edit-remote-files-with-sublime-text-via-an-ssh-tunnel.md)

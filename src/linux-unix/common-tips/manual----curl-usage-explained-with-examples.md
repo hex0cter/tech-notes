@@ -1,8 +1,4 @@
-
-date: None  
-author(s): None  
-
-# [Manual -- curl usage explained with examples - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/common-tips/manual----curl-usage-explained-with-examples)
+# [Manual -- curl usage explained with examples](http://curl.haxx.se/docs/manual.html)
 
 
     SIMPLE USAGE
@@ -1014,4 +1010,3 @@ author(s): None
      
       Please direct curl questions, feature requests and trouble reports to one of
       these mailing lists instead of mailing any individual.
-
