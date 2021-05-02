@@ -1,8 +1,4 @@
-
-date: None  
-author(s): None  
-
-# [How to shrink a dynamically-expanding guest virtualbox image - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/common-tips/how-to-shrink-a-dynamically-expanding-guest-virtualbox-image-1)
+# [How to shrink a dynamically-expanding guest virtualbox image](http://dantwining.co.uk/2011/07/18/how-to-shrink-a-dynamically-expanding-guest-virtualbox-image/)
 
 Sometimes bigger isn’t always better. If your dynamically-expanding virtual machine images are growing out of control, then here’s how to trim them back…
 
@@ -34,29 +30,27 @@ You’ll want to use [zerofree](http://manpages.ubuntu.com/manpages/natty/man8/z
   * You’ll get another menu, towards the bottom there should be the option to “Drop to root shell prompt”
   * Run _df_ and look for the mount point that’s that the biggest – this is where all your files are, and is the one we’ll need to run zerofree against. For the rest of this guide, we’ll assume it’s /dev/sda1
   * The following three commands (thanks, [VirtualBox forum](http://forum.virtualbox.org/viewtopic.php?f=6&p=148554)!) stop background services that we can’t have running:
+    *  service rsyslog stop
     *  _service network-manager stop_
     *  _killall dhclient_
-    *  _
-      *  _
 
-`Daniel's notes: For me I just booted into the recovery mode of Ubuntu by pressing and holding the left shift key during start up. Then I chose Drop to root shell prompt.`
+> Daniel's notes: For me I just booted into the recovery mode of Ubuntu by pressing and holding the left shift key during start up. Then I chose Drop to root shell prompt.
 
-_
-_
   * Once they’ve stopped, you can re-mount the partition as readonly (zerofree needs this)
     *  _mount -n -o remount,ro -t ext3 /dev/sda1 /_
   * You can now run zerofree
+    * _zerofree -v /dev/sda1_
   * Finally, shut down the VM
-
+    * _shutdown -h now_
 
 
 ##### If it’s a Windows VM
 
 You’ll need to run _sdelete_ ; I’ve never done this, but there are instructions on that [here](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/common-tips/compacting-virtualbox-disk-images---windows-guests):
 
-`Daniel's note: Run **_VBoxManage.exe list hdds_** to list all disks.`
+> Daniel's note: Run **_VBoxManage.exe list hdds_** to list all disks.
 
-` Instructions for Windows are here: `https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/common-tips/compacting-virtualbox-disk-images---windows-guests
+Instructions for Windows are here: <https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/common-tips/compacting-virtualbox-disk-images---windows-guests>
 
 3\. Shrink the VM
 
@@ -64,7 +58,6 @@ Quite a lot of the online guides say that you’ll have to clone the hard drive 
 
   *  _VBoxManage modifyhd my.vdi –compact_
 
-
+**That’s it!**
 
 With any luck, you’ll now have plenty of disk space to fill will equally useless tat…
-

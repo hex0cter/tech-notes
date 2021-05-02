@@ -1,8 +1,4 @@
-
-date: None  
-author(s): None  
-
-# [How to search multiple pdf documents for words on Linux - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/common-tips/how-to-search-multiple-pdf-documents-for-words-on-linux)
+# [How to search multiple pdf documents for words on Linux](http://xmodulo.com/2013/08/how-to-search-multiple-pdf-documents-for-words-on-linux.html)
 
 When it comes to text search within a pdf document, pretty much every pdf reader software supports it (be it Adobe Reader or any third-party pdf viewer). However, it becomes tricky when there are more than one pdf document to search.
 
@@ -82,4 +78,3 @@ As documents are added, updated or removed, you will need to update an existing 
 You can also update an existing document index automatically, either with a periodic cron job or with a background daemon process.
 
 [![](http://farm8.staticflickr.com/7387/9560496180_d03f2daf80.jpg)](http://www.flickr.com/photos/xmodulo/9560496180/)
-

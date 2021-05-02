@@ -1,10 +1,4 @@
-
-date: None  
-author(s): None  
-
-# [How to Edit Remote Files With Sublime Text via an SSH Tunnel - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/common-tips/how-to-edit-remote-files-with-sublime-text-via-an-ssh-tunnel)
-
-http://log.liminastudio.com/writing/tutorials/sublime-tunnel-of-love-how-to-edit-remote-files-with-sublime-text-via-an-ssh-tunnel  
+# [How to Edit Remote Files With Sublime Text via an SSH Tunnel](http://log.liminastudio.com/writing/tutorials/sublime-tunnel-of-love-how-to-edit-remote-files-with-sublime-text-via-an-ssh-tunnel)
 
 
 Eventually you will need to edit a file in-place on a server, for one reason or another (i.e. working on a Javascript front-end that requires templating from a backend); this is partly what Emacs and Vim are for (and they’re both very good at what they do).
@@ -20,31 +14,37 @@ Using Secure Shell (SSH) Tunneling, we can establish an SSH session that routes 
   3. Hit Ctrl+Shift+P, start typing “install” and select “Install Package”
   4. Start typing “rsub” and select it.
   5. Once it’s installed, get on your terminal and do
-    
+
+```
         nano ~/.ssh/config
+```
 
   6. Paste the following lines:
-    
+```
         Host your_remote_server.com
         RemoteForward 52698 127.0.0.1:52698
-
+```
   7. Save (ctrl+w) and SSH into your server (ssh username@your_remote_server.com).
   8. ‘Install’ the rsub remote script:
-    
+```
         sudo wget -O /usr/local/bin/rsub https://raw.github.com/aurora/rmate/master/rmate
+```
 
   9. Make that script executable:
-    
+
+```
         sudo chmod +x /usr/local/bin/rsub
+```
 
   10. Lastly, run rsub on the remote file you want to edit locally:
-    
+
+```
         rsub ~/my_project/my_file.html
+```
 
 and it should magically open in Sublime Text!
 
 
-  
-  
----
 
+
+---

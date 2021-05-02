@@ -1,6 +1,6 @@
 
-date: None  
-author(s): None  
+date: None
+author(s): None
 
 # [How To Turn Your Raspberry Pi into NAS Server [Guide] - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/common-tips/how-to-turn-your-raspberry-pi-into-nas-server-guide)
 
@@ -94,8 +94,8 @@ The main point of getting the IP address was to add SSH or HTTPS protocol to you
   * You will have to give a new password to prevent unauthorized users from getting in using the common default password. Use the following code for that:
 
 
-    
-    
+
+
     Passwd
 
 ![Raspberry Pi into NAS server - password](https://www.ubuntupit.com/wp-content/uploads/2020/10/Raspberry-Pi-into-NAS-server-password.jpg)
@@ -105,23 +105,23 @@ Make sure to assign a strong password.
 ### **Step 4: Download and Install OpenMediaVault5**
 
 Before you start downloading the [OpenMediaVault5](https://www.openmediavault.org/), make sure you have updated your OS to the latest version. If not, you can use the following command:
-    
-    
+
+
     sudo apt update && sudo apt -y upgrade
     sudo rm -f /etc/systemd/network/99-default.link
 
 ![Raspberry Pi Update](https://www.ubuntupit.com/wp-content/uploads/2020/10/Raspberry-Pi-Update.jpg)
 
 After that, restart your Pi:
-    
-    
+
+
     sudo reboot
 
 You might need to add SSH once again after rebooting the Raspberry Pi. Follow the previous step to do that.
 
 To download OMV5, you will need an external computer. After you have downloaded the file, use the following command to install it:
-    
-    
+
+
     wget -O - https://github.com/OpenMediaVault-Plugin-Developers/installScript/raw/master/install | sudo bash
 
 ![Installing OpenMediaVault5](https://www.ubuntupit.com/wp-content/uploads/2020/10/Installing-OpenMediaVault5.jpg)
@@ -131,8 +131,8 @@ The installation might take 20-30 minutes to complete. At that time, leave the c
 ### **Step 5: Logging onto the Web Interface**
 
 After you are done with the base of your [NAS Server](https://www.ubuntupit.com/best-linux-nas-solutions-and-linux-san-software/), you should now log in to the web frontend where the real configuration happens. To do that, go to your computer’s browser and open the IP Address in the URL bar. You will get a default login information for your NAS distribution.
-    
-    
+
+
     Username: admin
     Password: openmediavault
 
@@ -231,4 +231,3 @@ Your Raspberry Pi NAS system is ready to create, save, or share files. But besid
 ## **Finally, Insights**
 
 So, you have successfully created your first Raspberry Pi NAS system, which is ready to store anything from anywhere. A NAS system can be quite expensive; creating one using your own Raspberry Pi is an affordable choice and a fun project to initiate. This NAS system will save and protect your data like any other purchased storage space. I hope you had fun turning your raspberry pi into a NAS Server and have managed to make it work successfully. Do mention your thoughts in the comment section!
-

@@ -1,8 +1,4 @@
-
-date: None  
-author(s): None  
-
-# [How to use USB devices in VirtualBox - option greyed - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/common-tips/how-to-use-usb-devices-in-virtualbox---option-greyed)
+# [How to use USB devices in VirtualBox - option greyed](http://www.dedoimedo.com/computers/virtualbox-usb.html)
 
 This is is a question often asked. Not only that, I have received a formal request from one of my readers to write a tutorial on this topic. Studying the internals of the problem into some depth, I really did discover that most people are having a hard time playing with USB devices in [VirtualBox](http://www.virtualbox.org/). Therefore, I decided to make the world a better place and write this howto.
 
@@ -81,4 +77,3 @@ This time, it will work properly. If you've used filters, the device will be aut
 ![Working](http://www.dedoimedo.com/images/computers_years/2010_2/vbox-usb-working.jpg)
 
 In the past, you would have to change all kinds of other permissions manually, so there's hope and progress after all, but an automation of this step would make it so much easier for the average user. But we're done, everything works!
-
