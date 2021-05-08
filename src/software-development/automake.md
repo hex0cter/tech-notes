@@ -1,10 +1,5 @@
+# [AutoMake使用小结](http://blog.csdn.net/oeichenwei/archive/2005/12/08/547235.aspx)
 
-date: None  
-author(s): None  
-
-# [AutoMake使用小结 - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/software-development/automake)
-
-<http://blog.csdn.net/oeichenwei/archive/2005/12/08/547235.aspx>
 
 以一个Hello 程序描述为一个project生成Makefile的过程。 这个例子其实在 Info automake 里能看到。大家把它翻成中文的，不错。 但实际上按照这个例子来做的话，步骤都对，就是太简单，一些常用的设置需要写进去，但是没有提到，还是要自己info , google ,try . 下面是我对Automake一个小总结。
 
@@ -24,11 +19,10 @@ INCLUDES=-IPassport -Isub1/ -I/usr/include/glib-2.0\ -I/usr/lib/glib-2.0/include
 
 # 传递给编译器的头文件路径。
 
-下面是sub1种生成lib的Makefile.am noinst_LIBRARIES = libprotocol.a # 不是生成可执行文件，而是静态库，target用noinst_LIBRARIES libprotocol_a_SOURCES = \ alib.cpp EXTRA_DIST = mylib.h\ alib.h INCLUDES= -I../ $(all_includes) 
+下面是sub1种生成lib的Makefile.am noinst_LIBRARIES = libprotocol.a # 不是生成可执行文件，而是静态库，target用noinst_LIBRARIES libprotocol_a_SOURCES = \ alib.cpp EXTRA_DIST = mylib.h\ alib.h INCLUDES= -I../ $(all_includes)
 
 AM_CXXFLAGS = -D_LINUX -DONLY_EPOLL -D_SERVER
 
-ok ,最后补上AC_PROG_RANLIB涵义，如果要自己生成lib，然后link到最终的可执行文件中，则要加上这个宏，否则不用。 
+ok ,最后补上AC_PROG_RANLIB涵义，如果要自己生成lib，然后link到最终的可执行文件中，则要加上这个宏，否则不用。
 
 2\. 剩下的就是 automake --add-missing Ok , Makefile.in应该放到各个目录下了。
-

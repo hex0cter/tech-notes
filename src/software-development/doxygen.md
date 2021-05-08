@@ -1,8 +1,12 @@
+# [doxygen](http://blog.csdn.net/fmddlmyy/archive/2007/06/23/1663898.aspx)
 
-date: None  
-author(s): None  
+## 两个有用的链接（中文）：
 
-# [doxygen - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/software-development/doxygen)
+### Basic knowledge:
+
+http://blog.csdn.net/fmddlmyy/archive/2007/06/23/1663898.aspx
 
 
+### Trouble shooting:
 
+http://www.speedradiosity.com/chinese/?p=73

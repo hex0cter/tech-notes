@@ -1,8 +1,12 @@
+# [可以去掉文件绝对路径的printf debug](http://pubs.opengroup.org/onlinepubs/009695399/functions/strrchr.html)
 
-date: None  
-author(s): None  
+<http://blog.csdn.net/unbutun/archive/2010/02/02/5281282.aspx>
 
-# [可以去掉文件绝对路径的printf debug - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/software-development/file__wo____)
+```
+#define DEBUG(fmt, arg...)                                               \
+            printf ("[%s@%d] " fmt"\n", strrchr (__FILE__, '/') == 0 ?   \
+                             __FILE__ : strrchr (__FILE__, '/') + 1,     \
+                             __LINE__, ##arg);
+```
 
 <http://pubs.opengroup.org/onlinepubs/009695399/functions/strrchr.html>
-

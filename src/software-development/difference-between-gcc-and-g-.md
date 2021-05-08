@@ -1,12 +1,7 @@
+# [Differences between gcc and g++](http://stackoverflow.com/questions/172587/what-is-the-difference-between-g-and-gcc)
 
-date: None  
-author(s): None  
 
-# [Differences between gcc and g++ - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/software-development/difference-between-gcc-and-g-)
-
-<http://stackoverflow.com/questions/172587/what-is-the-difference-between-g-and-gcc>
-
-GCC: GNU Compiler Collection  
+GCC: GNU Compiler Collection
 
 
   * Referrers to all the different languages that are supported by the GNU compiler.
@@ -26,22 +21,21 @@ The main differences:
 
 
 Extra Macros when compiling *.cpp files:
-    
-    
-    #define __GXX_WEAK__ 1  
-    #define __cplusplus 1  
-    #define __DEPRECATED 1  
-    #define __GNUG__ 4  
-    #define __EXCEPTIONS 1  
-    #define __private_extern__ extern  
-    
 
-  
+
+    #define __GXX_WEAK__ 1
+    #define __cplusplus 1
+    #define __DEPRECATED 1
+    #define __GNUG__ 4
+    #define __EXCEPTIONS 1
+    #define __private_extern__ extern
+
+
+
 
 
 Although the gcc and g++ commands do very similar things, g++ is designed to be the command you'd invoke to compile a C++ program; it's intended to automatically do the right thing.
 
-Behind the scenes, they're really the same program. As I understand, both decide whether to compile a program as C or as C++ based on the filename extension. Both are capable of linking against the C++ standard library, but only g++ does this by default. So if you have a program written in C++ that doesn't happen to need to link against the standard library, gcc will happen to do the right thing; but then, so would g++. So there's really no reason not to use g++ for general C++ development.  
-  
----
+Behind the scenes, they're really the same program. As I understand, both decide whether to compile a program as C or as C++ based on the filename extension. Both are capable of linking against the C++ standard library, but only g++ does this by default. So if you have a program written in C++ that doesn't happen to need to link against the standard library, gcc will happen to do the right thing; but then, so would g++. So there's really no reason not to use g++ for general C++ development.
 
+---
