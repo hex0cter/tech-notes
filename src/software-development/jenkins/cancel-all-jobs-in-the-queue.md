@@ -1,19 +1,9 @@
+# [Cancel all jobs in the queue](https://stackoverflow.com/questions/12305244/cancel-queued-builds-and-aborting-executing-builds-using-groovy-for-jenkins)
 
-date: None  
-author(s): None  
+```java
+import hudson.model.*
 
-# [Cancel all jobs in the queue - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/software-development/jenkins/cancel-all-jobs-in-the-queue)
+def q = Jenkins.instance.queue
 
-  
-
-
-https://stackoverflow.com/questions/12305244/cancel-queued-builds-and-aborting-executing-builds-using-groovy-for-jenkins
-
-`import hudson.model.*`
-
-`def q = Jenkins.instance.queue`
-
-`q.items.findAll { it.task.name.contains('devops') }.each { q.cancel(it.task) }`  
-  
----
-
+q.items.findAll { it.task.name.contains('devops') }.each { q.cancel(it.task) }
+```

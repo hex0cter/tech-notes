@@ -1,12 +1,11 @@
 
-date: None  
-author(s): None  
+author(s): Rajesh Kumar
 
-# [Setting up the cron jobs in Jenkins using "Build periodically" - scheduling the jenins Job - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/software-development/jenkins/setting-up-the-cron-jobs-in-jenkins-using-build-periodically---scheduling-the-jenins-job)
+# [Setting up the cron jobs in Jenkins using "Build periodically" - scheduling the jenins Job](http://www.scmgalaxy.com/tutorials/setting-up-the-cron-jobs-in-jenkins-using-build-periodically-scheduling-the-jenins-job)
 
 **Setting up the cron jobs in Jenkins using "Build periodically" - scheduling the jenins Job**
 
- **Examples -**  
+ **Examples -**
 To schedule your build every 5 minutes, this will do the job : */5 * * * * OR H/5 * * * *
 
 To the job every 5min past every hour(5th Minute of every Hour) 5 * * * *
@@ -43,139 +42,22 @@ A CRON expression is a string comprising five or six fields separated by white s
 
 ### Format
 
- **Field name**
+ **Field name** | **Mandatory?** | **Allowed values** | **Allowed special characters** | **Remarks**
+---|---|---|---|---
+Minutes | Yes | 0-59 | * / , - | -
+Hours | Yes | 0-23 | * / , - | -
+Day of month | Yes | 1-31 | * / , - ? L W | -
+Month | Yes | 1-12 or JAN-DEC | * / , - | -
+Day of week | Yes | 0-6 or SUN-SAT | * / , - ? L # | -
+Year | No | 1970–2099 | * / , - |
 
-| 
+This field is not supported in standard/default implementations.
 
- **Mandatory?**
-
-| 
-
- **Allowed values**
-
-| 
-
- **Allowed special characters**
-
-| 
-
- **Remarks**  
-  
----|---|---|---|---  
-  
-Minutes
-
-| 
-
-Yes
-
-| 
-
-0-59
-
-| 
-
-* / , -
-
-| 
-
--  
-  
-Hours
-
-| 
-
-Yes
-
-| 
-
-0-23
-
-| 
-
-* / , -
-
-| 
-
--  
-  
-Day of month
-
-| 
-
-Yes
-
-| 
-
-1-31
-
-| 
-
-* / , - ? L W
-
-| 
-
--  
-  
-Month
-
-| 
-
-Yes
-
-| 
-
-1-12 or JAN-DEC
-
-| 
-
-* / , -
-
-| 
-
--  
-  
-Day of week
-
-| 
-
-Yes
-
-| 
-
-0-6 or SUN-SAT
-
-| 
-
-* / , - ? L #
-
-| 
-
--  
-  
-Year
-
-| 
-
-No
-
-| 
-
-1970–2099
-
-| 
-
-* / , -
-
-| 
-
-This field is not supported in standard/default implementations.  
-  
 In some uses of the CRON format there is also a _seconds_ field at the beginning of the pattern. In that case, the CRON expression is a string comprising 6 or 7 fields.
 
 ###  Special characters
 
-Support for each special character depends on specific distributions and versions of cron  
+Support for each special character depends on specific distributions and versions of cron
  **Asterisk ( * )** The asterisk indicates that the cron expression matches for all values of the field. E.g., using an asterisk in the 4th field (month) indicates every month.
 
  **Slash ( / )**
@@ -192,7 +74,7 @@ Hyphens define ranges. For example, 2000-2010 indicates every year between 2000 
 
  **Percent ( % )**
 
-  
+
 Percent-signs (%) in the command, unless escaped with backslash (\\), are changed into newline characters, and all data after the first % are sent to the command as standard input.[[7]](https://en.wikipedia.org/wiki/Cron#cite_note-7)
 
 #### Non-Standard Characters
@@ -207,6 +89,5 @@ In some implementations, used instead of '*' for leaving either day-of-month or 
 
 In addition, @yearly, @annually, @monthly, @weekly, @daily, @midnight, and @hourly are supported as convenient aliases. These use the hash system for automatic balancing. For example, @hourly is the same as H * * * * and could mean at any time during the hour. @midnight actually means some time between 12:00 AM and 2:59 AM.
 
-Reference:  
+Reference:
 <https://en.wikipedia.org/wiki/Cron#CRON_expression>
-

@@ -1,30 +1,26 @@
-
-date: None  
-author(s): None  
-
-# [Cancel jobs in the queue from Jenkins console - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/software-development/jenkins/cancel-jobs-in-the-queue-from-jenkins-console)
+# Cancel jobs in the queue from Jenkins console
 
 Jenkins:
+```java
+import hudson.model.*
 
-`import hudson.model.*`
+def q = Jenkins.instance.queue
 
-`def q = Jenkins.instance.queue`
-
-`q.items.findAll.each { q.cancel(it.task) }`
+q.items.findAll.each { q.cancel(it.task) }
+```
 
 Or:
 
-`import hudson.model.* `` `
+```java
+import hudson.model.*
 
-`def q = jenkins.model.Jenkins.getInstance().getQueue()`` `
+def q = jenkins.model.Jenkins.getInstance().getQueue()
 
-`def items = q.getItems() `` `
+def items = q.getItems()
 
-`for (i=0;i<items.length;i++){ `` `
+for (i=0;i<items.length;i++){
 
-` ``items[i].doCancelQueue() `` `
+ items[i].doCancelQueue()
 
-`} `` `  
-  
----
-
+}
+```

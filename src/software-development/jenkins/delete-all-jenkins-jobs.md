@@ -1,8 +1,16 @@
+# [Delete all jenkins jobs](hhttps://gist.github.com/nextrevision/d11b2df4e8b229c6855b)
 
-date: None  
-author(s): None  
+```java
+import jenkins.model.*
 
-# [Delete all jenkins jobs - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/software-development/jenkins/delete-all-jenkins-jobs)
+Jenkins.instance.items.findAll { job ->
 
+  if (job.name =~ /^jenkins/) {
+      println 'SKIPPING ' + job.name
+  } else {
+      println job.name
+    job.delete()
 
-
+  }
+}
+```
