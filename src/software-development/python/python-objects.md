@@ -1,20 +1,15 @@
+# [Python Objects](http://effbot.org/zone/python-objects.htm)
 
-date: None  
-author(s): None  
-
-# [Python Objects - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/software-development/python/python-objects)
+## Introduction
 
 Reset your brain.
-
-## Objects [#](http://effbot.org/zone/python-objects.htm#objects)
+## Objects
 
 All Python objects have this:
 
   * a unique identity (an integer, returned by _id(x)_ )
   * a type (returned by _type(x)_ )
   * some content
-
-
 
 You cannot change the identity.
 
@@ -28,7 +23,7 @@ The type is represented by a type object, which knows more about objects of this
 
 ( _Update: In CPython 2.2 and later, you can change the type under[some rather limited circumstances](http://article.gmane.org/gmane.comp.python.general/427452)_.)
 
-## More about objects [#](http://effbot.org/zone/python-objects.htm#more-about-objects)
+## More about objects
 
 Objects may also have this:
 
@@ -47,7 +42,7 @@ Even if they have methods, you can never change the type, nor the identity.
 
 Things like attribute assignment and item references are just syntactic sugar (more below).
 
-## Names [#](http://effbot.org/zone/python-objects.htm#names)
+## Names
 
 The names are a bit different — they’re not really properties of the object, and the object itself doesn’t know what it’s called.
 
@@ -59,7 +54,7 @@ Namespaces are collections of (name, object reference) pairs (implemented using 
 
 When you call a function or a method, its namespace is initialized with the arguments you call it with (the names are taken from the function’s argument list, the objects are those you pass in).
 
-## Assignment [#](http://effbot.org/zone/python-objects.htm#assignments)
+## Assignment
 
 Assignment statements modify namespaces, not objects.
 
@@ -71,15 +66,17 @@ means that you’re adding the name “name” to your local namespace, and maki
 
 If the name is already present, the assignment replaces the original name:
 
->  **name = 10  
->  name = 20**
+>  **name = 10**
+>
+>  **name = 20**
 
 means that you’re first adding the name “name” to the local namespace, and making it refer to an integer object containing the value 10. You’re then replacing the name, making it point to an integer object containing the value 20. The original “10” object isn’t affected by this operation, and it doesn’t care.
 
 In contrast, if you do:
 
->  **name = []  
->  name.append(1)**
+>  **name = []**
+>
+>  **name.append(1)**
 
 you’re first adding the name “name” to the local namespace, making it refer to an empty list object. This modifies the namespace. You’re then calling a method on that object, telling it to append an integer object to itself. This modifies the content of the list object, but it doesn’t touch the namespace, and it doesn’t touch the integer object.
 
@@ -88,4 +85,3 @@ Things like _name.attr_ and _name[index]_ are just syntactic sugar for method ca
 That’s all.
 
 [Copyright](http://effbot.org/zone/copyright.htm) © 2000 by Fredrik Lund
-
