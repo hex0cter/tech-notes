@@ -1,8 +1,16 @@
+# [Change tab display width](http://stackoverflow.com/questions/69934/set-4-space-indent-in-emacs-in-text-mode)
 
-date: None  
-author(s): None  
+```
+M-x set-variable
+Set variable: tab-width
+```
 
-# [Change tab display width - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/emacs/change-tab-display-width)
+This change the display width.
 
+To change it permenantly, try (not verified):
 
-
+```
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)
+(setq indent-line-function 'insert-tab)
+```

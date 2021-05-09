@@ -1,44 +1,44 @@
+# [Browse source code with emacs plus cscope on Linux](http://lifegoo.pluskid.org/wiki/EmacsCscope.html)
 
-date: None  
-author(s): None  
-
-# [Browse source code with emacs plus cscope on Linux - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/emacs/emacs-cscope)
-
-1\. install emacs and cscope.
+1. install emacs and cscope.
 
 E.g., on Ubuntu, run
+```
+sudo apt-get install cscope
+```
 
-` ``sudo apt-get install cscope`
+2. add
+```
+(require 'xcscope)
+```
 
-2\. add 
+into `~/.emacs`. Also make sure the file **xcscope.el** is under load-path.
 
-` (require 'xcscope)`
+2. cd source code path.
 
-into ~/.emacs. Also make sure the file **xcscope.el** is under load-path.
+E.g.,
+```
+cd /home/daniel/Desktop/linux-2.6.31.5
+```
 
-2\. cd source code path.
+3. Generate the symbol tables with the following commands:
+```
+ find . -name "*.h" -o -name "*.c" -o -name "*.cpp" | xargs etags
+ find . -name "*.h" -o -name "*.c" -o -name "*.cpp" > cscope.files
+ cscope -Rbkq -i cscope.files 2>/dev/null
+```
 
-E.g., 
-
-` cd /home/daniel/Desktop/linux-2.6.31.5`
-
-3\. Generate the symbol tables with the following commands:
-
-` find . -name "*.h" -o -name "*.c" -o -name "*.cpp" | xargs etags `
-
-` find . -name "*.h" -o -name "*.c" -o -name "*.cpp" > cscope.files`
-
-` cscope -Rbkq -i cscope.files 2>/dev/null`
-
-4\. Start emacs with a file name to open it directly. Or
+4. Start emacs with a file name to open it directly. Or
 
 Set default editor to emacs:
-
-` export EDITOR=emacs`
+```
+export EDITOR=emacs
+```
 
 then start cscope:
-
-` cscope -d`
+```
+cscope -d
+```
 
 **TIPS:**
 
@@ -47,9 +47,9 @@ then start cscope:
 2) Use Meta+. to find the definition of the symbol currently under cursor.
 
 3) You can ignore above steps and run the following in emacs to build symbol tables:
-
-C-c s a 设定初始化的目录，一般是代码的根目录   
-C-s s I 对目录中的相关文件建立列表并进行索引 
+```
+C-c s a 设定初始化的目录，一般是代码的根目录
+C-s s I 对目录中的相关文件建立列表并进行索引
 
 C-c s s Find symbol.
 
@@ -86,13 +86,5 @@ C-c s P Previous file.
 C-c s u Pop mark.
 
 C-x o Switch from one window to another.
-
-RET=Select, SPC=Show, o=SelectOneWin, n=ShowNext, p=ShowPrev, q=Quit, h=Help  
-
-
-Reference:
-
-  1. [http://lifegoo.pluskid.org/wiki/EmacsCscope.html](http://lifegoo.pluskid.org/wiki/EmacsCscope.html)
-
-
-
+```
+_RET=Select, SPC=Show, o=SelectOneWin, n=ShowNext, p=ShowPrev, q=Quit, h=Help_

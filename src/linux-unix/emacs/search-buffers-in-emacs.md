@@ -1,25 +1,31 @@
-
-date: None  
-author(s): None  
-
-# [Search Buffers in Emacs - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/emacs/search-buffers-in-emacs)
+# [Search Buffers in Emacs](http://www.emacswiki.org/emacs/SearchBuffers)
 
 Search through multiple (possibly all) buffers.
+* Multi-Occur – batch search by regexp across any number of buffers, using a single regexp
+* IciclesSearch – incrementally search (and replace) across any number of buffers or files, possibly using multiple regexps
+* search-buffers – XEmacs only, included in edit-utils
+* far-search-mode – incrementally search by regexp in all buffers
+* moccur.el – ‘occur’ in all buffers
+* color-moccur.el – extension of moccur – search files like `grep(-find)’ without ‘grep’ or ‘find’ commands – demo (flash)
+* moccur-edit.el – with moccur-edit.el, you can edit the results in place after using ‘color-moccur’ – demo (flash)
+* grep-buffers – grep-buffers.el
+* igrep-visited-files – igrep.el
+* GlobRep – edit ‘grep’ output to perform replacements on files
 
-## Contents
+## Multi-Occur
 
 Built into Emacs 23, this command can search any files or buffers matching a regexp for a particular regexp.
 
 To select buffers to search individually:
 
 To select files to search by regexp:
-    
-    
+
+
       M-x multi-occur-in-matching-buffers
 
 To select buffers to search by regexp:
-    
-    
+
+
       C-u M-x multi-occur-in-matching-buffers
 
 ## Search and Replace Using Icicles
@@ -35,8 +41,8 @@ M-x list-matches-in-buffers
 Search all buffers for REGEXP and present matching lines like grep.
 
 Sample
-    
-    
+
+
      search-buffers.el<elisp>:53:(defvar search-buffers-current-extent nil)
      search-buffers.el<elisp>:55:(defvar search-buffers-highlight-xtnt nil)
      search-buffers.el<elisp>:57:(defvar search-buffer nil)
@@ -51,11 +57,11 @@ M-x moccur
 Search all buffers that have a file name associated with them and present matching lines. And C-c C-c gets you to the occurence.
 
 Sample
-    
-    
+
+
      Lines matching def.+
      Buffer: moccur.el<mylisp> File: d:/akihisa/mylisp/moccur.el
-     
+
       49 (defface moccur-face
       60 (defvar moccur-overlays nil)
       61 (defvar moccur-regexp "")
@@ -108,8 +114,8 @@ M-x moccur-grep and input directory, regexp, filemask
 In [MiniBuffer](http://www.emacswiki.org/emacs/MiniBuffer), input directory
 
 In minibuffer, input regexp and filemask. Last word is filemask.
-    
-    
+
+
      Input Regexp and FileMask: gnus el$
 
 M-x moccur-grep-find
@@ -117,12 +123,11 @@ M-x moccur-grep-find
 How to use is same to M-x moccur-grep.
 
 ## offby1's crude but effective method
-    
-    
+
+
      (defun search-all-buffers (regexp)
        (interactive "sRegexp: ")
        (multi-occur-in-matching-buffers "." regexp t))
      (global-set-key [f7] 'search-all-buffers)
 
 [CategorySearchAndReplace](http://www.emacswiki.org/emacs/CategorySearchAndReplace)
-

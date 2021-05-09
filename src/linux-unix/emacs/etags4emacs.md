@@ -1,14 +1,17 @@
+# [etags 用法](http://blog.csdn.net/fyzhao/archive/2009/10/13/4658132.aspx)
 
-date: None  
-author(s): None  
-
-# [etags 用法 - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/emacs/etags4emacs)
-
+## 1. etags 基本用法
 在emacs里可以用etags命令生成emacs专用的tags文件，有了此文件之后便可以使用一些emacs tags的命令，比如对于编辑C/C++程序的人员可以方便的定位一个函数的定义，或者对函数名进行自动补齐：
 
+```
+find . -name "*.cpp" -print -o -name "*.h" -print | etags -
+```
 上述命令可以在当前目录查找所有的.h和.cpp文件并把它们的摘要提取出来做成TAGS文件，具体的etags的用法可以看一下etags的manual。
 
 在.emacs中加入这样的语句：
+```
+(setq tags-file-name "{/SOURCE/CODE/PATH}/TAGS")
+```
 
 这样emacs就会自动读取这个tags文件的内容。
 
@@ -19,9 +22,7 @@ author(s): None
   * M-* 回到上一次运行M-.前的光标位置。
   * M-TAB 自动补齐函数名。
 
-
-
-## 2\. 参考：一些整合的快捷键
+## 2. 参考：一些整合的快捷键
 
 易于编译和TAGS的使用，搜集自 zslevin 的帖子(LinuxForum GNU Emacs/XEmacs)
 
@@ -29,17 +30,15 @@ author(s): None
   * f5, 保存当前窗口然后编译当前窗口文件
 
 
-
-[view plain](http://blog.csdn.net/fyzhao/archive/2009/10/13/4658132.aspx#)[copy to clipboard](http://blog.csdn.net/fyzhao/archive/2009/10/13/4658132.aspx#)[print](http://blog.csdn.net/fyzhao/archive/2009/10/13/4658132.aspx#)[?](http://blog.csdn.net/fyzhao/archive/2009/10/13/4658132.aspx#)
-
-  1. (defun du-onekey-compile () 
-  2. "Save buffers and start compile" 
-  3. (interactive) 
-  4. (save-some-buffers t) 
-  5. (compile compile-command)) 
-  6. (global-set-key [C-f5] 'compile) 
-  7. (global-set-key [f5] 'du-onekey-compile) 
-
+```
+(defun du-onekey-compile ()
+"Save buffers and start compile"
+(interactive)
+(save-some-buffers t)
+(compile compile-command))
+(global-set-key [C-f5] 'compile)
+(global-set-key [f5] 'du-onekey-compile)
+```
 
 
   * F7, 查找 TAGS 文件（更新 TAGS 表）
@@ -56,64 +55,57 @@ author(s): None
 
 定义按键，在生成相应 tag 文件时，比如一个目录下所有的 *.cpp 和 *.h 文件使用这样的正则表达式 *.[ch]*，在下面的 C-F7 中可能会用到。
 
-[view plain](http://blog.csdn.net/fyzhao/archive/2009/10/13/4658132.aspx#)[copy to clipboard](http://blog.csdn.net/fyzhao/archive/2009/10/13/4658132.aspx#)[print](http://blog.csdn.net/fyzhao/archive/2009/10/13/4658132.aspx#)[?](http://blog.csdn.net/fyzhao/archive/2009/10/13/4658132.aspx#)
-
-  1. (global-set-key [(f7)] 'visit-tags-table) ; visit tags table 
-  2. (global-set-key [C-f7] 'sucha-generate-tag-table) ; generate tag table 
-  3. (global-set-key [(control .)] '(lambda () (interactive) (lev/find-tag t))) 
-  4. (global-set-key [(control ,)] 'sucha-release-small-tag-window) 
-  5. (global-set-key [(meta .)] 'lev/find-tag) 
-  6. (global-set-key [(meta ,)] 'pop-tag-mark) 
-  7. (global-set-key (kbd "C-M-,") 'find-tag) 
-  8. (define-key lisp-mode-shared-map [(shift tab)] 'complete-tag) 
-  9. (add-hook 'c-mode-common-hook ; both c and c++ mode 
-  10. (lambda () 
-  11. (define-key c-mode-base-map [(shift tab)] 'complete-tag))) 
-
+```
+(global-set-key [(f7)] 'visit-tags-table) ; visit tags table
+(global-set-key [C-f7] 'sucha-generate-tag-table) ; generate tag table
+(global-set-key [(control .)] '(lambda () (interactive) (lev/find-tag t)))
+(global-set-key [(control ,)] 'sucha-release-small-tag-window)
+(global-set-key [(meta .)] 'lev/find-tag)
+(global-set-key [(meta ,)] 'pop-tag-mark)
+(global-set-key (kbd "C-M-,") 'find-tag)
+(define-key lisp-mode-shared-map [(shift tab)] 'complete-tag)
+(add-hook 'c-mode-common-hook ; both c and c++ mode
+  (lambda ()
+    (define-key c-mode-base-map [(shift tab)] 'complete-tag)))
+```
 
 
 上面定义的命令需要用到的函数：
 
-[view plain](http://blog.csdn.net/fyzhao/archive/2009/10/13/4658132.aspx#)[copy to clipboard](http://blog.csdn.net/fyzhao/archive/2009/10/13/4658132.aspx#)[print](http://blog.csdn.net/fyzhao/archive/2009/10/13/4658132.aspx#)[?](http://blog.csdn.net/fyzhao/archive/2009/10/13/4658132.aspx#)
 
-  1. (defun lev/find-tag (&optional show-only) 
-  2. "Show tag in other window with no prompt in minibuf." 
-  3. (interactive) 
-  4. (let ((default (funcall (or find-tag-default-function 
-  5. (get major-mode 'find-tag-default-function) 
-  6. 'find-tag-default)))) 
-  7. (if show-only 
-  8. (progn (find-tag-other-window default) 
-  9. (shrink-window (- (window-height) 12)) ;; 限制为 12 行 
-  10. (recenter 1) 
-  11. (other-window 1)) 
-  12. (find-tag default)))) 
-  13.   14. (defun sucha-generate-tag-table () 
-  15. "Generate tag tables under current directory(Linux)." 
-  16. (interactive) 
-  17. (let 
-  18. ((exp "") 
-  19. (dir "")) 
-  20. (setq dir 
-  21. (read-from-minibuffer "generate tags in: " default-directory) 
-  22. exp 
-  23. (read-from-minibuffer "suffix: ")) 
-  24. (with-temp-buffer 
-  25. (shell-command 
-  26. (concat "find " dir " -name \"" exp "\" | xargs etags ") 
-  27. (buffer-name))))) 
-  28.   29. (defun sucha-release-small-tag-window () 
-  30. "Kill other window also pop tag mark." 
-  31. (interactive) 
-  32. (delete-other-windows) 
-  33. (ignore-errors 
-  34. (pop-tag-mark))) 
+```
+(defun lev/find-tag (&optional show-only)
+  "Show tag in other window with no prompt in minibuf."
+  (interactive)
+  (let ((default (funcall (or find-tag-default-function
+                              (get major-mode 'find-tag-default-function)
+                              'find-tag-default))))
+    (if show-only
+        (progn (find-tag-other-window default)
+               (shrink-window (- (window-height) 12)) ;; 限制为 12 行
+               (recenter 1)
+               (other-window 1))
+      (find-tag default))))
 
+(defun sucha-generate-tag-table ()
+  "Generate tag tables under current directory(Linux)."
+  (interactive)
+  (let
+      ((exp "")
+       (dir ""))
+    (setq dir
+          (read-from-minibuffer "generate tags in: " default-directory)
+          exp
+          (read-from-minibuffer "suffix: "))
+    (with-temp-buffer
+      (shell-command
+       (concat "find " dir " -name \"" exp "\" | xargs etags ")
+       (buffer-name)))))
 
-
-[](http://blog.csdn.net/fyzhao/archive/2009/10/13/Doc/Etags?action=sourceblock&ref=4)
-
-http://blog.csdn.net/fyzhao/archive/2009/10/13/4658132.aspx  
-  
----
-
+(defun sucha-release-small-tag-window ()
+  "Kill other window also pop tag mark."
+  (interactive)
+  (delete-other-windows)
+  (ignore-errors
+    (pop-tag-mark)))
+```
