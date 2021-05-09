@@ -1,8 +1,4 @@
-
-date: None  
-author(s): None  
-
-# [How to stream your video from Windows to TV via DLNA - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/windows-tips/how-to-stream-your-video-from-windows-to-tv-via-dlna)
+# [How to stream your video from Windows to TV via DLNA](http://www.techerator.com/2010/11/evolve-your-living-room-with-a-dlna-hdtv-and-windows-media-player/)
 
 It’s a fact: Gone are the days that homes are built with computer rooms and family/living rooms in their floor plans. The future of sit-down family entertainment is here, and dear lord its about time. This month, my family decided to purchase a nice, new [Samsung Series 6 6300 LED TV](http://www.amazon.com/gp/product/B0036WT4C4?ie=UTF8&tag=techerator-20&linkCode=as2&camp=1789&creative=390957&creativeASIN=B0036WT4C4) and a brand new [Samsung Blu-Ray player](http://www.amazon.com/gp/product/B00365EVW4?ie=UTF8&tag=techerator-20&linkCode=as2&camp=1789&creative=390957&creativeASIN=B00365EVW4). Now this purchase is not something new to the modern home, but in this case something new was hiding behind that TV that made the situation different. Something exciting. It was…a LAN connection.
 
@@ -34,7 +30,7 @@ Once this is done, Windows Media Player is ready to allow media to be allowed on
 
 [![](https://sites.google.com/site/xiangyangsite/_/rsrc/1397909413374/home/technical-tips/windows-tips/how-to-stream-your-video-from-windows-to-tv-via-dlna/%E6%97%A0%E6%A0%87%E9%A2%98.png)](https://sites.google.com/site/xiangyangsite/home/technical-tips/windows-tips/how-to-stream-your-video-from-windows-to-tv-via-dlna/%E6%97%A0%E6%A0%87%E9%A2%98.png?attredirects=0)
 
-  
+
 
 
 Like I mentioned before, there are two ways to show your media on your TV through Windows Media Player (weren’t you listening?). Here is method one: pushing media to the TV while using your computer. First, we need to allow devices to play any media.
@@ -56,4 +52,3 @@ As seen on your TV
 ![](http://www.techerator.com/wp-content/uploads/playtotv-585x342.png)
 
 As seen on your computer screen
-

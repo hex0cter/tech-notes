@@ -1,12 +1,7 @@
+# [sync lotus notes calendar with google calendar](http://lngooglecalsync.sourceforge.net/index.html)
 
-date: None  
-author(s): None  
 
-# [sync lotus notes calendar with google calendar - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/windows-tips/sync-lotus-notes-calendar-with-google-calendar)
-
-http://lngooglecalsync.sourceforge.net/index.html
-
-Setup Info:
+## Setup Info:
 
 Google now requires applications like LNGS to use an OAuth 2.0 Client ID to sign into Google Calendar.
 
@@ -34,10 +29,7 @@ You must create your own Client ID as follows:
 
 11. Click Download JSON.
 
-12. Save the file into the same dir as lngsync.jar. It will have a long name like client_secret_760911730022-0nbs07o6o6qqc3ru4guooasalmrvbo89.apps.googleusercontent.com.json.  
+12. Save the file into the same dir as lngsync.jar. It will have a long name like client_secret_760911730022-0nbs07o6o6qqc3ru4guooasalmrvbo89.apps.googleusercontent.com.json.
 Note: This file may be renamed to a shorter name because LNGS will look for any file named client_secret*.json.
 
-13. Run LNGS and do a sync. A web browser window will open asking you to authorize Google Calendar access. After the authorization is complete, LNGS should be able to connect to Google Calendar automatically. If the web browser doesn't open, try deleting the credential file which is in the main LNGS directory and is named client_credential.  
-  
----
-
+13. Run LNGS and do a sync. A web browser window will open asking you to authorize Google Calendar access. After the authorization is complete, LNGS should be able to connect to Google Calendar automatically. If the web browser doesn't open, try deleting the credential file which is in the main LNGS directory and is named client_credential.

@@ -1,10 +1,7 @@
+# [List object file symbols](http://sourceware.org/binutils/docs/binutils/nm.html)
 
-date: None  
-author(s): None  
-
-# [List object file symbols - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/software-development/object-file-symbols)
-
-**dhan@dhan-ubuntu:~/Dropbox/Python/example/dbus-example$ nm -gC libreadline_wrap.so**
+```bash
+dhan@dhan-ubuntu:~/Dropbox/Python/example/dbus-example$ nm -gC libreadline_wrap.so
 
 w _Jv_RegisterClasses
 
@@ -28,7 +25,7 @@ U puts@@GLIBC_2.0
 
 U readline
 
- **dhan@dhan-ubuntu:~/Dropbox/Python/example/dbus-example$ nm -D libreadline_wrap.so**
+ dhan@dhan-ubuntu:~/Dropbox/Python/example/dbus-example$ nm -D libreadline_wrap.so
 
 will also help for dynamic library.
 
@@ -60,5 +57,4 @@ DYNAMIC SYMBOL TABLE:
 
 00000508 g DF .fini 00000000 Base _fini
 
-<http://sourceware.org/binutils/docs/binutils/nm.html>
-
+```

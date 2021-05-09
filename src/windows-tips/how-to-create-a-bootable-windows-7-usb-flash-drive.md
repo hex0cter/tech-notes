@@ -1,8 +1,4 @@
-
-date: None  
-author(s): None  
-
-# [How to create a bootable Windows 7 USB flash drive - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/windows-tips/how-to-create-a-bootable-windows-7-usb-flash-drive)
+# [How to create a bootable Windows 7 USB flash drive](http://arstechnica.com/business/news/2009/12/-the-usb-flash-drive.ars)
 
 The USB flash drive has replaced the floppy disk drive as the best storage medium for transferring files, but it also has its uses as a replacement for CDs and DVDs. USB drives tend to be higher in capacity than disc media, but since they are more expensive, they cannot (yet) really be used as a replacement. There are reasons why you would, however, choose a USB device over a DVD disc, and bootable software is definitely one of them. Not only is it faster to copy data such as setup files from a USB drive, but during usage the access times are also significantly faster. Therefore, installing something like Windows 7 will work that much faster from a USB drive than from a DVD (and of course, is particularly useful for the PCs without an optical drive; this isn't something we should just leave for the [pirates](http://arstechnica.com/microsoft/news/2009/12/pirates-offer-windows-7-on-usb-sticks.ars) to enjoy).
 
@@ -41,4 +37,3 @@ The format will be very quick, while the copying of the files will take a little
 ![windows_7_usb_8.png](http://static.arstechnica.com/windows_7_usb_8.png)
 
 Once the process is complete, you should get the above confirmation message. At this point you can close the tool and use the USB drive to install Windows 7. Remember that you'll have to choose to boot off the USB drive. Before doing so, you may want to open up the USB drive and double click on setup.exe to see if everything looks okay. If you want to be able to do this manually, see the next section, and if you want to be able to install any edition of Windows 7, skip to the section after that.
-

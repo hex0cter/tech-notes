@@ -1,17 +1,11 @@
-
-date: None  
-author(s): None  
-
-# [How to disable ads on Skype - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/windows-tips/how-to-disable-ads-on-skype)
-
-http://superuser.com/questions/677293/disable-advertisements-on-skype  
+# [How to disable ads on Skype](http://superuser.com/questions/677293/disable-advertisements-on-skype)
 
 
 You need to add entries to your `hosts` file, typically located here:`C:\Windows\System32\drivers\etc\hosts`
 
 These are hostnames you'll want to block, by adding them to the `hosts` file:
-    
-    
+
+
     127.0.0.1     rad.msn.com
     127.0.0.1     g.msn.com
     127.0.0.1     live.rads.msn.com
@@ -28,9 +22,6 @@ These are hostnames you'll want to block, by adding them to the `hosts` file:
     127.0.0.1     aka-cdn-ns.adtech.de
     127.0.0.1     secure.flashtalking.com
     127.0.0.1     cdn.atdmt.com
-    
 
-Source of hostnames here: [wikiHow](http://www.wikihow.com/Stop-All-the-Ads-in-Hotmail), and [Skype forum](http://community.skype.com/t5/Windows-desktop-client/skype-ad-spam-disable/td-p/12156). Just a warning, but Microsoft Security Essentials (MSE) may think your hosts file was hijacked, so if you have issues make sure to allow the changes through MSE.  
-  
----
 
+Source of hostnames here: [wikiHow](http://www.wikihow.com/Stop-All-the-Ads-in-Hotmail), and [Skype forum](http://community.skype.com/t5/Windows-desktop-client/skype-ad-spam-disable/td-p/12156). Just a warning, but Microsoft Security Essentials (MSE) may think your hosts file was hijacked, so if you have issues make sure to allow the changes through MSE.

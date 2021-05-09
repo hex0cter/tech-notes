@@ -1,10 +1,6 @@
+# [How to Access Metro Style Apps Installation Folder in Windows 8](http://www.wikihow.com/Access-Metro-Style-Apps-Installation-Folder-in-Windows-8)
 
-date: None  
-author(s): None  
 
-# [How to Access Metro Style Apps Installation Folder in Windows 8 - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/windows-tips/how-to-access-metro-style-apps-installation-folder-in-windows-8)
-
-http://www.wikihow.com/Access-Metro-Style-Apps-Installation-Folder-in-Windows-8
 
 Edited by Zia Zafari, Eric Shiels, Amandabl, BR and 8 others
 
@@ -64,7 +60,6 @@ Windows 8 contains dozens of built-in Metro style apps. These apps run almost pe
  **Click ‘continue’**
     * Your applications folder would open.
 
-  
-  
----
 
+
+---

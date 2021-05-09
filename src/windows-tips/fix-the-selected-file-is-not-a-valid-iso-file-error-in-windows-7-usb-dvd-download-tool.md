@@ -1,8 +1,4 @@
-
-date: None  
-author(s): None  
-
-# [Fix: “The Selected File Is Not A Valid ISO File” Error In Windows 7 USB/DVD Download Tool - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/windows-tips/fix-the-selected-file-is-not-a-valid-iso-file-error-in-windows-7-usb-dvd-download-tool)
+# [Fix: “The Selected File Is Not A Valid ISO File” Error In Windows 7 USB/DVD Download Tool](http://www.intowindows.com/fix-the-selected-file-is-not-a-valid-iso-file-error-in-windows-7-usbdvd-download-tool/)
 
 These days, a large number of PC users prefer [installing Windows OS from a USB drive](http://www.intowindows.com/how-to-install-windows-7vista-from-usb-drive-detailed-100-working-guide/) instead of traditional DVD disc. Even though there are plenty of better tools out there like Rufus to [create bootable USB from an ISO file](http://www.intowindows.com/how-to-create-bootable-windows-7-usb-to-install-windows-7-from-usb-flash-drive-using-windows-7-dvdusb-tool/), most PC users prefer using the official [Windows 7 USB/DVD Download Tool](http://www.intowindows.com/how-to-create-bootable-windows-7-usb-to-install-windows-7-from-usb-flash-drive-using-windows-7-dvdusb-tool/).
 
@@ -16,7 +12,7 @@ A quick Google search reveals that there are plenty of guides out there to fix t
 
 Users who want to fix “The selected file is not a valid ISO file. Please select a valid ISO file and try again” error with the help of a free software can follow the given below instructions.
 
-Method 1:
+## Method 1:
 
 Step 1: Download ImgBurn software from [here](http://www.imgburn.com/index.php?act=download) and install the same on your PC. As some of you know, ImgBurn is a free software and is compatible with all recent versions of Windows, both 32-bit and 64-bit systems.
 
@@ -46,7 +42,6 @@ Step 5: Finally, click the Build button (see picture) to begin saving the edited
 
 Once the job is done, you can run Windows 7 USB/DVD Download Tool again and browse to the newly created ISO file to prepare the bootable USB/DVD without any issues.
 
-Method 2:
+## Method 2:
 
 If “The selected file is not a valid ISO file. Please select a valid ISO file and try again” error is appearing even after following the above mentioned workaround, we suggest you go ahead and download the popular [Rufus tool](http://www.intowindows.com/how-to-install-windows-8-1-from-usb-flash-drive/) and then follow the simple instructions in [how to install Windows 8.1 from bootable USB](http://www.intowindows.com/how-to-install-windows-8-1-from-usb-flash-drive/) guide to create the bootable media without any errors.
-
