@@ -1,4 +1,4 @@
-# [SSH/OpenSSH/PortForwarding
+# SSH/OpenSSH/PortForwarding
 
 ## Introduction
 

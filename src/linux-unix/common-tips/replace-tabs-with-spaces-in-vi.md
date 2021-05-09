@@ -1,4 +1,4 @@
-# [replace tabs with spaces in vi]
+# replace tabs with spaces in vi
 
 ```
 :setl expandtab

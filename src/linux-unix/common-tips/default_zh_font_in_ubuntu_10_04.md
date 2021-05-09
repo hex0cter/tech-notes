@@ -1,4 +1,4 @@
-# [Ubuntu 10.04英文环境中设置默认中文字体(http://forum.ubuntu.org.cn/viewtopic.php?f=8&t=204439&start=0)
+# [Ubuntu 10.04英文环境中设置默认中文字体](http://forum.ubuntu.org.cn/viewtopic.php?f=8&t=204439&start=0)
 
 
 1. 下载雅黑字体，见附件。 http://rapidshare.com/files/34563809/YaHei.Consolas.1.11b.zip
