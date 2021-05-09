@@ -1,18 +1,13 @@
-
-date: None  
-author(s): None  
-
-# [Change splash screen of Ubuntu Linux - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/ubuntu/change-splash-screen-of-ubuntu-linux)
+# Change splash screen of Ubuntu Linux
 
 The instructions below are tested on Ubuntu 9.10.
 
-1\. How to change the splash screen of Gnome?
+1. How to change the splash screen of Gnome?
 
 Replace the file **/usr/share/images/xsplash/bg_2560x1600.jpg** with another one of the same size.
 
-2\. How to change the splash screen of grub2?
+Run sudo xsplash to preview the changes. Find details at: <http://www.ghacks.net/2010/01/06/change-your-ubuntu-splash-screen-background/>
 
-Copy an image file of the size specified in **/etc/default/grub to /usr/share/images/desktop-base/moreblue-orbit-grub.png** , then run **sudo update-grub** to reflect the changes.  
-  
----
+2. How to change the splash screen of grub2?
 
+Copy an image file of the size specified in **/etc/default/grub to /usr/share/images/desktop-base/moreblue-orbit-grub.png** , then run **sudo update-grub** to reflect the changes.

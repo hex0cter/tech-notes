@@ -1,8 +1,4 @@
-
-date: None  
-author(s): None  
-
-# [ubuntu 10.10诸多问题解决方法 - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/ubuntu/ubuntu1010tips)
+# [ubuntu 10.10诸多问题解决方法](http://hover.blog.51cto.com/258348/416930)
 
 __**一、QQ上线一段时间后自动退出**__ 。
 
@@ -22,7 +18,7 @@ export GDK_NATIVE_WINDOWS=true
 
  _ _ **二、rhythmbox歌曲信息乱码**__
 
-首先，需要有软件包mid3iconv。如果你的系统中没有安装它，可以通过如下代码自动安装：sudo apt-get install python-mutagen 然后转到你的MP3目录，执行以全命令进行转换：mid3iconv -e GBK *.mp3 如果需要包含子目录，可以将后缀改成如下格式：打命令的时候文件名字给 "*/*.mp3" 就行了。比如mid3iconv -e GBK */*.mp3 
+首先，需要有软件包mid3iconv。如果你的系统中没有安装它，可以通过如下代码自动安装：sudo apt-get install python-mutagen 然后转到你的MP3目录，执行以全命令进行转换：mid3iconv -e GBK *.mp3 如果需要包含子目录，可以将后缀改成如下格式：打命令的时候文件名字给 "*/*.mp3" 就行了。比如mid3iconv -e GBK */*.mp3
 
 最后，重新导入一次rhythmbox就OK了。解决Rhythmbox乱码
 
@@ -44,7 +40,7 @@ sudo apt-get install rar
 
 六、显示VI行号
 
-在VI的命令模式下输入“:set nu” 或者修改vi配置文件“vi ~/.vimrc”，在其中添加“set nu” 在VI的命令模式下输入“:set nu”，就有行号了。 但是想将这个设置写进VI的配置文件，就 # vi ~/.vimrc 在这个文件中，添加 set nu 
+在VI的命令模式下输入“:set nu” 或者修改vi配置文件“vi ~/.vimrc”，在其中添加“set nu” 在VI的命令模式下输入“:set nu”，就有行号了。 但是想将这个设置写进VI的配置文件，就 # vi ~/.vimrc 在这个文件中，添加 set nu
 
 就行了
 
@@ -65,4 +61,3 @@ cp epan/.libs/libwireshark.so.0 /usr/lib/
 未完待续。。。。。。
 
 本文出自 “[技术成就梦想](http://hover.blog.51cto.com/)” 博客，请务必保留此出处<http://hover.blog.51cto.com/258348/416930>
-

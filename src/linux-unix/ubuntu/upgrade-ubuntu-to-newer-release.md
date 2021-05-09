@@ -1,24 +1,17 @@
-
-date: None  
-author(s): None  
-
-# [Upgrade Ubuntu to newer release - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/ubuntu/upgrade-ubuntu-to-newer-release)
-
-<http://www.unixmen.com/how-to-upgrade-from-ubuntu-1004-1010-1104-to-ubuntu-1110-oneiric-ocelot-desktop-a-server/>
+# [Upgrade Ubuntu to newer release](http://www.unixmen.com/how-to-upgrade-from-ubuntu-1004-1010-1104-to-ubuntu-1110-oneiric-ocelot-desktop-a-server/)
 
 **From GUI:**
 
 a- Update the system before to upgrade:
 
 Before to upgrade, we need to update the system, press C **trl+Alt+T** , and enter the following command:
-    
-    
-     **sudo apt-get update && sudo apt-get dist-upgrade**
+
+     sudo apt-get update && sudo apt-get dist-upgrade
 
 To upgrade, open terminal and enter the following command:
-    
-    
-     **sudo update-manager -d**
+
+
+     sudo update-manager -d
 
 Update Manager should open up and tell you: **New distribution release ’13.04** ‘ is available ( See screenshot bellow).
 
@@ -41,22 +34,21 @@ Now don`t close your computer until the upgrade is finished.
 To upgrade from Ubuntu 12.10 on a server system to Ubuntu 13.04:
 
 1- install the `update-manager-core` package if it is not already installed:
-    
-    
+
+
      **sudo apt-get install update-manager-core**
 
 2- Edit **`/etc/update-manager/release-upgrades`** and set **`Prompt=normal`** ;
 
 3- Launch the upgrade tool with the command
-    
-    
+
+
      **sudo do-release-upgrade -d**
 
 and follow the on-screen instructions.
 
  **Important:** **This is a beta release. Do not install it on production machines. The final stable version will be released 26th of April 2013.**
 
-\- See more at: http://www.unixmen.com/how-to-upgrade-from-ubuntu-1004-1010-1104-to-ubuntu-1110-oneiric-ocelot-desktop-a-server/#sthash.l3sYpXrm.dpuf  
-  
----
+\- See more at: http://www.unixmen.com/how-to-upgrade-from-ubuntu-1004-1010-1104-to-ubuntu-1110-oneiric-ocelot-desktop-a-server/#sthash.l3sYpXrm.dpuf
 
+---

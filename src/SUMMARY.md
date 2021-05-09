@@ -412,7 +412,7 @@
     - [Show complete command on command line when we use 'ps'](./linux-unix/solaris-specific-commands/show-complete-command-on-command-line-when-we-use-ps.md)
     - [Solaris tips](./linux-unix/solaris-specific-commands/solaris-tips.md)
   - [Ubuntu]()
-    - [Ubuntu](./linux-unix/ubuntu.md)
+    - [ubuntu 10.10诸多问题解决方法](./linux-unix/ubuntu100tips.md)
     - [Change Empathy sounds for Ubuntu](./linux-unix/ubuntu/change-empathy-sounds-for-ubuntu.md)
     - [Change splash screen of Ubuntu Linux](./linux-unix/ubuntu/change-splash-screen-of-ubuntu-linux.md)
     - [Cusomize sound theme for Ubuntu](./linux-unix/ubuntu/cusomize-sound-theme-for-ubuntu.md)

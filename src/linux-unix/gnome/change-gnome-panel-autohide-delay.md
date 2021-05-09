@@ -1,8 +1,11 @@
+# [Change GNOME panel autohide delay](http://www.linuxforums.org/forum/redhat-fedora-linux-help/83548-gnome-panel-autohide-delay.html)
 
-date: None  
-author(s): None  
+Install Gnome Configuration Editor from add/remove software (it will be in the gnome desktop category, not sure on the name though) then you should find it on the 'start' menu under system tools. (I think it's under applications)
 
-# [Change GNOME panel autohide delay - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/gnome/change-gnome-panel-autohide-delay)
+once your in, go to
 
+apps->panels -> top levels -> bottom panel
 
+then change the value of unhide_delay to 0
 
+done!
