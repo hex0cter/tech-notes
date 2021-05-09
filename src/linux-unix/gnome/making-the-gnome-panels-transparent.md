@@ -1,12 +1,8 @@
-
-date: None  
-author(s): None  
-
-# [Making the Gnome Panels Transparent - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/gnome/making-the-gnome-panels-transparent)
+# [Making the Gnome Panels Transparent](http://www.howtogeek.com/howto/43673/how-to-make-the-gnome-panels-in-ubuntu-totally-transparent/)
 
 We all love transparency, since it makes your desktop so beautiful and lovely—so today we’re going to show you how to apply transparency to the panels in your Ubuntu Gnome setup. It’s an easy process, and here’s how to do it.
 
-This article is the first part of a multi-part series on how to customize the Ubuntu desktop, written by How-To Geek reader and ubergeek, Omar Hafiz.  
+This article is the first part of a multi-part series on how to customize the Ubuntu desktop, written by How-To Geek reader and ubergeek, Omar Hafiz.
 
 
 ### Making the Gnome Panels Transparent
@@ -15,7 +11,7 @@ Of course we all love transparency, It makes your desktop so beautiful and lovel
 
 ![Panel before fixing](http://www.howtogeek.com/wp-content/uploads/2011/02/Panel-before-fixing.png)
 
-Fortunately it can be easily fixed, all we need to do is to edit the theme files. If your theme is one of those themes that came with Ubuntu like Ambiance then you’ll have to copy it from /usr/share/themes to your own .themes directory in your Home Folder. You can do so by typing the following command in the terminal  
+Fortunately it can be easily fixed, all we need to do is to edit the theme files. If your theme is one of those themes that came with Ubuntu like Ambiance then you’ll have to copy it from /usr/share/themes to your own .themes directory in your Home Folder. You can do so by typing the following command in the terminal
 
 
 > cp -R /usr/share/themes/theme_name ~/.themes
@@ -41,6 +37,3 @@ Save and exit the text editor. Now change your theme to any other one then switc
 Stay tuned for the second part in the series, where we’ll cover how to change the color and fonts on your panels.
 
 Daniel's Note: The key point is to comment out the line below:
-
-bg_pixmap[NORMAL] = "img/panel.png"
-

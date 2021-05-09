@@ -1,8 +1,5 @@
+# [Print without new line](http://www.webservertalk.com/archive109-2004-10-412119.html)
 
-date: None  
-author(s): None  
-
-# [Print without new line - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/shell-programming/print-without-new-line)
-
-
-
+```
+printf %s "first string" ; printf '\r%s\n' "second string"
+```

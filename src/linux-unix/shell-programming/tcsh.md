@@ -1,12 +1,8 @@
-
-date: None  
-author(s): None  
-
-# [TCSH programming - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/shell-programming/tcsh)
+# [TCSH programming](http://faculty.plattsburgh.edu/jan.plaza/computing/help/tcsh.htm)
 
 There is almost no difference between syntax of csh and tcsh statements which are useful in scripts; the two shells differ mostly in the interactive features (such as capabilities of command completion). There are Unix systems which contain csh but not tcsh. Every Unix system which contains tcsh, either also contains csh, or csh could be added to it just by creating a symbolic link called csh which points to tcsh. Tcsh is an extension of csh, compatible with csh. (When tcsh is invoked through a link called csh, the tcsh notices this fact and assumes the exact behavior of csh.???) For these reasons most programmers write just csh scripts, not tcsh scripts.
 
-The first line of every csh script should contain #!/bin/csh or #!/bin/csh -f , preceded by no spaces or tabs. This is more than just a comment -- this line tells the system how to call the interpreter which will execute the script. The -f option causes that the csh which executes the script does not read (ANY OR USER'S ???) initialization files. 
+The first line of every csh script should contain #!/bin/csh or #!/bin/csh -f , preceded by no spaces or tabs. This is more than just a comment -- this line tells the system how to call the interpreter which will execute the script. The -f option causes that the csh which executes the script does not read (ANY OR USER'S ???) initialization files.
 
 **Debugging** The following statements, individually or together, are useful during the development of the script:set echoset verbose
 
@@ -16,7 +12,7 @@ When the script is executed, they will cause that a trace of execution will be p
 
 Remember to put spaces around the = symbol.
 
- **Shell list (array) variables**.There are only lists of strings; there are no lists of lists.set users = ($user1 bcde2345)set users = (root $users cdef3456) 
+ **Shell list (array) variables**.There are only lists of strings; there are no lists of lists.set users = ($user1 bcde2345)set users = (root $users cdef3456)
 
 set $users[0] = defg4567
 
@@ -24,17 +20,17 @@ set $users[0] = defg4567
 
 $*:q would have value ('fff ggg')
 
- **Input  
-** Every time user presses Enter, special variable $< is updated to store one line of users input; the line break is not a part if the string in $<.  
+ **Input
+** Every time user presses Enter, special variable $< is updated to store one line of users input; the line break is not a part if the string in $<.
 WHAT IF USER TYPES CTRL-D ?
 
  **Output** echo 'echo "cc = $cc" -- echo adds a line break after the string.echo "$bb\n $cc" -- Use \n to specify an additional line break.echo -n "$aa $bb $cc" -- With -n, echo will not add a line break.echo $aa > $outputFileecho $cc >> $outputFile
 
 echo "$nn+$nn" -- addition not performed.
 
-cat << ENDLABEL -- this outputs all the text up to but excluding ENDLABEL. ... You can use MESSAGE1_END, etc as the end label. ... This feature is called a "here document"ENDLABEL 
+cat << ENDLABEL -- this outputs all the text up to but excluding ENDLABEL. ... You can use MESSAGE1_END, etc as the end label. ... This feature is called a "here document"ENDLABEL
 
-**String operations  
+**String operations
 **
 
 There is no concatenation operator. To concatenate strings, put them one next to the other.set newstring = aaa$string1${string2}bbb
@@ -43,7 +39,7 @@ Notice that curly braces can be used to delimit the variable name (so that the s
 
 set myfile = /usr/users/abcd1234/sorter.cset head = $myfile:h -- gets value /usr/users/abcd1234set tail = $myfile:t -- gets value sorter.c set root = $myfile:r -- gets value /usr/users/abcd1234/sorter
 
-set extension = $myfile:e -- gets value c 
+set extension = $myfile:e -- gets value c
 
 **Boolean expressions**
 
@@ -101,10 +97,9 @@ If you use a file pattern with a wildcard (e.g. csc*), the pattern will expand t
 
 There are no functions, procedures, methods, subroutines in csh or tcsh. Instead, one can use aliases with parameters and goto statements.
 
-To obtain output of a command for processing in the script, enclose the command in backquotes:  
+To obtain output of a command for processing in the script, enclose the command in backquotes:
 set fileInfo = `ls -l project.java`
 
 <http://faculty.plattsburgh.edu/jan.plaza/computing/help/tcsh.htm>
 
 <http://en.wikipedia.org/wiki/C_shell#Command_substitution>
-

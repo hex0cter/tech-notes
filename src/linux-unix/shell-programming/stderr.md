@@ -1,8 +1,9 @@
-
-date: None  
-author(s): None  
-
-# [Stderr Redirection - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/shell-programming/stderr)
+# [Stderr Redirection](http://www.bo.infn.it/alice/alice-doc/mll-doc/usrgde/node18.html)
 
 
+Sample:
+```
+ # make > build.log 2>&1
+```
 
+This works for ksh, but not for tcsh.
