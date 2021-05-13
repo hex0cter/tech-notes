@@ -32,7 +32,6 @@
   - [Watchpoint on gdb](./software-development/gdb-tips/watchpoint-on-gdb.md)
   - [Debugging with gdb](./software-development/gdb-tips/debugging-with-gdb.md)
 - [Linux静态、共享和动态库之编程](./linux-lib-programming.md)
-- [Gdb tips - daniel han's technical notes](./gdb-tips.md)
 - [如何只在堆上创建对象，如何只在栈上创建对象](./heap-or-stack.md)
 - [Vim + cscope + ctags: erlang](./vim-cscope-ctags-erlang.md)
 - [How to make a shared library in c](./how-to-make-a-shared-library-in-c.md)

@@ -14,7 +14,7 @@
 - [Printf in bash - daniel han's technical notes](./printf-in-bash.md)
 - [How to run an alias in a shell script? - daniel han's technical notes](./how-to-run-an-alias-in-a-shell-script.md)
 - [Quick hex / decimal conversion using cli - daniel han's technical notes](./quick-hex-decimal-conversion-using-cli.md)
-- [Bash parameter expansion - daniel han's technical notes](./bash-parameter-expansion.md)
+- [Bash parameter expansion](./bash-parameter-expansion.md)
 - [Using getopts in bash shell script to get long and short command line options](./using-getopts-in-bash-shell-script-to-get-long-and-short-command-line-options.md)
 - [Tmout – automatically exit unix shell when there is no activity - daniel han's technical notes](./tmout-automatically-exit-unix-shell-when-there-is-no-activity.md)
 - [If in bash - daniel han's technical notes](./if-in-bash.md)

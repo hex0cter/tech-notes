@@ -1,9 +1,6 @@
+# [Using ssh as a SOCKS proxy on Mac OS X](https://mikeash.com/ssh_socks.html)
 
-date: None  
-author(s): None  
-
-# [Using ssh as a SOCKS proxy on Mac OS X - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/os-x-tips/using-ssh-as-a-socks-proxy-on-mac-os-x)
-
+## Introduction
 Many times it can be convenient to tunnel your web traffic through a proxy, particularly an encrypted one. This web page shows how to easily tunnel your traffic through an ssh-encrypted proxy on Mac OS X. This allows your traffic to traverse your local network without being visible to snoopers, even when visiting unencrypted sites.
 
 It also allows you to appear to come from a different IP address, allowing you to defeat geolocation schemes. In particular, some credit card processors try to make sure that your credit card billing address is correlated with your IP address, which can be hard on us expatriates. Another example is the [free credit report web site](https://www.annualcreditreport.com/) which doesn't seem to work from outside the United States. There are undoubtedly many other practical, legitimate uses for this sort of redirection.
@@ -30,14 +27,13 @@ Next, open Firefox. In Firefox's address bar, enter [about:config](javascript:vo
 
 Set all of the items in bold to exactly what you see in the screenshot. For those of you who can't see the screenshot, set the following:
 
-`network.proxy.socks`| `127.0.0.1`  
----|---  
-`network.proxy.socks_port`| `2001`  
-`network.proxy.socks_version`| `4`  
-  
+`network.proxy.socks`| `127.0.0.1`
+---|---
+`network.proxy.socks_port`| `2001`
+`network.proxy.socks_version`| `4`
+
 These settings configure your SOCKS4 proxy, but don't actually switch it on. This means that you can leave them set permanently, and they won't affect your connection unless you want them to.
 
 To make Firefox actually use the proxy, make one final change: set `network.proxy.type` to `1`. Then go to <http://www.whatismyip.com/> to test. If it worked, you should be seeing the IP address of your remote shell host. Compare with its value in Safari if you're unsure.
 
 If you want to use Firefox without the SOCKS4 proxy, simply reset the last setting: set `network.proxy.type` to `0`.
-
