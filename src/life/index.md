@@ -1,0 +1,11 @@
+# Life
+- [Gmail for nokia e72](./life/gmail-for-nokia-e72.md)
+- [Image to text (ocr) for swedish](./life/ocr-swedish.md)
+- [How to banish embarrassing or annoying autocomplete suggestions from your browser](./life/banish-auto-complete.md)
+- [Ocr translate letters to your own language](./life/ocr-your-own-language.md)
+- [Rotate an image automatically on linux](./life/rotate-image-automatically.md)
+- [How to combine ovpn files](./life/how-to-combine-ovpn-files.md)
+- [Help:cheatsheet](./life/wikipedia-cheat-sheet.md)
+- [Gmail setup instructions on nokia phone](./life/gmail-on-nokia.md)
+- [Exchange for gmail on iphone](./life/exchange-gmail-on-iphone.md)
+- [Retreive saved wifi password on symbian](./life/reveal-wifi-password-on-symbian.md)

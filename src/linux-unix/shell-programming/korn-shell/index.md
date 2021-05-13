@@ -1,0 +1,10 @@
+# Korn shell
+- [Korn shell variables - daniel han's technical notes](./linux-unix/shell-programming/korn-shell/korn-shell-variables.md)
+- [Korn shell](./linux-unix/shell-programming/korn-shell/korn-shell.md)
+- [Korn shell tips - daniel han's technical notes](./linux-unix/shell-programming/korn-shell/ksh.md)
+- [Greper - daniel han's technical notes](./linux-unix/shell-programming/korn-shell/greper.md)
+- [Ksh 笔记 - daniel han's technical notes](./linux-unix/shell-programming/korn-shell/ksh-1.md)
+- [String operators (korn shell) - daniel han's technical notes](./linux-unix/shell-programming/korn-shell/string-operators-korn-shell.md)
+- [Korn shell file options (condition check) - daniel han's technical notes](./linux-unix/shell-programming/korn-shell/kshfile.md)
+- [Use arrow key in interactive ksh script - daniel han's technical notes](./linux-unix/shell-programming/korn-shell/use-arrow-key-in-interactive-ksh-script.md)
+- [Korn shell arrays - daniel han's technical notes](./linux-unix/shell-programming/korn-shell/korn-shell-arrays.md)
