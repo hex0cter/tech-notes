@@ -32,6 +32,8 @@ def index_dir(dir_name):
         title = file_path.split('/')[-1].replace('-', ' ')
         titles.append({"path": file_path, "items": items, 'title': title})
     else:
+        if file == 'SUMMARY.md' or file == 'SUMMARY1.md':
+            continue
         title = index_file(file_path)
         titles.append({"path": file_path, "title": title})
 
@@ -41,16 +43,22 @@ def index_dir(dir_name):
   # return {nice_key_name: titles, "dir_name": dir_name}
 
 
-def create_index(titles, depth = 1):
+def create_index(file, titles, depth = 0):
   for title in titles:
       if 'items' in title:
-          create_index(title['items'], depth=depth+1)
+          line = f"{' ' * depth * 2}- [{title['title']}]()"
+          file.write(f"{line}\n")
+
+          create_index(file, title['items'], depth=depth+1)
       else:
-        print(f"{' '* depth}--[{title['title']}]({title['path']})")
+          line = f"{' ' * depth * 2}- [{title['title']}]({title['path']})"
+          file.write(f"{line}\n")
 
 
 if __name__ == "__main__":
     os.chdir("./src")
     titles = index_dir(".")
-    # print(titles)
-    create_index(titles)
+    file = open("SUMMARY.md", "w")
+    file.write("# Index\n")
+    create_index(file, titles)
+    file.close()
