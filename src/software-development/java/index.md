@@ -1,2 +1,2 @@
 # Java
-- [Pattern: look around](./software-development/java/pattern-look-around.md)
+- [Pattern: look around](./pattern-look-around.md)

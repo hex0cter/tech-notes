@@ -1,2 +1,2 @@
 # Ruby
-- [Dump thread info in ruby](./software-development/ruby/dump-thread-info-in-ruby.md)
+- [Dump thread info in ruby](./dump-thread-info-in-ruby.md)

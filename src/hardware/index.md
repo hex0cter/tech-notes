@@ -1,2 +1,2 @@
 # Hardware
-- [Difference between multicore and multiprocessor](./hardware/difference-between-multicore-and-multiprocessor.md)
+- [Difference between multicore and multiprocessor](./difference-between-multicore-and-multiprocessor.md)

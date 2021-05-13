@@ -1,3 +1,3 @@
 # Itut
-- [Itu-t recommendations](./itut/online-recommendations.md)
-- [Q. serial recommendations index](./itut/q-recommendations.md)
+- [Itu-t recommendations](./online-recommendations.md)
+- [Q. serial recommendations index](./q-recommendations.md)

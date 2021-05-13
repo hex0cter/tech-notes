@@ -1,2 +1,2 @@
 # Sed
-- [Regexp - daniel han's technical notes](./linux-unix/shell-programming/sed/regexp.md)
+- [Regexp - daniel han's technical notes](./regexp.md)

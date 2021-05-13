@@ -1,11 +1,10 @@
 #!/usr/bin/env python
 
 import os
-from os.path import isdir, isfile, join
+from os.path import isdir, join
 
 
 def index_file(file_name):
-  # print("index_file", index_file)
   with open(file_name) as f:
     read_data = f.read()
 
@@ -28,42 +27,44 @@ def index_dir(dir_name):
     # print(">>>> file", file)
     file_path = join(dir_name, file)
     if isdir(file_path):
-        items = index_dir(file_path)
-        title = file_path.split('/')[-1].replace('-', ' ')
-        titles.append({"path": file_path, "items": items, 'title': title})
+      items = index_dir(file_path)
+      title = file_path.split('/')[-1].replace('-', ' ')
+      titles.append({"path": file_path, "items": items, 'title': title})
     else:
-        if file == 'SUMMARY.md' or file == 'index.md':
-            continue
-        title = index_file(file_path)
-        titles.append({"path": file_path, "title": title})
+      if file == 'SUMMARY.md' or file == 'index.md':
+        continue
+      title = index_file(file_path)
+      titles.append({"path": file_path, "title": title})
 
   return titles
-  # key_name = dir_name.split('/')[-1].replace('-', ' ')
-  # nice_key_name = ' '.join(elem.capitalize() for elem in key_name.split())
-  # return {nice_key_name: titles, "dir_name": dir_name}
 
 
-def create_index(file, titles, depth=0):
+def create_index(file, titles, depth=0, current_dir=''):
   for title in titles:
-      if 'items' in title:
-          line = f"{' ' * depth * 2}- [{title['title'].capitalize()}]({title['path']}/index.md)"
-          file.write(f"{line}\n")
+    displayed_title = title['title'].capitalize()
+    if current_dir:
+      displayed_path = title['path'].replace(current_dir, '.')
+    else:
+      displayed_path = title['path']
+    if 'items' in title:
+      line = f"{' ' * depth * 2}- [{displayed_title}]({displayed_path}/index.md)"
+      file.write(f"{line}\n")
 
-          subfolder_file = open(f"{title['path']}/index.md", "w")
-          subfolder_file.write(f"# {title['title'].capitalize()}\n")
-          create_index(subfolder_file, title['items'])
-          subfolder_file.close()
+      subfolder_file = open(f"{title['path']}/index.md", "w")
+      subfolder_file.write(f"# {displayed_title}\n")
+      create_index(subfolder_file, title['items'], current_dir=title['path'])
+      subfolder_file.close()
 
-          create_index(file, title['items'], depth=depth+1)
-      else:
-          line = f"{' ' * depth * 2}- [{title['title'].capitalize()}]({title['path']})"
-          file.write(f"{line}\n")
+      create_index(file, title['items'], depth=depth + 1)
+    else:
+      line = f"{' ' * depth * 2}- [{displayed_title}]({displayed_path})"
+      file.write(f"{line}\n")
 
 
 if __name__ == "__main__":
-    os.chdir("./src")
-    titles = index_dir(".")
-    file = open("SUMMARY.md", "w")
-    file.write("# Index\n")
-    create_index(file, titles)
-    file.close()
+  os.chdir("./src")
+  titles = index_dir(".")
+  file = open("SUMMARY.md", "w")
+  file.write("# Index\n")
+  create_index(file, titles)
+  file.close()
