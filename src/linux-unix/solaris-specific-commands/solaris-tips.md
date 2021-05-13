@@ -1,8 +1,5 @@
+# [Solaris tips](http://www.softpanorama.org/Solaris/solaris_tips.shtml)
 
-date: None  
-author(s): None  
+A few Solaris tips:
 
-# [Solaris tips - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/solaris-specific-commands/solaris-tips)
-
-
-
+<http://www.softpanorama.org/Solaris/solaris_tips.shtml>

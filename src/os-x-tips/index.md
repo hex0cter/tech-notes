@@ -5,7 +5,7 @@
 - [Access remote vino server of ubuntu from os x screen sharing app - daniel han's technical notes](./access-remote-vino-server-on-ubuntu-from-os-x-screen-sharing-app.md)
 - [Completely delete usb flash drive partition in macos using diskutil](./completely-delete-usb-flash-drive-partition-in-macos-using-diskutil.md)
 - [Take control of startup and login items on os x](./take-control-of-startup-and-login-items.md)
-- [`$path` only present when atom is launched from command line - daniel han's technical notes](./-path-only-present-when-atom-is-launched-from-command-line.md)
+- [`$path` only present when atom is launched from command line](./-path-only-present-when-atom-is-launched-from-command-line.md)
 - [File can't be moved by root on os x](./file-can-t-be-moved-by-root-on-os-x.md)
 - [Add additional dictionaries to macos dictionary app](./add-additional-dictionaries-to-macos-dictionary-app.md)
 - [Customize application short key to what ever you want](./customize-application-short-key-to-what-ever-you-want.md)
