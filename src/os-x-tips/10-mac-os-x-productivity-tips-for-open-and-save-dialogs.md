@@ -1,8 +1,4 @@
-
-date: None  
-author(s): None  
-
-# [10 Mac OS X Productivity Tips for Open and Save Dialogs - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/os-x-tips/10-mac-os-x-productivity-tips-for-open-and-save-dialogs)
+# [10 Mac OS X Productivity Tips for Open and Save Dialogs](http://www.automatedworkflows.com/2012/02/13/10-mac-os-x-productivity-tips-for-open-and-save-dialogs/)
 
 They're open and save dialogs. You navigate to a file or folder. You select it. You enter a file name when saving. You click Open or Save. How much more efficient can you get? Well, here are 10 things most Mac users probably don't know...
 
@@ -43,4 +39,3 @@ They're open and save dialogs. You navigate to a file or folder. You select it. 
  **Tip 10:** With a file or folder selected, press **Command+I** to bring the Finder to the front and display the Get Info window for the item.
 
 So, there you have it. Small tips that will save you a few precious seconds here and there and make you more productive. Every second counts, right?
-

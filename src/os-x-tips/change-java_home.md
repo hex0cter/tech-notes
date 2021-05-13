@@ -1,71 +1,65 @@
+# Three ways to update JAVA_HOME on Mac OS X
 
-date: None  
-author(s): None  
+1.  `vi ~/Library/LaunchAgents/environment.plist`
 
-# [Three ways to update JAVA_HOME on Mac OS X - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/os-x-tips/change-java_home)
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
 
-1\.  vi ~/Library/LaunchAgents/environment.plist
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 
-`<?xml version="1.0" encoding="UTF-8"?>`
+<plist version="1.0">
 
-`<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">`
+<dict>
 
-`<plist version="1.0">`
+  <key>Label</key>
 
-`<dict>`
+  <string>my.startup</string>
 
-` ``<key>Label</key>`
+  <key>ProgramArguments</key>
 
-` ``<string>my.startup</string>`
+  <array>
 
-` ``<key>ProgramArguments</key>`
+    <string>sh</string>
 
-` ``<array>`
+    <string>-c</string>
 
-` ``<string>sh</string>`
+    <string>
 
-` ``<string>-c</string>`
+    launchctl setenv JAVA_HOME /Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home
 
-` ``<string>`
+    launchctl setenv PATH /Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/bin:$PATH
 
-` ``launchctl setenv JAVA_HOME /Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home`
+    </string>
 
-` ``launchctl setenv PATH /Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/bin:$PATH`
+  </array>
 
-` ``</string>`
+  <key>RunAtLoad</key>
 
-` ``</array>`
+  <true/>
 
-` ``<key>RunAtLoad</key>`
+</dict>
 
-` ``<true/>`
+</plist>
+```
 
-`</dict>`
+2. `vi .MacOSX/environment.plist`
 
-`</plist>`
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
 
-  
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 
+<plist version="1.0">
 
-2\. vi .MacOSX/environment.plist
+<dict>
 
-`<?xml version="1.0" encoding="UTF-8"?>`
+ <key>JAVA_HOME</key>
 
-`<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">`
+ <string>/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home</string>
 
-`<plist version="1.0">`
+</dict>
 
-`<dict>`
+</plist>
+```
 
-`<key>JAVA_HOME</key>`
-
-`<string>/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home</string>`
-
-`</dict>`
-
-`</plist>`
-
-3\. edit shell rc file  
-  
----
-
+3. edit shell rc file

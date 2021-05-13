@@ -1,8 +1,4 @@
-
-date: None  
-author(s): None  
-
-# [Mac OS X Network Proxy Settings in Terminal - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/os-x-tips/mac-os-x-network-proxy-settings-in-terminal)
+# [Mac OS X Network Proxy Settings in Terminal](https://dmorgan.info/posts/mac-network-proxy-terminal/)
 
 Mac OS X does a good job of juggling proxy configurations for graphical applications while moving between wired and wireless network connections. However, this functionality doesn’t extend to command-line work in Terminal or iTerm and can be a pain when using git or package managers like npm, apm, pip, or homebrew while switching between environments. This post describes a method for programmatically setting the command-line network proxy environment variables based on the configured proxy in the Network System Preferences pane.
 
@@ -17,8 +13,8 @@ Mac OS X maintains individual network proxy settings for each network adapter. F
 The `scutil` command-line utility allows for management for a variety of system configuration parameters and can be used to access system proxy configuration with the `--proxy` flag.
 
 Here is the output of `scutil --proxy` without a configured proxy:
-    
-    
+
+
     $ scutil --proxy
     <dictionary> {
      FTPPassive : 1
@@ -27,8 +23,8 @@ Here is the output of `scutil --proxy` without a configured proxy:
     }
 
 and here is the output of `scutil --proxy` with `example.proxy` set as the system proxy for the HTTP and HTTPS protocols:
-    
-    
+
+
     $ scutil --proxy
     <dictionary> {
      FTPPassive : 1
@@ -43,8 +39,8 @@ and here is the output of `scutil --proxy` with `example.proxy` set as the syste
 ## Parse `scutil` output
 
 We can use `awk` to parse the output of `scutil` and extract the proxy configuration. The following snippet does the trick:
-    
-    
+
+
     $ export http_proxy=`scutil --proxy | awk '\
      /HTTPEnable/ { enabled = $3; } \
      /HTTPProxy/ { server = $3; } \
@@ -55,4 +51,3 @@ We can use `awk` to parse the output of `scutil` and extract the proxy configura
 This script looks for `HTTPEnable`, `HTTPProxy`, and `HTTPPort` in the output of `scutil`. If the proxy is enabled, the script prints out the proxy URL and sets it as the `http_proxy` environment variable. If the proxy is not enabled, the script sets `http_proxy` to an empty string. The final line sets the `HTTP_PROXY` environment variable as well since some command-line applications use that instead.
 
 Placing this snippet in your `.bash_profile` ensures that your proxy will stay configured automatically while switching between wired and wireless networks.
-
