@@ -2,7 +2,7 @@
 - [Three ways to update java_home on mac os x](./change-java_home.md)
 - [10 mac os x productivity tips for open and save dialogs](./10-mac-os-x-productivity-tips-for-open-and-save-dialogs.md)
 - [Who is listening on a given tcp port on mac os x?](./who-is-listening-on-a-given-tcp-port-on-mac-os-x.md)
-- [Access remote vino server of ubuntu from os x screen sharing app - daniel han's technical notes](./access-remote-vino-server-on-ubuntu-from-os-x-screen-sharing-app.md)
+- [Access remote vino server of ubuntu from os x screen sharing app](./access-remote-vino-server-on-ubuntu-from-os-x-screen-sharing-app.md)
 - [Completely delete usb flash drive partition in macos using diskutil](./completely-delete-usb-flash-drive-partition-in-macos-using-diskutil.md)
 - [Take control of startup and login items on os x](./take-control-of-startup-and-login-items.md)
 - [`$path` only present when atom is launched from command line](./-path-only-present-when-atom-is-launched-from-command-line.md)

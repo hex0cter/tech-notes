@@ -17,7 +17,7 @@
 - [Win7家庭版显示或隐藏用户帐户](./hide-account-in-windows-7-home-basic.md)
 - [Open excel in new window instance (very useful when you have dual monitors)](./open-excel-in-new-window-instance-very-useful-when-you-have-dual-monitors.md)
 - [Fix: “the selected file is not a valid iso file” error in windows 7 usb/dvd download tool](./fix-the-selected-file-is-not-a-valid-iso-file-error-in-windows-7-usb-dvd-download-tool.md)
-- [Freeware - daniel han's technical notes](./freeware.md)
+- [Freeware](./freeware.md)
 - [Finding which cygwin package contains a particular file](./finding-which-cygwin-package-contains-a-particular-file.md)
 - [Windows 7: customize how the date is displayed in the system tray](./windows-7-customize-how-the-date-is-displayed-in-the-system-tray.md)
 - [Disk usage tool](./disk-usage.md)

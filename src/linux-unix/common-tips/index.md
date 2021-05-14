@@ -172,4 +172,4 @@
 - [Log watching using tail or less](./log-watching-using-tail-or-less.md)
 - [Ubuntu tips](./ubunu.md)
 - ["wc" without file name printed](./-wc-without-file-name-printed.md)
-- [How to input chinese under linux suse 10 - daniel han's technical notes](./ime.md)
+- [How to input chinese under linux suse 10](./ime.md)

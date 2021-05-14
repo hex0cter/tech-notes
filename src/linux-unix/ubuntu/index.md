@@ -11,5 +11,5 @@
 - [Ubuntu boot screen resolution](./ubuntu-boot-screen-resolution.md)
 - [Xfce 4.8 - no applications found](./xfce-4-8---no-applications-found.md)
 - [Ubuntu 10.10诸多问题解决方法](./ubuntu1010tips.md)
-- [Install pps/ppstream on ubuntu 12.04+ - daniel han's technical notes](./install-pps-ppstream-on-ubuntu-12-04.md)
+- [Install pps/ppstream on ubuntu 12.04+](./install-pps-ppstream-on-ubuntu-12-04.md)
 - [Upgrade ubuntu to newer release](./upgrade-ubuntu-to-newer-release.md)

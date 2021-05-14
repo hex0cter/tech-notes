@@ -1,10 +1,5 @@
+# C++ ebooks
 
-date: None  
-author(s): None  
+This page shares some C++ tutorial.
 
-# [C++ ebooks - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/software-development/c-ebooks)
-
-This page shares some C++ tutorial.  
-  
----
-
+Please find attachment here: <https://carnet-classic.danielhan.dev/home/technical-tips/software-development/c-ebooks.html>

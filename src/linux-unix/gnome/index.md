@@ -14,7 +14,7 @@
 - [Remove envelope from indicator applet](./remove-envelope-from-indicator-applet.md)
 - [Nautilus does not respect gtk theme set in appearance](./nautilus-does-not-respect-gtk-theme-set-in-appearance.md)
 - [Customize ubuntu 11.04 notification area /system tray white-list](./customize-ubuntu-11-04-notification-area-system-tray-white-list.md)
-- [Customize the user menu in the top panel of gnome shell - daniel han's technical notes](./customize-the-user-menu-in-the-top-panel-of-gnome-shell.md)
+- [Customize the user menu in the top panel of gnome shell](./customize-the-user-menu-in-the-top-panel-of-gnome-shell.md)
 - [Gnome 桌面环境中 metacity 窗口管理器设置窗口按钮的位置](./gnome_buttons.md)
 - [Making the gnome panels transparent](./making-the-gnome-panels-transparent.md)
 - [Set transparency in top panel of gnome shell](./set-transparency-in-top-panel-of-gnome-shell.md)

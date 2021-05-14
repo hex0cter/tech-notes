@@ -1,8 +1,7 @@
+# [Install PPS/ppstream on Ubuntu 12.04+](http://thanhsiang.org/faqing/node/167)
 
-date: None  
-author(s): None  
+The official pps package doesn't seem to work on latest Ubuntu distributions. Here is a way to solve it.
 
-# [Install PPS/ppstream on Ubuntu 12.04+ - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/ubuntu/install-pps-ppstream-on-ubuntu-12-04)
+<http://thanhsiang.org/faqing/node/167>
 
-
-
+Just install the file attached here: <https://carnet-classic.danielhan.dev/home/technical-tips/linux-unix/ubuntu/install-pps-ppstream-on-ubuntu-12-04.html>
