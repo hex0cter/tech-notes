@@ -1,4 +1,5 @@
 # Index
+- [Welcome](./README.md)
 - [Database](./database/index.md)
   - [Install oracle for ruby-oci8 on ubuntu](./database/install-oracle-for-ruby-oci8-on-ubuntu.md)
   - [How to start, stop and restart oracle listener](./database/how-to-start-stop-and-restart-oracle-listener.md)
@@ -492,7 +493,6 @@
   - [Sip](./rfc/sip/index.md)
     - [Sip category](./rfc/sip/sip-category.md)
     - [Sip timers](./rfc/sip/sip-timers.md)
-- [Welcome to visit.](./README.md)
 - [Android](./android/index.md)
   - [How to install clockworkmod recovery on samsung galaxy s2 / i9100](./android/recovery-i9100.md)
   - [Market helper – spoof your android device to download incompatible apps from the android market](./android/market-helper.md)

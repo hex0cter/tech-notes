@@ -4,3 +4,6 @@ language = "en"
 multilingual = true
 src = "src"
 title = "Tech notes"
+
+[output.html]
+git-repository-url = "https://github.com/hex0cter/tech-notes"
