@@ -1,19 +1,10 @@
+# [Access remote vino server of ubuntu from OS X screen sharing app](http://askubuntu.com/questions/463486/can-no-longer-use-screen-share-to-connect-mac-to-ubuntu-since-upgrading-to-14-04)
 
-date: None  
-author(s): None  
+## Problem:
 
-# [Access remote vino server of ubuntu from OS X screen sharing app - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/os-x-tips/access-remote-vino-server-on-ubuntu-from-os-x-screen-sharing-app)
+The software on the remote computer appears to be incompatible with this version of Screen Sharing.
 
-http://askubuntu.com/questions/463486/can-no-longer-use-screen-share-to-connect-mac-to-ubuntu-since-upgrading-to-14-04
-
-  
-
-
-Problem:
-
-The software on the remote computer appears to be incompatible with this version of Screen Sharing. 
-
-Solution:  
+## Solution:
 
 
 Using a combination of clues from <http://discourse.ubuntu.com/t/remote-desktop-sharing-in-ubuntu-14-04/1640> (which is all about VNC access) and<https://bugs.launchpad.net/ubuntu/+source/vino/+bug/1281250> (which discusses the bug introduced into Vino) I have managed to resolve the matter.
@@ -38,7 +29,6 @@ It should now work. Tested through a reboot and all good.
 
 Hope it helps.
 
-(I have got a screen shot of dconf but don't have enough points on here to post it - I am sure everyone can work it out for themselves though! :-) )  
-  
----
+(I have got a screen shot of dconf but don't have enough points on here to post it - I am sure everyone can work it out for themselves though! :-) )
 
+---

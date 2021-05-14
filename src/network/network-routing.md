@@ -1,8 +1,4 @@
-
-date: None  
-author(s): None  
-
-# [距离矢量路由协议（distance vector） VS 链路状态路由协议（link-state） - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/network/network-routing)
+# [距离矢量路由协议（distance vector） VS 链路状态路由协议（link-state](http://sxzx.360doc.com/content/081231/18/36491_2235770.html)
 
 **一、PK第一番**
 
@@ -44,7 +40,6 @@ trigger updates
 
 而链路状态路由协议更新是非周期性的（nonperiodic），部分的（partial）
 
-<http://sxzx.360doc.com/content/081231/18/36491_2235770.html>  
-  
----
+<http://sxzx.360doc.com/content/081231/18/36491_2235770.html>
 
+---

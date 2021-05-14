@@ -1,11 +1,7 @@
+# [Linux 进程管理](http://www.linuxsir.org/main/?q=node/210)
 
-date: None  
-author(s): None  
-
-# [Linux 进程管理 - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/operation-system/process-control)
-
-**作者：** 北南南北  
- **来自：** LinuxSir.Org  
+**作者：** 北南南北
+ **来自：** LinuxSir.Org
  **摘要：** 本文讲述的时进程管理的基本概念和进程管理工具介绍；文中的重点对进程管理工具的分类介绍及应用举例，包括 ps、pgrep、top 、kill、pkill、killall、nice和renice 等工具。
 
 **目录**
@@ -16,20 +12,20 @@ author(s): None
 
 2、进程管理
 
-2.1 ps 监视进程工具 2.1.1 ps参数说明  
+2.1 ps 监视进程工具 2.1.1 ps参数说明
 2.1.2 ps 应用举例
 
-2.2 pgrep 
+2.2 pgrep
 
 3、终止进程的工具 kill 、killall、pkill、xkill
 
-3.1 kill 3.2 killall 3.3 pkill 
+3.1 kill 3.2 killall 3.3 pkill
 
-3.4 xkill 
+3.4 xkill
 
 4、top 监视系统任务的工具
 
-4.1 top 命令用法及参数  
+4.1 top 命令用法及参数
 4.2 top 应用举例
 
 5、进程的优先级： nice和renice6、关于本文7、后记8、参考文档
@@ -80,71 +76,113 @@ ps 为我们提供了进程的一次性的查看，它所提供的查看结果�
 **2.1.1 ps 的参数说明；**
 
 ps 提供了很多的选项参数，常用的有以下几个；
-    
-    
+
+
     l  长格式输出；
-    
-    
-    
+
+
+
     u  按用户名和启动时间的顺序来显示进程；
-    
-    
-    
+
+
+
     j  用任务格式来显示进程；
-    
-    
-    
+
+
+
     f  用树形格式来显示进程；
-    
-    
-    
+
+
+
     a  显示所有用户的所有进程（包括其它用户）；
-    
-    
-    
+
+
+
     x  显示无控制终端的进程；
-    
-    
-    
+
+
+
     r  显示运行中的进程；
-    
-    
-    
+
+
+
     ww 避免详细参数被截断；
-    
-    
-    
-    
+
+
+
+
 
 我们常用的选项是组合是aux 或lax，还有参数f的应用；
 
 **ps aux 或lax输出的解释；**
-    
-    
-    USER	进程的属主； PID	进程的ID； PPID 父进程； %CPU	进程占用的CPU百分比； %MEM	占用内存的百分比； NI 进程的NICE值，数值大，表示较少占用CPU时间； VSZ 进程虚拟大小； RSS 驻留中页的数量； WCHAN TTY 终端ID STAT 进程状态 
-    
-     D Uninterruptible sleep (usually IO) R 正在运行可中在队列中可过行的； S 处于休眠状态； T 停止或被追踪； W 进入内存交换（从内核2.6开始无效）； X 死掉的进程（从来没见过）； Z 僵尸进程； < 优先级高的进程 N 优先级较低的进程 L 有些页被锁进内存； s 进程的领导者（在它之下有子进程）； l is multi-threaded (using CLONE_THREAD, like NPTL pthreads do) + 位于后台的进程组； 
-    
-    
-    
-    
+
+
+    USER	进程的属主；
+
+    PID	进程的ID；
+
+    PPID 父进程；
+
+    %CPU	进程占用的CPU百分比；
+
+    %MEM	占用内存的百分比；
+
+    NI 进程的NICE值，数值大，表示较少占用CPU时间；
+
+    VSZ 进程虚拟大小；
+
+    RSS 驻留中页的数量；
+
+    WCHAN
+
+    TTY 终端ID
+
+    STAT 进程状态
+
+     D Uninterruptible sleep (usually IO)
+
+     R 正在运行可中在队列中可过行的；
+
+     S 处于休眠状态；
+
+     T 停止或被追踪；
+
+     W 进入内存交换（从内核2.6开始无效）；
+
+     X 死掉的进程（从来没见过）；
+
+     Z 僵尸进程； < 优先级高的进程
+
+     N 优先级较低的进程
+
+     L 有些页被锁进内存；
+
+     s 进程的领导者（在它之下有子进程）；
+
+     l is multi-threaded (using CLONE_THREAD, like NPTL pthreads do)
+
+     + 位于后台的进程组；
+
+
+
+
     WCHAN	正在等待的进程资源；
-    
-    
-    
+
+
+
     START 启动进程的时间；
-    
-    
-    
+
+
+
     TIME	进程消耗CPU的时间；
-    
-    
-    
+
+
+
     COMMAND 命令的名称和参数；
-    
-    
-    
-    
+
+
+
+
 
 **2.1.2 ps 应用举例；**
 
@@ -154,26 +192,42 @@ ps 提供了很多的选项参数，常用的有以下几个；
 
 可以用 | 管道和 more 连接起来分页查看；
 
-`[root@localhost ~]# ps -aux > ps001.txt  
+`[root@localhost ~]# ps -aux > ps001.txt
 [root@localhost ~]# more ps001.txt `
 
 这里是把所有进程显示出来，并输出到ps001.txt文件，然后再通过more 来分页查看；
 
 **实例二：和grep 结合，提取指定程序的进程；**
 
-`[root@localhost ~]# ps aux |grep httpdroot 4187 0.0 1.3 24236 10272 ? Ss 11:55 0:00 /usr/sbin/httpdapache 4189 0.0 0.6 24368 4940 ? S 11:55 0:00 /usr/sbin/httpdapache 4190 0.0 0.6 24368 4932 ? S 11:55 0:00 /usr/sbin/httpdapache 4191 0.0 0.6 24368 4932 ? S 11:55 0:00 /usr/sbin/httpdapache 4192 0.0 0.6 24368 4932 ? S 11:55 0:00 /usr/sbin/httpdapache 4193 0.0 0.6 24368 4932 ? S 11:55 0:00 /usr/sbin/httpdapache 4194 0.0 0.6 24368 4932 ? S 11:55 0:00 /usr/sbin/httpdapache 4195 0.0 0.6 24368 4932 ? S 11:55 0:00 /usr/sbin/httpdapache 4196 0.0 0.6 24368 4932 ? S 11:55 0:00 /usr/sbin/httpd
-
-root 4480 0.0 0.0 5160 708 pts/3 R+ 12:20 0:00 grep httpd
-
-`
+```
+[root@localhost ~]# ps aux |grep httpd
+root      4187  0.0  1.3  24236 10272 ?        Ss   11:55   0:00 /usr/sbin/httpd
+apache    4189  0.0  0.6  24368  4940 ?        S    11:55   0:00 /usr/sbin/httpd
+apache    4190  0.0  0.6  24368  4932 ?        S    11:55   0:00 /usr/sbin/httpd
+apache    4191  0.0  0.6  24368  4932 ?        S    11:55   0:00 /usr/sbin/httpd
+apache    4192  0.0  0.6  24368  4932 ?        S    11:55   0:00 /usr/sbin/httpd
+apache    4193  0.0  0.6  24368  4932 ?        S    11:55   0:00 /usr/sbin/httpd
+apache    4194  0.0  0.6  24368  4932 ?        S    11:55   0:00 /usr/sbin/httpd
+apache    4195  0.0  0.6  24368  4932 ?        S    11:55   0:00 /usr/sbin/httpd
+apache    4196  0.0  0.6  24368  4932 ?        S    11:55   0:00 /usr/sbin/httpd
+root      4480  0.0  0.0   5160   708 pts/3    R+   12:20   0:00 grep httpd
+```
 
 **实例二：父进和子进程的关系友好判断的例子**
 
-`[root@localhost ~]# ps auxf |grep httpdroot 4484 0.0 0.0 5160 704 pts/3 S+ 12:21 0:00 \_ grep httpdroot 4187 0.0 1.3 24236 10272 ? Ss 11:55 0:00 /usr/sbin/httpdapache 4189 0.0 0.6 24368 4940 ? S 11:55 0:00 \_ /usr/sbin/httpdapache 4190 0.0 0.6 24368 4932 ? S 11:55 0:00 \_ /usr/sbin/httpdapache 4191 0.0 0.6 24368 4932 ? S 11:55 0:00 \_ /usr/sbin/httpdapache 4192 0.0 0.6 24368 4932 ? S 11:55 0:00 \_ /usr/sbin/httpdapache 4193 0.0 0.6 24368 4932 ? S 11:55 0:00 \_ /usr/sbin/httpdapache 4194 0.0 0.6 24368 4932 ? S 11:55 0:00 \_ /usr/sbin/httpdapache 4195 0.0 0.6 24368 4932 ? S 11:55 0:00 \_ /usr/sbin/httpd
-
-apache 4196 0.0 0.6 24368 4932 ? S 11:55 0:00 \_ /usr/sbin/httpd
-
-`
+```
+[root@localhost ~]# ps auxf  |grep httpd
+root      4484  0.0  0.0   5160   704 pts/3    S+   12:21   0:00              \_ grep httpd
+root      4187  0.0  1.3  24236 10272 ?        Ss   11:55   0:00 /usr/sbin/httpd
+apache    4189  0.0  0.6  24368  4940 ?        S    11:55   0:00  \_ /usr/sbin/httpd
+apache    4190  0.0  0.6  24368  4932 ?        S    11:55   0:00  \_ /usr/sbin/httpd
+apache    4191  0.0  0.6  24368  4932 ?        S    11:55   0:00  \_ /usr/sbin/httpd
+apache    4192  0.0  0.6  24368  4932 ?        S    11:55   0:00  \_ /usr/sbin/httpd
+apache    4193  0.0  0.6  24368  4932 ?        S    11:55   0:00  \_ /usr/sbin/httpd
+apache    4194  0.0  0.6  24368  4932 ?        S    11:55   0:00  \_ /usr/sbin/httpd
+apache    4195  0.0  0.6  24368  4932 ?        S    11:55   0:00  \_ /usr/sbin/httpd
+apache    4196  0.0  0.6  24368  4932 ?        S    11:55   0:00  \_ /usr/sbin/httpd
+```
 
 这里用到了f参数；父与子关系一目了然；
 
@@ -187,19 +241,41 @@ pgrep 是通过程序的名字来查询进程的工具，一般是用来判断�
 
 **常用参数**
 
-`-l 列出程序名和进程ID；-o 进程起始的ID；
-
+```
+-l 列出程序名和进程ID；
+-o 进程起始的ID；
 -n 进程终止的ID；
-
-`
+```
 
 **举例：**
 
-`[root@localhost ~]# pgrep -lo httpd4557 httpd[root@localhost ~]# pgrep -ln httpd4566 httpd[root@localhost ~]# pgrep -l httpd4557 httpd4560 httpd4561 httpd4562 httpd4563 httpd4564 httpd4565 httpd4566 httpd[root@localhost ~]# pgrep httpd4557456045614562456345644565
+```
+[root@localhost ~]# pgrep -lo httpd
+4557 httpd
 
+[root@localhost ~]# pgrep -ln httpd
+4566 httpd
+
+[root@localhost ~]# pgrep -l httpd
+4557 httpd
+4560 httpd
+4561 httpd
+4562 httpd
+4563 httpd
+4564 httpd
+4565 httpd
+4566 httpd
+
+[root@localhost ~]# pgrep httpd
+4557
+4560
+4561
+4562
+4563
+4564
+4565
 4566
-
-`
+```
 
 **3、终止进程的工具 kill 、killall、pkill、xkill；**
 
@@ -212,43 +288,57 @@ pgrep 是通过程序的名字来查询进程的工具，一般是用来判断�
 kill的应用是和ps 或pgrep 命令结合在一起使用的；
 
 **kill 的用法：**
-    
-    
+
+
     kill ［信号代码］   进程ID
-    
-    
-    
-    
+
 
 **注：** 信号代码可以省略；我们常用的信号代码是 -9 ，表示强制终止；
 
 **举例：**
 
-`[root@localhost ~]# ps auxf |grep httpdroot 4939 0.0 0.0 5160 708 pts/3 S+ 13:10 0:00 \_ grep httpdroot 4830 0.1 1.3 24232 10272 ? Ss 13:02 0:00 /usr/sbin/httpdapache 4833 0.0 0.6 24364 4932 ? S 13:02 0:00 \_ /usr/sbin/httpdapache 4834 0.0 0.6 24364 4928 ? S 13:02 0:00 \_ /usr/sbin/httpdapache 4835 0.0 0.6 24364 4928 ? S 13:02 0:00 \_ /usr/sbin/httpdapache 4836 0.0 0.6 24364 4928 ? S 13:02 0:00 \_ /usr/sbin/httpdapache 4837 0.0 0.6 24364 4928 ? S 13:02 0:00 \_ /usr/sbin/httpdapache 4838 0.0 0.6 24364 4928 ? S 13:02 0:00 \_ /usr/sbin/httpdapache 4839 0.0 0.6 24364 4928 ? S 13:02 0:00 \_ /usr/sbin/httpd
+```
+[root@localhost ~]# ps  auxf  |grep   httpd
+root      4939  0.0  0.0   5160   708 pts/3    S+   13:10   0:00              \_ grep httpd
+root      4830  0.1  1.3  24232 10272 ?        Ss   13:02   0:00 /usr/sbin/httpd
+apache    4833  0.0  0.6  24364  4932 ?        S    13:02   0:00  \_ /usr/sbin/httpd
+apache    4834  0.0  0.6  24364  4928 ?        S    13:02   0:00  \_ /usr/sbin/httpd
+apache    4835  0.0  0.6  24364  4928 ?        S    13:02   0:00  \_ /usr/sbin/httpd
+apache    4836  0.0  0.6  24364  4928 ?        S    13:02   0:00  \_ /usr/sbin/httpd
+apache    4837  0.0  0.6  24364  4928 ?        S    13:02   0:00  \_ /usr/sbin/httpd
+apache    4838  0.0  0.6  24364  4928 ?        S    13:02   0:00  \_ /usr/sbin/httpd
+apache    4839  0.0  0.6  24364  4928 ?        S    13:02   0:00  \_ /usr/sbin/httpd
+apache    4840  0.0  0.6  24364  4928 ?        S    13:02   0:00  \_ /usr/sbin/httpd
 
-apache 4840 0.0 0.6 24364 4928 ? S 13:02 0:00 \_ /usr/sbin/httpd
-
-`
+```
 
 我们查看httpd 服务器的进程；您也可以用pgrep -l httpd 来查看；
 
 我们看上面例子中的第二列，就是进程PID的列，其中4830是httpd服务器的父进程，从4833－4840的进程都是它4830的子进程；如果我们杀掉父进程4830的话，其下的子进程也会跟着死掉；
 
-`[root@localhost ~]# kill 4840 注：杀掉4840这个进程；[root@localhost ~]# ps -auxf |grep httpd 注：查看一下会有什么结果？是不是httpd服务器仍在运行？[root@localhost ~]# kill 4830 注：杀掉httpd的父进程；
+```
+[root@localhost ~]# kill 4840  注：杀掉4840这个进程；
 
-[root@localhost ~]# ps -aux |grep httpd 注：查看httpd的其它子进程是否存在，httpd服务器是否仍在运行？
-
-`
+[root@localhost ~]# ps -auxf  |grep  httpd  注：查看一下会有什么结果？是不是httpd服务器仍在运行？
+[root@localhost ~]# kill 4830   注：杀掉httpd的父进程；
+[root@localhost ~]# ps -aux |grep httpd  注：查看httpd的其它子进程是否存在，httpd服务器是否仍在运行？
+```
 
 **对于僵尸进程，可以用kill -9 来强制终止退出；**
 
 比如一个程序已经彻底死掉，如果kill 不加信号强度是没有办法退出，最好的办法就是加信号强度 -9 ，后面要接杀父进程；比如；
 
-`[root@localhost ~]# ps aux |grep gaimbeinan 5031 9.0 2.3 104996 17484 ? S 13:23 0:01 gaimroot 5036 0.0 0.0 5160 724 pts/3 S+ 13:24 0:00 grep gaim或[root@localhost ~]# pgrep -l gaim5031 gaim
+```
+[root@localhost ~]# ps aux |grep gaim
+beinan    5031  9.0  2.3 104996 17484 ?        S    13:23   0:01 gaim
+root      5036  0.0  0.0   5160   724 pts/3    S+   13:24   0:00 grep gaim
 
+或
+
+[root@localhost ~]# pgrep -l gaim
+5031 gaim
 [root@localhost ~]# kill -9 5031
-
-`
+```
 
 **3.2 killall**
 
@@ -260,11 +350,12 @@ killall 也和ps或pgrep 结合使用，比较方便；通过ps或pgrep 来查�
 
 **举例：**
 
-`[root@localhost beinan]# pgrep -l gaim2979 gaim
+```
+[root@localhost beinan]# pgrep -l gaim
+2979 gaim
 
 [root@localhost beinan]# killall gaim
-
-`
+```
 
 **3.3 pkill**
 
@@ -276,11 +367,12 @@ pkill 和killall 应用方法差不多，也是直接杀死运行中的程序；
 
 **举例：**
 
-`[root@localhost beinan]# pgrep -l gaim2979 gaim
+```
+[root@localhost beinan]# pgrep -l gaim
+2979 gaim
 
 [root@localhost beinan]# pkill gaim
-
-`
+```
 
 **3.4 xkill**
 
@@ -302,23 +394,48 @@ xkill 是在桌面用的杀死图形界面的程序。比如当firefox 出现崩
 
 **参数：**
 
-`-b 以批量模式运行，但不能接受命令行输入；-c 显示命令行，而不仅仅是命令名；-d N 显示两次刷新时间的间隔，比如 -d 5，表示两次刷新间隔为5秒；-i 禁止显示空闲进程或僵尸进程；-n NUM 显示更新次数，然后退出。比如 -n 5，表示top更新5次数据就退出；-p PID 仅监视指定进程的ID；PID是一个数值；-q 不经任何延时就刷新；-s 安全模式运行，禁用一些效互指令；
-
+```
+-b  以批量模式运行，但不能接受命令行输入；
+-c 显示命令行，而不仅仅是命令名；
+-d N  显示两次刷新时间的间隔，比如 -d 5，表示两次刷新间隔为5秒；
+-i 禁止显示空闲进程或僵尸进程；
+-n NUM  显示更新次数，然后退出。比如 -n 5，表示top更新5次数据就退出；
+-p PID 仅监视指定进程的ID；PID是一个数值；
+-q  不经任何延时就刷新；
+-s  安全模式运行，禁用一些效互指令；
 -S 累积模式，输出每个进程的总的CPU时间，包括已死的子进程；
-
-`
+```
 
 **交互式命令键位：**
 
-`space 立即更新；c 切换到命令名显示，或显示整个命令（包括参数）；f,F 增加显示字段，或删除显示字段；h,? 显示有关安全模式及累积模式的帮助信息；k 提示输入要杀死的进程ID，目的是用来杀死该进程（默人信号为15）i 禁止空闲进程和僵尸进程；l 切换到显法负载平均值和正常运行的时间等信息；m 切换到内存信息，并以内存占用大小排序；n 提示显示的进程数，比如输入3，就在整屏上显示3个进程；o,O 改变显示字段的顺序；r 把renice 应用到一个进程，提示输入PID和renice的值；s 改变两次刷新时间间隔，以秒为单位；t 切换到显示进程和CPU状态的信息；A 按进程生命大小进行排序，最新进程显示在最前；M 按内存占用大小排序，由大到小；N 以进程ID大小排序，由大到小；P 按CPU占用情况排序，由大到小S 切换到累积时间模式；T 按时间／累积时间对任务排序；
-
+```
+space  立即更新；
+c 切换到命令名显示，或显示整个命令（包括参数）；
+f,F 增加显示字段，或删除显示字段；
+h,? 显示有关安全模式及累积模式的帮助信息；
+k 提示输入要杀死的进程ID，目的是用来杀死该进程（默人信号为15）
+i 禁止空闲进程和僵尸进程；
+l 切换到显法负载平均值和正常运行的时间等信息；
+m 切换到内存信息，并以内存占用大小排序；
+n  提示显示的进程数，比如输入3，就在整屏上显示3个进程；
+o,O 改变显示字段的顺序；
+r 把renice 应用到一个进程，提示输入PID和renice的值；
+s 改变两次刷新时间间隔，以秒为单位；
+t 切换到显示进程和CPU状态的信息；
+A 按进程生命大小进行排序，最新进程显示在最前；
+M 按内存占用大小排序，由大到小；
+N 以进程ID大小排序，由大到小；
+P 按CPU占用情况排序，由大到小
+S 切换到累积时间模式；
+T  按时间／累积时间对任务排序；
 W 把当前的配置写到~/.toprc中；
-
-`
+```
 
 **4.2 top 应用举例；**
 
-`[root@localhost ~]# top`
+```
+[root@localhost ~]# top
+```
 
 然后根据前面所说交互命令按个尝试一下就明白了，比如按M，就按内存占用大小排序；这个例子举不举都没有必要了。呵。。。。。。
 
@@ -349,17 +466,19 @@ renice 是通过进程ID（PID）来改变谦让度，进而达到更改进程�
 `renice 谦让度 PID`
 
 renice 所设置的谦让度就是进程的绝对值；看下面的例子；
-    
-    
-    [root@localhost ~]# ps lax |grep gaim 4 0 4437 3419 10 -5 120924 20492 - S< pts/0 0:01 gaim 0 0 4530 3419 10 -5 5160 708 - R<+ pts/0 0:00 grep gaim [root@localhost ~]# renice -6 4437 4437: old priority -5, new priority -6 [root@localhost ~]# ps lax |grep gaim 4 0 4437 3419 14 -6 120924 20492 -      S<   pts/0      0:01 gaim
-    
-    
-    
-    0     0  4534  3419  11  -5   5160   708 -      R<+  pts/0      0:00 grep gaim
-    
-    
-    
-    
+```
+[root@localhost ~]# ps lax   |grep gaim
+4     0  4437  3419  10  -5 120924 20492 -      S<   pts/0      0:01 gaim
+0     0  4530  3419  10  -5   5160   708 -      R<+  pts/0      0:00 grep gaim
+
+[root@localhost ~]# renice -6  4437
+4437: old priority -5, new priority -6
+
+[root@localhost ~]# ps lax   |grep gaim
+4     0  4437  3419  14  -6 120924 20492 -      S<   pts/0      0:01 gaim
+0     0  4534  3419  11  -5   5160   708 -      R<+  pts/0      0:00 grep gaim
+
+```
 
 **6、关于本文；**
 
@@ -375,5 +494,4 @@ Windows 的进程管理并不优秀，只是一个友好的界面而已，我想
 
 近些天一直在为网络基础文档做计划，当然也随手写一写自己能写的文档， 比如本篇就是； 也想把论坛中的一些弟兄优秀的教程整理出来，但后来一想，如果提交到 LinuxSir.Org 首页上，肯定得做一些修改，如果我来修改倒不如让作者自己来修改，自己写的东西自己最明白，对不对？？？
 
-在准备网络文档计划的过程中，向etony兄请教了一些基本的网络基础知识。我对网络基础理论基本不懂。听tony兄解说的同时，我也做了笔记。同时也和tony兄讨论了网络基础篇的布局和谋篇的事，这关系到初学者入手的问题，好象是小事，其实事情比较大。如果写的文档，新手读不懂，老鸟又认为没有价值，我看倒不如不写。。
-
+在准备网络文档计划的过程中，向etony兄请教了一些基本的网络基础知识。我对网络基础理论基本不懂。听tony兄解说的同时，我也做了笔记。同时也和tony兄讨论了网络基础篇的布局和谋篇的事，这关系到初学者入手的问题，好象是小事，其实事情比较大。如果写的文档，新手读不懂，老鸟又认为没有价值，我看倒不如不写。
