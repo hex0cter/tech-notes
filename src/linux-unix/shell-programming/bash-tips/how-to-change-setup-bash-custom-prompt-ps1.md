@@ -1,10 +1,4 @@
-
-date: None  
-author(s): None  
-
-# [How to: Change / Setup bash custom prompt (PS1) - Daniel Han's Technical Notes](https://sites.google.com/site/xiangyangsite/home/technical-tips/linux-unix/shell-programming/bash-tips/how-to-change-setup-bash-custom-prompt-ps1)
-
-[![](http://figs.cyberciti.biz/3rdparty/terminal.png)](http://www.cyberciti.biz/tips/category/shell-scripting)
+# [How to: Change / Setup bash custom prompt (PS1)](http://www.cyberciti.biz/tips/howto-linux-unix-bash-shell-setup-prompt.html)
 
 So how do you setup, change and pimp out Linux / UNIX shell prompt?
 
@@ -23,11 +17,11 @@ Prompt is control via a special shell variable. You need to set PS1, PS2, PS3 an
 
 ### How do I display current prompt setting?
 
-Simply use echo command, enter:  
-`$ echo $PS1`  
+Simply use echo command, enter:
+`$ echo $PS1`
 Output:
-    
-    
+
+
     \\u@\h \\W]\\$
 
 ### How do I modify or change the prompt?
@@ -36,11 +30,11 @@ Modifying the prompt is easy task. Just assign a new value to PS1 and hit enter 
 
 `PS1="touch me : "`
 
-  
+
 Output: My new prompt
-    
-    
-    touch me : 
+
+
+    touch me :
 
 So when executing interactively, bash displays the primary prompt PS1 when it is ready to read a command, and the secondary prompt PS2 when it needs more input to complete a command. Bash allows these prompt strings to be customized by inserting a number of backslash-escaped special characters that are decoded as follows:
 
@@ -74,18 +68,18 @@ So when executing interactively, bash displays the primary prompt PS1 when it is
 
 
 
-Let us try to set the prompt so that it can display today’d date and hostname:  
-` **PS1="\d \h $** "`  
+Let us try to set the prompt so that it can display today’d date and hostname:
+` **PS1="\d \h $** "`
 Output:
-    
-    
-    Sat Jun 02 server $ 
 
-Now setup prompt to display date/time, hostname and current directory:  
-`$ **PS1="[\d \t \u@\h:\w ] $** "`  
+
+    Sat Jun 02 server $
+
+Now setup prompt to display date/time, hostname and current directory:
+`$ **PS1="[\d \t \u@\h:\w ] $** "`
 Output:
-    
-    
+
+
     [Sat Jun 02 14:24:12 vivek@server:~ ] $
 
 ### How do I add colors to my prompt?
@@ -96,15 +90,15 @@ You can change the [color of your shell prompt](http://www.cyberciti.biz/faq/bas
 
 Let us say when you login as root/superuser, you want to get visual confirmation using red color prompt. To distinguish between superuser and normal user you use last character in the prompt, if it changes from $ to #, you have superuser privileges. So let us set your prompt color to RED when you login as root, otherwise display normal prompt.
 
-Open /etc/bashrc (Redhat and friends) / or /etc/bash.bashrc (Debian/Ubuntu) or /etc/bash.bashrc.local (Suse and others) file and append following code:  
+Open /etc/bashrc (Redhat and friends) / or /etc/bash.bashrc (Debian/Ubuntu) or /etc/bash.bashrc.local (Suse and others) file and append following code:
 `# vi /etc/bashrc`or
 
 `$ sudo gedit /etc/bashrc`
 
-  
+
 Append the code as follows
-    
-    
+
+
     # If id command returns zero, you’ve root access.
     if [ $(id -u) -eq 0 ];
     then # you are root, set red colour prompt
@@ -117,11 +111,11 @@ Close and save the file.
 
 ### My firepower prompt
 
-Check this out:  
-[![Firepower shell prompt using bashish](http://www.cyberciti.biz/tips/wp-content/uploads/2007/06/firepower-prompt.jpg)](http://www.cyberciti.biz/tips/wp-content/uploads/2007/06/firepower-prompt.jpg)  
+Check this out:
+[![Firepower shell prompt using bashish](http://www.cyberciti.biz/tips/wp-content/uploads/2007/06/firepower-prompt.jpg)](http://www.cyberciti.biz/tips/wp-content/uploads/2007/06/firepower-prompt.jpg)
 (click to enlarge)
 
-You can also create complex themes for your bash shell using bashish. [Bashish](http://bashish.sourceforge.net/) is a theme enviroment for text terminals. It can change colors, font, transparency and background image on a per-application basis. Additionally Bashish supports prompt changing on common shells such as bash, zsh and tcsh. Install bashish using rpm or apt-get command:  
+You can also create complex themes for your bash shell using bashish. [Bashish](http://bashish.sourceforge.net/) is a theme enviroment for text terminals. It can change colors, font, transparency and background image on a per-application basis. Additionally Bashish supports prompt changing on common shells such as bash, zsh and tcsh. Install bashish using rpm or apt-get command:
 `# rpm -ivh bashish*`OR
 
 `# dpkg -i bashish*`
@@ -138,14 +132,20 @@ To configure the Bashish theme engine, run
 
 `$ bashishtheme`
 
-basish in action (screenshots from official site):  
+basish in action (screenshots from official site):
+
 [![flower.png](http://www.cyberciti.biz/tips/wp-content/uploads/2007/06/flower.thumbnail.png)](http://www.cyberciti.biz/tips/wp-content/uploads/2007/06/flower.png)
 
-[![urbandawn - based on an artwork by grevenlx](http://www.cyberciti.biz/tips/wp-content/uploads/2007/06/urbandawn.thumbnail.png)](http://www.cyberciti.biz/tips/wp-content/uploads/2007/06/urbandawn.png)  
+[![urbandawn - based on an artwork by grevenlx](http://www.cyberciti.biz/tips/wp-content/uploads/2007/06/urbandawn.thumbnail.png)](http://www.cyberciti.biz/tips/wp-content/uploads/2007/06/urbandawn.png)
+
 Finally, you can always use [aterm](http://www.afterstep.org/aterm.php) or other terminal program such as rxvt. It supports nice visual effect , like transparency, tinting and much more by visiting profile menu. Select your terminal > click on Edit menu bar > Profiles > Select Profile > Click on Edit button > Select Effects tab > Select transparent background > Close
 
-[![Linux desktop nice visual effect , like transparency, tinting etc](http://www.cyberciti.biz/tips/wp-content/uploads/2007/06/mydesktop-thumb-desltop-transparency.png)](http://www.cyberciti.biz/tips/wp-content/uploads/2007/06/mydesktop.png)  
+[![Linux desktop nice visual effect , like transparency, tinting etc](http://www.cyberciti.biz/tips/wp-content/uploads/2007/06/mydesktop-thumb-desltop-transparency.png)](http://www.cyberciti.biz/tips/wp-content/uploads/2007/06/mydesktop.png)
 (click to enlarge)
 
 ### Further readings:
 
+* [Coloring your prompt with tput and shell escape code](http://www.cyberciti.biz/faq/bash-shell-change-the-color-of-my-shell-prompt-under-linux-or-unix/)
+* [How-to reference guide to customizing the BASH command-line prompt](http://tldp.org/HOWTO/Bash-Prompt-HOWTO/)
+* Download [Bashish](http://bashish.sourceforge.net/) theme enviroment for text terminals.
+* (Shell scripting)[http://www.cyberciti.biz/tips/category/shell-scripting]
