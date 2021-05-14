@@ -1,6 +1,5 @@
 # Package management on linux
 - [Linux package management](./linux-package-management.md)
-- [Package management on redhat based linux - daniel han's technical notes](./package-management-on-redhat-based-linux.md)
 - [How to interpret the status of dpkg (–list)?](./how-to-interpret-the-status-of-dpkg-list.md)
 - [Package management on redhat based linux](./package-management-on-redhat-based-linux/index.md)
   - [How to check content of rpm package?](./linux-unix/administrations/package-management-on-linux/package-management-on-redhat-based-linux/how-to-check-content-of-rpm-package.md)
