@@ -4,8 +4,6 @@ author(s): zellwk
 
 # [JavaScript async and await in loops](https://zellwk.com/blog/async-await-in-loops/)
 
-1st May 2019
-
 Basic `async` and `await` is simple. Things get a bit more complicated when you
 try to use `await` in loops.
 
@@ -22,8 +20,6 @@ continuing.
 
 For this article, let’s say you want to get the number of fruits from a fruit
 basket.
-
-
 
     const fruitBasket = {
       apple: 27,
