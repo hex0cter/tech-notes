@@ -38,6 +38,7 @@
 - [How to make a shared library in c](./how-to-make-a-shared-library-in-c.md)
 - [Javascript](./javascript/index.md)
   - [How to safely update your packages.json](./software-development/javascript/how-to-safely-update-packages-json.md)
+  - [How to solve the infinite loop of react.useeffect()](./software-development/javascript/react-useeffect-infinite-loop.md)
   - [Javascript async and await in loops](./software-development/javascript/async-await-in-loops.md)
 - [Jenkins](./jenkins/index.md)
   - [Export jenkins job config to xml](./software-development/jenkins/export-jenkins-job-config-to-xml.md)
