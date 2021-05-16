@@ -1,5 +1,5 @@
 # Index
-- [Welcome](./README.md)
+- [Welcome to visit.](./README.md)
 - [Database](./database/index.md)
   - [Install oracle for ruby-oci8 on ubuntu](./database/install-oracle-for-ruby-oci8-on-ubuntu.md)
   - [How to start, stop and restart oracle listener](./database/how-to-start-stop-and-restart-oracle-listener.md)
@@ -403,6 +403,7 @@
     - [How to use simplehttpserver](./software-development/python/how-to-use-simplehttpserver.md)
     - [Importing python modules](./software-development/python/importing-python-modules.md)
     - [Python objects](./software-development/python/python-objects.md)
+    - [How to create a python library](./software-development/python/create-a-python-library.md)
     - [Python - split a string by spaces — preserving quoted substrings](./software-development/python/python---split-a-string-by-spaces-preserving-quoted-substrings.md)
     - [Python readline completions](./software-development/python/python-readline-completions.md)
     - [Python passes by reference](./software-development/python/python-passes-by-reference.md)
@@ -433,6 +434,7 @@
   - [How to make a shared library in c](./software-development/how-to-make-a-shared-library-in-c.md)
   - [Javascript](./software-development/javascript/index.md)
     - [How to safely update your packages.json](./software-development/javascript/how-to-safely-update-packages-json.md)
+    - [Javascript async and await in loops](./software-development/javascript/async-await-in-loops.md)
   - [Jenkins](./software-development/jenkins/index.md)
     - [Export jenkins job config to xml](./software-development/jenkins/export-jenkins-job-config-to-xml.md)
     - [Iterate jenkins slaves and kill them](./software-development/jenkins/iterate-jenkins-slaves-and-kill-them.md)

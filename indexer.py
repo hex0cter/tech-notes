@@ -64,6 +64,10 @@ def create_index(file, titles, depth=0, current_dir=''):
 if __name__ == "__main__":
   os.chdir("./src")
   titles = index_dir(".")
+  first_page_index = next((index for (index, d) in enumerate(titles) if d["path"] == "./README.md"), None)
+  first_page = titles.pop(first_page_index)
+  titles.insert(0, first_page)
+
   file = open("SUMMARY.md", "w")
   file.write("# Index\n")
   create_index(file, titles)
