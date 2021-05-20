@@ -414,7 +414,7 @@
     - [Show dependency tree](./software-development/maven/show-dependency-tree.md)
   - [Differences between gcc and g++](./software-development/difference-between-gcc-and-g-.md)
   - [Automake使用小结](./software-development/automake.md)
-  - [How to enable core dumps](./software-development/how-to-enable-core-dumps.md)
+  - [How to check the open file limits](./software-development/how-to-enable-core-dumps.md)
   - [List object file symbols](./software-development/object-file-symbols.md)
   - [Java](./software-development/java/index.md)
     - [Pattern: look around](./software-development/java/pattern-look-around.md)

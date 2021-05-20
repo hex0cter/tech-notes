@@ -10,6 +10,13 @@ jobs:
           access_token: ${{ secrets.GITHUB_TOKEN }}
       - name: Checkout source code
         uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+      - name: Create index files
+        run: |
+          python indexer.py
       - name: Build
         run: |
           sudo apt-get update && sudo apt-get install -y cargo
