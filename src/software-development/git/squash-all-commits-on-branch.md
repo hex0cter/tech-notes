@@ -1,3 +1,5 @@
+# [Git: How to squash all commits on branch](https://stackoverflow.com/questions/25356810/git-how-to-squash-all-commits-on-branch)
+
 Assume the base branch is `master`
 
 ```
