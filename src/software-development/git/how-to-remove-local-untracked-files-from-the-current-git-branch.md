@@ -3,8 +3,7 @@
 
 ![](https://miro.medium.com/max/1024/1*SptUKxY2gmxa4XC3W1_nRw.jpeg)
 
-Well, the short answer as per the Git Documents is [git clean](https://git-
-scm.com/docs/git-clean)
+Well, the short answer as per the Git Documents is [git clean](https://git-scm.com/docs/git-clean)
 
 If you want to see which files will be deleted you can use the `-n` option
 before you run the actual command:
