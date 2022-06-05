@@ -1,0 +1,17 @@
+# Download static site with wget
+
+## Command
+```
+wget -r -np -nc -l 1 -A zip http://example.com/download/
+```
+
+```
+-r,  --recursive          specify recursive download.
+-np, --no-parent          don't ascend to the parent directory.
+-nc, --no-clobber         skip if already downloaded
+-l,  --level=NUMBER       maximum recursion depth (inf or 0 for infinite).
+-A,  --accept=LIST        comma-separated list of accepted extensions
+```
+
+## References
+* [Recursively download files from a website using wget](https://superuser.com/questions/1358477/recursively-download-files-from-a-website-using-wget)
