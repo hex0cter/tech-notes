@@ -1,9 +1,9 @@
 [book]
 authors = ["Daniel Han"]
 language = "en"
-multilingual = true
 src = "src"
-title = "Tech notes"
+title = "Daniel Han's Technical Notes"
+description = "Daniel Han's technical notes: a decade of how-tos on Linux, shell scripting, networking, databases, macOS, Windows and software development."
 
 [output.html]
 git-repository-url = "https://github.com/hex0cter/tech-notes"
