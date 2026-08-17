@@ -1,37 +1,67 @@
-jobs:
-  run-test:
-    name: Publish
-    runs-on:
-      - ubuntu-latest
-    steps:
-      - name: Cancel previous runs
-        uses: styfle/cancel-workflow-action@0.4.1
-        with:
-          access_token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Checkout source code
-        uses: actions/checkout@v2
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.x
-      - name: Create index files
-        run: |
-          python indexer.py
-      - name: Build
-        run: |
-          sudo apt-get update && sudo apt-get install -y cargo
-          cargo install mdbook
-          export PATH=$PATH:$HOME/.cargo/bin
-          mdbook build
-      - name: Publish
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
-        run: |
-          aws s3 cp book s3://carnet.danielhan.dev/ --recursive
 name: Publisher
+
 on:
   push:
     branches:
       - master
+  pull_request:
+  workflow_dispatch:
+
+# Queue overlapping runs instead of cancelling them: a run cancelled in the
+# middle of `aws s3 sync --delete` could leave the bucket half-updated.
+concurrency:
+  group: publish
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+env:
+  MDBOOK_VERSION: "0.5.4"
+  SITE_URL: https://carnet.danielhan.dev/
+  BUCKET: s3://carnet.danielhan.dev/
+
+jobs:
+  publish:
+    name: Build and publish
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.x"
+
+      - name: Test the SEO post-build script
+        run: python3 -m unittest -v test_seo.py
+
+      - name: Create index files
+        run: python3 indexer.py
+
+      - name: Install mdBook (pinned release binary)
+        run: |
+          mkdir -p "$HOME/.local/bin"
+          curl -sSL "https://github.com/rust-lang/mdBook/releases/download/v${MDBOOK_VERSION}/mdbook-v${MDBOOK_VERSION}-x86_64-unknown-linux-gnu.tar.gz" \
+            | tar -xz -C "$HOME/.local/bin"
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+          "$HOME/.local/bin/mdbook" --version
+
+      - name: Build
+        run: mdbook build
+
+      - name: Generate sitemap.xml, robots.txt and canonical links
+        run: python3 seo.py book "$SITE_URL"
+
+      - name: Publish
+        # Only real pushes to master (and manual runs) publish; pull requests
+        # just prove the build works.
+        if: github.event_name != 'pull_request'
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+        # --delete removes pages that no longer exist in the book, so deleted
+        # notes actually disappear from the site.
+        run: aws s3 sync book/ "$BUCKET" --delete

@@ -20,7 +20,7 @@ def index_file(file_name):
 
 def index_dir(dir_name):
   # print("index_dir", dir_name)
-  files = os.listdir(dir_name)
+  files = sorted(os.listdir(dir_name), key=str.lower)
 
   titles = []
   for file in files:
@@ -55,7 +55,7 @@ def create_index(file, titles, depth=0, current_dir=''):
       create_index(subfolder_file, title['items'], current_dir=title['path'])
       subfolder_file.close()
 
-      create_index(file, title['items'], depth=depth + 1)
+      create_index(file, title['items'], depth=depth + 1, current_dir=current_dir)
     else:
       line = f"{' ' * depth * 2}- [{displayed_title}]({displayed_path})"
       file.write(f"{line}\n")
